@@ -503,13 +503,24 @@ function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
-// Afficher/masquer le bouton selon le scroll
-window.addEventListener('scroll', function () {
-    const btn = document.querySelector('.scroll-to-top');
-    if (btn) {
-        btn.style.display = window.scrollY > 300 ? 'flex' : 'none';
-    }
-});
+// Afficher/masquer le bouton selon le scroll (disparaît après 3s d'inactivité)
+(function () {
+    let scrollTimer = null;
+    window.addEventListener('scroll', function () {
+        const btn = document.querySelector('.scroll-to-top');
+        if (!btn) return;
+        if (window.scrollY > 300) {
+            btn.style.display = 'flex';
+            clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function () {
+                btn.style.display = 'none';
+            }, 3000);
+        } else {
+            btn.style.display = 'none';
+            clearTimeout(scrollTimer);
+        }
+    });
+})();
 
 // ===============================================
 // INITIALISATION

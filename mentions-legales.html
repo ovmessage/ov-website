@@ -540,24 +540,5 @@
         <i class="fas fa-arrow-up"></i>
     </div>
 
-    <script>
-        // Fonction pour remonter en haut de la page
-        function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        
-        // Afficher/masquer le bouton scroll to top
-        window.addEventListener('scroll', function() {
-            const scrollButton = document.querySelector('.scroll-to-top');
-            if (window.pageYOffset > 300) {
-                scrollButton.style.display = 'flex';
-            } else {
-                scrollButton.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
