@@ -4912,24 +4912,6 @@ section + section {
 }
 
 /* ===============================================
-   RESPONSIVE - MENU MOBILE
-   ============================================= */
-
-@media (max-width: 991px) {
-    .navbar-collapse {
-        background: rgba(14, 20, 42, 0.98);
-        padding: 15px;
-        border-radius: 0 0 15px 15px;
-        margin-top: 10px;
-    }
-
-    .navbar-nav .nav-link {
-        padding: 10px 15px;
-        margin: 0;
-    }
-}
-
-/* ===============================================
    RESPONSIVE - TABLETTE (max 768px)
    ============================================= */
 
