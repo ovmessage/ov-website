@@ -1,17 +1,9 @@
 // ===============================================
-// CYBER SECURITY PRO - SCRIPT PRINCIPAL - V4.0
+// OV - SCRIPT PRINCIPAL
 // =============================================
 
 // Configuration globale
 const CONFIG = {
-    // Charsets pour le chiffrement (exemples)
-    CHARSETS: {
-        BASIC: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-        EXTENDED: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?',
-        UNICODE: 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}|;:,.<>?ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖØÙÚÛÜÝÞßàáâãäåæçèéêëìíîïðñòóôõöøùúûüýþÿ'
-    },
-
-    // Paramètres d'animation
     ANIMATION_DELAY: 100,
     SCROLL_THRESHOLD: 0.1
 };
