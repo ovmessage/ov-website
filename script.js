@@ -134,16 +134,8 @@ class NavigationManager {
         });
     }
     
-    // Menu mobile
+    // Menu mobile - géré nativement par Bootstrap
     setupMobileMenu() {
-        const navbarToggler = document.querySelector('.navbar-toggler');
-        const navbarCollapse = document.querySelector('.navbar-collapse');
-        
-        if (navbarToggler && navbarCollapse) {
-            navbarToggler.addEventListener('click', () => {
-                navbarCollapse.classList.toggle('show');
-            });
-        }
     }
 }
 
