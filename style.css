@@ -4929,7 +4929,7 @@ section + section {
     .hero,
     .hero-section {
         min-height: auto;
-        padding: 90px 0 40px;
+        padding: 100px 0 40px;
     }
 
     /* Sections */
@@ -5047,7 +5047,7 @@ section + section {
 
     .hero,
     .hero-section {
-        padding: 80px 0 30px;
+        padding: 100px 0 30px;
     }
 
     /* Sections */
@@ -5134,7 +5134,7 @@ section + section {
 
     /* OV Message hero */
     .hero-product {
-        padding: 80px 0 30px;
+        padding: 100px 0 30px;
         gap: 30px;
     }
 
