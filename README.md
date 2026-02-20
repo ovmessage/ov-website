@@ -12,14 +12,14 @@ Site vitrine pour OV et son application OV Message.
 ## Pages
 
 - `index.html` - Page d'accueil
-- `ov-message.html` - Presentation de l'application OV Message
-- `confidentialite.html` - Politique de confidentialite
+- `ov-message.html` - Présentation de l'application OV Message
+- `confidentialite.html` - Politique de confidentialité
 - `conditions.html` - Conditions d'utilisation
-- `mentions-legales.html` - Mentions legales
+- `mentions-legales.html` - Mentions légales
 
-## Deploiement
+## Déploiement
 
-Heberge sur GitHub Pages.
+Hébergé sur GitHub Pages.
 
 ## Contact
 
