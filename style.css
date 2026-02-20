@@ -33,6 +33,7 @@ body {
     color: var(--white);
     overflow-x: hidden;
     background: #0E142A; /* Fond uni bleu foncé partout */
+    padding-top: 70px;
 }
 
 /* ===============================================
