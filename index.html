@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OV — Sécurité, Innovation et Intelligence Artificielle</title>
+    <meta name="description" content="OV propose des solutions innovantes en sécurité, intelligence artificielle et chiffrement. Messagerie chiffrée hors ligne, protocole propriétaire et protection sans compromis.">
+    <meta property="og:title" content="OV — Sécurité, Innovation et Intelligence Artificielle">
+    <meta property="og:description" content="Des solutions innovantes en sécurité, intelligence artificielle et chiffrement. La technologie au service de votre quotidien.">
+    <meta property="og:image" content="assets/images/icon_ov.png">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        /* ===== RÈGLES D'ESPACEMENT SECTION ARCHITECTURE ===== */
+        #architecture .section-header h2 {
+            margin-top: -80px;
+            padding-top: 80px;
+        }
+
+        @media (max-width: 768px) {
+            #architecture .section-header h2 {
+                margin-top: 0;
+                padding-top: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/icon_ov.png" alt="OV Logo" class="header-logo logo-morph"><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ov-message.html">OV Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="container">
+            <div class="row align-items-start">
+                <div class="col-lg-6">
+                    <h1 class="hero-title">
+                        <span class="text-white">OV </span><span class="text-accent">Sécurité, Innovation et Intelligence Artificielle</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Des solutions innovantes en sécurité, intelligence artificielle et bien plus encore. La technologie au service de votre quotidien.
+                    </p>
+                    <div class="hero-features">
+                        <div class="feature-item">
+                            <i class="fas fa-lock"></i>
+                            <span>Protocole de sécurité propriétaire</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Protection renforcée par intelligence artificielle</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <span>Suppression instantanée en cas d'urgence</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-layer-group"></i>
+                            <span>Sécurité multicouches intégrée</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="tech-specs">
+                        <h3>Spécifications Techniques</h3>
+                        <div class="spec-grid">
+                            <div class="spec-item compact">
+                                <span class="spec-label">Chiffrement</span>
+                                <span class="spec-value">Avancé</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Intelligence Artificielle</span>
+                                <span class="spec-value">Intégrée</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Multilingue</span>
+                                <span class="spec-value">Accessible partout</span>
+                            </div>
+                            <div class="spec-item">
+                                <span class="spec-label">Innovation</span>
+                                <span class="spec-value">Technologies de pointe</span>
+                            </div>
+                        </div>
+                        <div class="entropy-visualization-container" style="background: rgba(255, 255, 255, 0.05); border-radius: 20px; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.1);">
+                            <h4 style="color: var(--primary-color); font-size: 1.4rem; font-weight: 700; margin-bottom: 5px;">Intelligence Artificielle</h4>
+                            <p style="color: var(--accent-color); font-size: 1.1rem; font-weight: 600; margin-bottom: 15px;">Méthode V.I.A.T</p>
+                            <p style="color: rgba(255,255,255,0.7); font-size: 0.9rem; margin-bottom: 15px;"><em>Validation croisée, Itérations massives, Audit continu, Tests</em></p>
+                            <p style="color: var(--accent-color); font-size: 1rem; line-height: 1.6;">Plusieurs IA travaillent ensemble pour valider, corriger et optimiser chaque innovation. Résultat : des solutions robustes, testées et fiables.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="display: flex; flex-direction: row; gap: 15px; margin-top: 30px;">
+                <div class="unicode-grid" style="flex: 1; min-width: 0;">
+                    <h4>Encodage Multiple et Varié</h4>
+                    <div class="char-display particles-container">
+                        <span class="unicode-char" style="--i: 0">0</span>
+                        <span class="unicode-char" style="--i: 1">1</span>
+                        <span class="unicode-char" style="--i: 2">9</span>
+                        <span class="unicode-char" style="--i: 3">A</span>
+                        <span class="unicode-char" style="--i: 4">B</span>
+                        <span class="unicode-char" style="--i: 5">Z</span>
+                        <span class="unicode-char" style="--i: 6">a</span>
+                        <span class="unicode-char" style="--i: 7">z</span>
+                        <span class="unicode-char" style="--i: 8">+</span>
+                        <span class="unicode-char" style="--i: 9">/</span>
+                        <span class="unicode-char" style="--i: 10">H</span>
+                        <span class="unicode-char" style="--i: 11">M</span>
+                        <span class="unicode-char" style="--i: 12">K</span>
+                        <span class="unicode-char" style="--i: 13">W</span>
+                        <span class="unicode-char" style="--i: 14">3</span>
+                        <span class="unicode-char" style="--i: 15">6</span>
+
+                        <!-- Particules flottantes -->
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                    </div>
+                </div>
+                <div class="unicode-grid" style="flex: 1; min-width: 0;">
+                    <h4>Caractères Unicode Spéciaux</h4>
+                    <div class="char-display particles-container">
+                        <span class="unicode-char" style="--i: 0">∑</span>
+                        <span class="unicode-char" style="--i: 1">∏</span>
+                        <span class="unicode-char" style="--i: 2">∫</span>
+                        <span class="unicode-char" style="--i: 3">∂</span>
+                        <span class="unicode-char" style="--i: 4">√</span>
+                        <span class="unicode-char" style="--i: 5">∞</span>
+                        <span class="unicode-char" style="--i: 6">≈</span>
+                        <span class="unicode-char" style="--i: 7">≠</span>
+                        <span class="unicode-char" style="--i: 8">≤</span>
+                        <span class="unicode-char" style="--i: 9">≥</span>
+                        <span class="unicode-char" style="--i: 10">±</span>
+                        <span class="unicode-char" style="--i: 11">×</span>
+                        <span class="unicode-char" style="--i: 12">÷</span>
+                        <span class="unicode-char" style="--i: 13">‰</span>
+                        <span class="unicode-char" style="--i: 14">©</span>
+                        <span class="unicode-char" style="--i: 15">®</span>
+                        <span class="unicode-char" style="--i: 16">™</span>
+                        <span class="unicode-char" style="--i: 17">♠</span>
+                        <span class="unicode-char" style="--i: 18">♣</span>
+                        <span class="unicode-char" style="--i: 19">♥</span>
+                        <span class="unicode-char" style="--i: 20">♦</span>
+                        <span class="unicode-char" style="--i: 21">♤</span>
+                        <span class="unicode-char" style="--i: 22">♧</span>
+                        <span class="unicode-char" style="--i: 23">♡</span>
+                        <span class="unicode-char" style="--i: 24">♢</span>
+
+                        <!-- Particules flottantes -->
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                        <div class="particle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Innovations Révolutionnaires -->
+    <section id="innovations" class="innovations-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Ce qui nous rend uniques</h2>
+                <p>Des solutions conçues pour faire la différence, portées par l'innovation et la technologie</p>
+            </div>
+            
+            <!-- Table des Matières des Innovations -->
+            <div class="innovations-toc">
+                <div class="toc-grid">
+                    <div class="toc-category">
+                        <h3><i class="fas fa-qrcode"></i> Échange de Clés</h3>
+                        <ul>
+                            <li>QR Code sécurisé</li>
+                            <li>Partage simplifié</li>
+                            <li>Vérification automatique</li>
+                        </ul>
+                    </div>
+                    <div class="toc-category">
+                        <h3><i class="fas fa-shield-alt"></i> Protection des Messages</h3>
+                        <ul>
+                            <li>Intégrité vérifiée</li>
+                            <li>Anti-falsification</li>
+                            <li>Alertes en temps réel</li>
+                        </ul>
+                    </div>
+                    <div class="toc-category">
+                        <h3><i class="fas fa-lock"></i> Sécurité Renforcée</h3>
+                        <ul>
+                            <li>Protection anti-rejeu</li>
+                            <li>Clés isolées par contact</li>
+                            <li>Stockage chiffré sur l'appareil</li>
+                        </ul>
+                    </div>
+                    <div class="toc-category">
+                        <h3><i class="fas fa-cogs"></i> Architecture Robuste</h3>
+                        <ul>
+                            <li>Chiffrement avancé</li>
+                            <li>Support universel des langues</li>
+                            <li>Gestion intelligente des erreurs</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            
+            <div class="unified-cards-grid">
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon security-pulse">
+                        <i class="fas fa-exclamation-triangle encryption-icon"></i>
+                    </div>
+                    <h3 class="security-glitch" data-text="Mode Panic">Mode Panic</h3>
+                    <p>Une innovation sans équivalent : deux mots de passe, deux réalités. L'un ouvre l'application, l'autre la détruit en simulant un fonctionnement normal. L'attaquant ne sait jamais ce qui s'est passé.</p>
+                    <ul>
+                        <li><i class="fas fa-theater-masks"></i> L'agresseur voit une application vide, pas une destruction</li>
+                        <li><i class="fas fa-brain"></i> Conçu avec des scénarios de coercition réels</li>
+                        <li><i class="fas fa-bolt"></i> Déclenchement en moins d'une seconde</li>
+                        <li><i class="fas fa-microscope"></i> Aucune trace forensique récupérable</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-key icon-3d-rotate"></i>
+                    </div>
+                    <h3>Chiffrement Avancé</h3>
+                    <p>Vos messages sont protégés par un chiffrement unique qui rend chaque message indéchiffrable sans la clé. Même deux messages identiques produisent un résultat complètement différent.</p>
+                    <ul>
+                        <li><i class="fas fa-fingerprint"></i> Chaque message est unique</li>
+                        <li><i class="fas fa-lock"></i> Impossible à déchiffrer sans la clé</li>
+                        <li><i class="fas fa-shield-alt"></i> Protection contre les modifications</li>
+                        <li><i class="fas fa-bolt"></i> Résistance maximale aux attaques</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-plane bounce-button"></i>
+                    </div>
+                    <h3>Architecture Sans Serveur</h3>
+                    <p>Là où les messageries classiques dépendent de serveurs piratables, OV élimine le problème à la racine : il n'y a aucun serveur. Rien à pirater, rien à saisir, rien à censurer.</p>
+                    <ul>
+                        <li><i class="fas fa-unlink"></i> Aucune infrastructure attaquable</li>
+                        <li><i class="fas fa-globe-americas"></i> Fonctionne partout, même sans réseau mobile data</li>
+                        <li><i class="fas fa-gavel"></i> Impossible à bloquer ou censurer par un tiers</li>
+                        <li><i class="fas fa-database"></i> Zéro données stockées hors de votre appareil</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Boutons Cadenas Universels</h3>
+                    <p>Interface intuitive transcendant les barrières culturelles avec une métaphore universelle du verrouillage qui masque la complexité cryptographique.</p>
+                    <ul>
+                        <li><i class="fas fa-globe"></i> Métaphore universelle</li>
+                        <li><i class="fas fa-lightbulb"></i> Simplicité cognitive maximale</li>
+                        <li><i class="fas fa-sliders-h"></i> Contrôle total de la sécurité</li>
+                        <li><i class="fas fa-users"></i> Accessibilité mondiale</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Stockage Sécurisé AES-256-GCM</h3>
+                    <p>Protection multicouches combinant SecureStore matériel TEE, chiffrement AES-256-GCM, et rotation automatique des clés pour une sécurité absolue.</p>
+                    <ul>
+                        <li><i class="fas fa-microchip"></i> Protection matérielle TEE</li>
+                        <li><i class="fas fa-key"></i> Chiffrement AES-256-GCM</li>
+                        <li><i class="fas fa-sync-alt"></i> Rotation automatique des clés</li>
+                        <li><i class="fas fa-cog"></i> Dérivation PBKDF2 avancée</li>
+                    </ul>
+                </div>
+                
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <h3>Architecture Sécurisée</h3>
+                    <p>Une architecture pensée pour la sécurité dès la conception. Chaque composant est conçu, testé et validé pour garantir une protection maximale.</p>
+                    <ul>
+                        <li><i class="fas fa-shield-alt"></i> Sécurité intégrée dès la conception</li>
+                        <li><i class="fas fa-cubes"></i> Composants indépendants et isolés</li>
+                        <li><i class="fas fa-vial"></i> Tests de sécurité automatisés</li>
+                        <li><i class="fas fa-sync-alt"></i> Amélioration continue</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Nos Principes -->
+    <section id="architecture" class="architecture-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Nos Principes</h2>
+                <p>Les convictions qui guident chaque décision technique et chaque ligne de code</p>
+            </div>
+            <div class="unified-cards-grid">
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Zéro Confiance</h3>
+                    <p>Nous ne faisons confiance à personne : ni serveur, ni cloud, ni opérateur. Vos données ne quittent jamais votre appareil. Aucun intermédiaire ne peut y accéder.</p>
+                </div>
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3>Validation par les Preuves</h3>
+                    <p>Aucune affirmation marketing sans preuve. Chaque propriété de sécurité est mesurée par des tests automatisés : unitaires, d'intégration et de résistance aux attaques.</p>
+                </div>
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-fist-raised"></i>
+                    </div>
+                    <h3>Pensé pour l'Urgence</h3>
+                    <p>Nos solutions sont conçues pour les situations réelles : contrainte physique, surveillance hostile, zones sans réseau. La sécurité fonctionne quand tout le reste échoue.</p>
+                </div>
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h3>Modèle Transparent</h3>
+                    <p>Pas de publicité, pas de collecte de données, pas de monétisation cachée. Vous payez une fois pour le produit, pas pour vos données. Aucun abonnement, aucun coût récurrent.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Cas d'Usage -->
+    <section id="securite" class="security-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Qui Peut en Bénéficier</h2>
+                <p>Des solutions adaptées à chaque secteur, du particulier aux organisations les plus exigeantes</p>
+            </div>
+            <div class="security-features">
+                <div class="unified-cards-grid">
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-user-secret"></i>
+                        </div>
+                        <h4>Journalistes et Lanceurs d'Alerte</h4>
+                        <p>Protégez vos sources et vos enquêtes avec des communications intraçables. Le Mode Panic garantit la destruction des données en cas de contrainte.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Protection des sources journalistiques</li>
+                            <li><i class="fas fa-check-circle"></i> Enquêtes d'investigation sécurisées</li>
+                            <li><i class="fas fa-check-circle"></i> Aucune trace sur les serveurs</li>
+                        </ul>
+                    </div>
+
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-gavel"></i>
+                        </div>
+                        <h4>Avocats et Secteur Juridique</h4>
+                        <p>Le secret professionnel exige une confidentialité absolue. Sécurisez les échanges avec vos clients et la coordination sur les dossiers sensibles.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Secret professionnel garanti</li>
+                            <li><i class="fas fa-check-circle"></i> Communications client-avocat protégées</li>
+                            <li><i class="fas fa-check-circle"></i> Dossiers sensibles chiffrés</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="resistance-metrics">
+                <h3>Tous les Secteurs Concernés</h3>
+                <div class="unified-cards-grid compact">
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-heartbeat"></i>
+                        </div>
+                        <div class="metric-value">Santé</div>
+                        <div class="metric-label">Secteur Médical</div>
+                        <p>Dossiers patients, résultats d'analyses et télémédecine protégés par le secret médical</p>
+                    </div>
+
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="metric-value">Finance</div>
+                        <div class="metric-label">Banques et Assurances</div>
+                        <p>Transactions sensibles, stratégies d'investissement et données clients ultra-protégées</p>
+                    </div>
+
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-home"></i>
+                        </div>
+                        <div class="metric-value">Famille</div>
+                        <div class="metric-label">Usage Personnel</div>
+                        <p>Vie privée, données familiales et communications personnelles en toute confidentialité</p>
+                    </div>
+
+                    <div class="unified-card">
+                        <div class="unified-card-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <div class="metric-value">ONG</div>
+                        <div class="metric-label">Humanitaire</div>
+                        <p>Protection des bénéficiaires, activités sensibles et coordination en zones difficiles</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Applications Transversales -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Applications Concrètes</h2>
+                <p>Au-delà de la messagerie, le protocole OV s'applique à de nombreux usages du quotidien</p>
+            </div>
+            <div class="unified-cards-grid">
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3>SMS Chiffrés</h3>
+                    <p>100% des SMS sont transmis en clair aujourd'hui. OV rend l'interception par IMSI-catchers, opérateurs ou applis malveillantes totalement inutile.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-fish"></i>
+                    </div>
+                    <h3>Anti-Phishing</h3>
+                    <p>Les liens sensibles sont envoyés chiffrés : seul le destinataire peut révéler l'URL réelle. Un attaquant ne peut ni forger un lien valide, ni piéger l'utilisateur.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-qrcode"></i>
+                    </div>
+                    <h3>Documents Physiques Sécurisés</h3>
+                    <p>Chiffrez du contenu sensible en QR code imprimé sur vos documents. La lecture est réservée aux détenteurs de la clé.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-user-tie"></i>
+                    </div>
+                    <h3>Fraude au Président</h3>
+                    <p>Demandes et confirmations chiffrées et authentifiées. Toute requête non chiffrée est traitée comme frauduleuse, stoppant l'escroquerie.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Sécurisation des OTP</h3>
+                    <p>Les codes à usage unique sont interceptés par SIM swapping ou opérateurs malveillants. OV chiffre chaque OTP : seul le destinataire légitime peut le déchiffrer.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-id-card"></i>
+                    </div>
+                    <h3>Protection des Identités Numériques</h3>
+                    <p>Authentification cryptographique multi-facteurs contre l'usurpation d'identité. Vos données d'identification sont chiffrées et inutilisables en cas de fuite.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-box-open"></i>
+                    </div>
+                    <h3>Authentification des Colis</h3>
+                    <p>Des QR codes chiffrés sur les bons de livraison authentifient le destinataire réel. Les fraudes logistiques et vols de colis deviennent impossibles.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-money-check-alt"></i>
+                    </div>
+                    <h3>Sécurisation des Chèques Bancaires</h3>
+                    <p>Impression sécurisée et OTP chiffré intégrés au chèque. La contrefaçon, l'altération et le vol de chèques sont rendus impossibles.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h3>Sécurisation IoT</h3>
+                    <p>Les objets connectés communiquent via des canaux chiffrés par le protocole OV. Capteurs industriels et équipements domotiques deviennent inviolables.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <h3>Sécurisation des Bases de Données</h3>
+                    <p>Chiffrement des champs sensibles avant stockage. En cas de fuite, les données restent inexploitables sans la clé. Conformité RGPD facilitée.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3>Sécurisation Santé</h3>
+                    <p>Dossiers patients, résultats d'analyses et données d'essais cliniques chiffrés. Le secret médical est garanti même en cas de cyberattaque sur l'infrastructure.</p>
+                </div>
+
+                <div class="unified-card">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-link"></i>
+                    </div>
+                    <h3>Sécurisation Blockchain</h3>
+                    <p>Protection des clés privées, wallets institutionnels et smart contracts. Les vols de cryptomonnaies et attaques DeFi sont neutralisés par le chiffrement OV.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>À Propos de OV</h2>
+                <p>Pourquoi nous existons, ce qui nous différencie et où nous allons</p>
+            </div>
+
+            <div class="unified-cards-grid large">
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Notre Mission</h3>
+                    <p>OV est né d'un constat simple : la vie privée ne devrait pas dépendre d'un serveur ou d'une connexion internet. Tant que vos communications transitent par des tiers, elles restent vulnérables. Nous avons éliminé le problème à la source.</p>
+                    <ul>
+                        <li><i class="fas fa-ban"></i> Autonomie totale, aucune dépendance externe</li>
+                        <li><i class="fas fa-hand-holding-heart"></i> Sans publicité, sans contrepartie cachée</li>
+                        <li><i class="fas fa-flag"></i> Conçu pour ceux qui en ont le plus besoin</li>
+                        <li><i class="fas fa-balance-scale"></i> Un droit, pas un luxe</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Nos Résultats</h3>
+                    <p>Des engagements concrets, pas des promesses. Chaque décision est guidée par un objectif simple : protéger votre vie privée sans aucun compromis.</p>
+                    <ul>
+                        <li><i class="fas fa-language"></i> 18 langues supportées dès le lancement</li>
+                        <li><i class="fas fa-ban"></i> 0 donnée personnelle collectée ou stockée</li>
+                        <li><i class="fas fa-ad"></i> Sans publicité et sans collecte de données</li>
+                        <li><i class="fas fa-flask"></i> Testé et validé par plusieurs IA indépendantes</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>Nos Produits</h3>
+                    <p>Chaque produit OV répond à un besoin réel identifié sur le terrain. L'objectif : offrir des outils que n'importe qui peut utiliser, sans formation technique.</p>
+                    <ul>
+                        <li><i class="fas fa-comment-dots"></i> OV Message — Messagerie chiffrée hors ligne</li>
+                        <li><i class="fas fa-cogs"></i> Protocole OV Unicode — Chiffrement universel</li>
+                        <li><i class="fas fa-brain"></i> Méthode V.I.A.T — IA collaborative de validation</li>
+                        <li><i class="fas fa-ellipsis-h"></i> Et d'autres projets en cours...</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Contactez-Nous</h2>
+                <p>Une question, un projet ou une idée ? N'hésitez pas à nous contacter</p>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form">
+                        <form action="https://formsubmit.co/ajax/ovmessage@gmail.com" method="POST" accept-charset="UTF-8" id="contactForm">
+                            <input type="hidden" name="_captcha" value="true">
+                            <input type="hidden" name="_subject" value="Nouveau message depuis le site OV">
+                            <input type="hidden" name="_template" value="table">
+                            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="name">Nom</label>
+                                        <input type="text" id="name" name="name" class="form-control" placeholder="Votre nom complet" autocomplete="name" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" id="email" name="email" class="form-control" placeholder="votre.email@domaine.com" autocomplete="email" required>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="company">Entreprise</label>
+                                <input type="text" id="company" name="company" class="form-control" placeholder="Nom de votre entreprise (optionnel)" autocomplete="organization">
+                            </div>
+                            <div class="form-group">
+                                <label for="sector">Secteur d'Activité</label>
+                                <div class="select-wrapper">
+                                <select id="sector" name="sector" class="form-control">
+                                    <option value="">Sélectionnez votre secteur</option>
+                                    <option>Technologie & IT</option>
+                                    <option>Sécurité & Défense</option>
+                                    <option>Finance & Assurance</option>
+                                    <option>Santé</option>
+                                    <option>Intelligence Artificielle</option>
+                                    <option>Commerce & Services</option>
+                                    <option>Gouvernement & Administration</option>
+                                    <option>Média & Divertissement</option>
+                                    <option>Particulier</option>
+                                    <option>Autre</option>
+                                </select>
+                                </div>
+                                <div id="otherSectorGroup" class="form-group" style="display:none; margin-top:10px;">
+                                    <input type="text" id="otherSector" name="other_sector" class="form-control" placeholder="Précisez votre secteur d'activité">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" class="form-control" rows="5" placeholder="Votre message..." required maxlength="1000" oninput="document.getElementById('charCount').textContent = this.value.length"></textarea>
+                                <small id="charCount" style="color: var(--accent-color); opacity: 0.7;">0</small><small style="color: var(--accent-color); opacity: 0.7;"> / 1000</small>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane"></i> Envoyer
+                                </button>
+                            </div>
+                            <div id="contactStatus" class="text-center" style="display:none; color: var(--white); opacity: 0.9;"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+    // Afficher le champ "Autre" quand sélectionné
+    (function() {
+      var select = document.getElementById('sector');
+      var otherGroup = document.getElementById('otherSectorGroup');
+      var otherInput = document.getElementById('otherSector');
+      if (!select || !otherGroup) return;
+      select.addEventListener('change', function() {
+        if (select.value === 'Autre') {
+          otherGroup.style.display = 'block';
+          otherInput.required = true;
+        } else {
+          otherGroup.style.display = 'none';
+          otherInput.required = false;
+          otherInput.value = '';
+        }
+      });
+    })();
+
+    // Soumission AJAX Formsubmit sans rechargement de page
+    (function() {
+      const form = document.getElementById('contactForm');
+      if (!form) return;
+      const status = document.getElementById('contactStatus');
+      function show(msg, ok) {
+        if (!status) return;
+        status.style.display = 'block';
+        status.style.marginTop = '10px';
+        status.style.color = ok ? '#2AA2FF' : '#FF6B6B';
+        status.textContent = msg;
+        setTimeout(function() { status.style.display = 'none'; }, 5000);
+      }
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        try {
+          const res = await fetch(form.action, { method: 'POST', body: data, headers: { 'Accept': 'application/json' } });
+          if (res.ok) {
+            show('Merci, votre message a bien été envoyé.', true);
+            form.reset();
+            document.activeElement.blur();
+          } else {
+            show("Une erreur est survenue. Réessayez plus tard.", false);
+          }
+        } catch (_) {
+          show("Impossible d'envoyer le message pour le moment.", false);
+        }
+      });
+    })();
+    </script>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-brand">
+                        <img src="assets/images/icon_ov.png" alt="OV Logo" class="header-logo">
+                        <span style="margin-left: 8px; font-size: 1.25rem; font-weight: 600;">OV</span>
+                        <p>Sécurité, innovation et intelligence artificielle.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h5>Navigation</h5>
+                        <ul>
+                            <li><a href="index.html">Accueil</a></li>
+                            <li><a href="ov-message.html">OV Message</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 OV. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Politique de Confidentialité</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions d'Utilisation</h6>
+                                    <p>Modalités d'utilisation de nos services</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Fin Scripts -->
+
+</body>
+</html>
+

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OV Message — Messagerie chiffrée, 100% hors ligne</title>
+    <meta name="description" content="OV Message : la première messagerie chiffrée 100% hors ligne. Chiffrement de bout en bout par SMS, sans serveur, sans inscription, sans collecte de données.">
+    <meta property="og:title" content="OV Message — Messagerie chiffrée, 100% hors ligne">
+    <meta property="og:description" content="La première application de messagerie qui transforme vos SMS en messages indéchiffrables. Sans compte, sans inscription, sans trace.">
+    <meta property="og:image" content="assets/images/ov-message/feature_graphic.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/images/icon_ov.png" alt="OV Logo" class="header-logo logo-morph"><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="ov-message.html">OV Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 1. Hero Section -->
+    <section class="hero-product">
+        <div class="container">
+            <div class="hero-product-content">
+                <div class="hero-product-info">
+                    <h1 class="hero-title">
+                        <span class="text-white">OV </span><span class="text-accent">Message</span>
+                    </h1>
+                    <p class="hero-subtitle">Messagerie chiffrée, 100% hors ligne</p>
+                    <p style="color: var(--accent-color); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">
+                        Une application de messagerie qui transforme vos SMS en messages indéchiffrables. Un mot de passe, une clé, un contact, et chaque conversation devient privée — sans compte, sans inscription, sans trace. Compatible avec les téléphones compacts type Soyes, Melrose et autres appareils dédiés à la confidentialité.
+                    </p>
+                    <!-- <a href="#" class="btn-google-play">
+                        <i class="fab fa-google-play"></i>
+                        <span>Disponible sur Google Play</span>
+                    </a> -->
+                </div>
+                <div class="hero-product-visual">
+                    <img src="assets/images/ov-message/feature_graphic.jpg" alt="OV Message - Visuel principal de la messagerie chiffrée" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Chiffres Clés -->
+    <section class="metrics-section">
+        <div class="container">
+            <div class="metrics-grid">
+                <div class="metric-item reveal-animation">
+                    <div class="metric-number">26</div>
+                    <div class="metric-label">Fonctionnalités</div>
+                </div>
+                <div class="metric-item reveal-animation">
+                    <div class="metric-number">3</div>
+                    <div class="metric-label">Modes d'encodage</div>
+                </div>
+                <div class="metric-item reveal-animation">
+                    <div class="metric-number">1.0.0</div>
+                    <div class="metric-label">Version</div>
+                </div>
+                <div class="metric-item reveal-animation">
+                    <div class="metric-number">18</div>
+                    <div class="metric-label">Langues</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Fonctionnalités Principales -->
+    <section class="features-section-product">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Fonctionnalités principales</h2>
+                <p>Ce qui distingue OV Message des autres messageries</p>
+            </div>
+            <div class="unified-cards-grid">
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon security-pulse">
+                        <i class="fas fa-exclamation-triangle encryption-icon"></i>
+                    </div>
+                    <h3 class="security-glitch" data-text="Mode Panic">Mode Panic</h3>
+                    <p>Deux mots de passe, deux réalités. L'un ouvre l'application, l'autre la détruit en simulant un fonctionnement normal. L'attaquant ne sait jamais ce qui s'est passé.</p>
+                    <ul>
+                        <li><i class="fas fa-theater-masks"></i> L'attaquant voit une application vide, pas une destruction</li>
+                        <li><i class="fas fa-bolt"></i> Déclenchement en moins d'une seconde</li>
+                        <li><i class="fas fa-microscope"></i> Aucune trace forensique récupérable</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <h3>Mode OVNY</h3>
+                    <p>Force l'envoi exclusivement en chiffré. Tout message en clair est bloqué automatiquement, garantissant une protection permanente.</p>
+                    <ul>
+                        <li><i class="fas fa-shield-alt"></i> Aucun message en clair ne peut sortir</li>
+                        <li><i class="fas fa-toggle-on"></i> Activable par contact</li>
+                        <li><i class="fas fa-lock"></i> Sécurité sans oubli possible</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-layer-group"></i>
+                    </div>
+                    <h3>Pool de clés</h3>
+                    <p>500 clés pré-générées par contact. Pour changer de clé à distance, il suffit de communiquer le numéro de la clé dans le pool. Pas besoin de se revoir.</p>
+                    <ul>
+                        <li><i class="fas fa-sync-alt"></i> Changement de clé par simple numéro</li>
+                        <li><i class="fas fa-database"></i> 500 clés prêtes à l'emploi par contact</li>
+                        <li><i class="fas fa-user-lock"></i> Pool isolé par contact</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-exclamation-circle"></i>
+                    </div>
+                    <h3>Détection des caractères non chiffrables</h3>
+                    <p>Avant chaque envoi, les emojis et caractères incompatibles sont détectés. Alerte et suppression en un geste.</p>
+                    <ul>
+                        <li><i class="fas fa-search"></i> Détection automatique avant envoi</li>
+                        <li><i class="fas fa-list"></i> Affichage des caractères problématiques</li>
+                        <li><i class="fas fa-trash-alt"></i> Suppression individuelle ou groupée</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Vérification d'intégrité des clés</h3>
+                    <p>Rapport détaillé pour chaque clé : format, longueur, entropie et test de chiffrement en temps réel.</p>
+                    <ul>
+                        <li><i class="fas fa-chart-bar"></i> Indicateur d'entropie coloré</li>
+                        <li><i class="fas fa-vial"></i> Test chiffrement/déchiffrement</li>
+                        <li><i class="fas fa-file-alt"></i> Rapport complet par clé</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-sms"></i>
+                    </div>
+                    <h3>Application SMS par défaut</h3>
+                    <p>Remplacez votre application SMS native. Gérez tous vos SMS — chiffrés et classiques — depuis une seule interface.</p>
+                    <ul>
+                        <li><i class="fas fa-mobile-alt"></i> Remplace l'app SMS native</li>
+                        <li><i class="fas fa-sync-alt"></i> Synchronisation automatique</li>
+                        <li><i class="fas fa-inbox"></i> Interface unifiée chiffré/clair</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Boutons Cadenas</h3>
+                    <p>Un cadenas ouvert pour chiffrer, un cadenas fermé pour déchiffrer. Une métaphore universelle qui rend le chiffrement accessible à tous, sans aucune connaissance technique.</p>
+                    <ul>
+                        <li><i class="fas fa-globe"></i> Compréhension universelle, toutes cultures</li>
+                        <li><i class="fas fa-lightbulb"></i> Simplicité cognitive maximale</li>
+                        <li><i class="fas fa-hand-pointer"></i> Un geste suffit pour chiffrer ou déchiffrer</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-file-export"></i>
+                    </div>
+                    <h3>Fichiers chiffrés .ov</h3>
+                    <p>Chiffrez n'importe quel fichier au format .ov et partagez-le via n'importe quelle application. Seul le détenteur de la clé peut le déchiffrer.</p>
+                    <ul>
+                        <li><i class="fas fa-share-alt"></i> Partageable sur WhatsApp, email, cloud...</li>
+                        <li><i class="fas fa-shield-alt"></i> Chiffrement AES-256-GCM avec authentification</li>
+                        <li><i class="fas fa-file-import"></i> Import et déchiffrement en un geste</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Galerie Screenshots -->
+    <section class="gallery-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Captures d'écran</h2>
+                <p>Découvrez l'interface d'OV Message</p>
+            </div>
+            <div class="screenshot-gallery">
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_1.jpg" alt="OV Message - Liste des conversations chiffrées" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_2.jpg" alt="OV Message - Conversation chiffrée en cours" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_3.jpg" alt="OV Message - Échange de clés par QR Code" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_4.jpg" alt="OV Message - Paramètres de sécurité" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_5.jpg" alt="OV Message - Mode Panic activé" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_6.jpg" alt="OV Message - Chiffrement universel" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_7.jpg" alt="OV Message - Gestion des contacts" loading="lazy">
+                </div>
+                <div class="screenshot-item reveal-animation">
+                    <img src="assets/images/ov-message/screenshot_8.jpg" alt="OV Message - Messages éphémères" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Comment ca marche -->
+    <section class="steps-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Comment ça marche</h2>
+                <p>Trois étapes simples pour communiquer en toute sécurité</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card reveal-animation">
+                    <div class="step-number">1</div>
+                    <img src="assets/images/ov-message/onboarding_1.png" alt="Étape 1 - Installer OV Message" loading="lazy">
+                    <h4>Installer OV Message</h4>
+                    <p>Téléchargez l'application et commencez à l'utiliser en quelques secondes. Un mot de passe peut être configuré pour renforcer la sécurité.</p>
+                </div>
+                <div class="step-card reveal-animation">
+                    <div class="step-number">2</div>
+                    <img src="assets/images/ov-message/onboarding_2.png" alt="Étape 2 - Échanger une clé de chiffrement" loading="lazy">
+                    <h4>Échanger une clé</h4>
+                    <p>Partagez une clé avec votre contact via QR code, fichier chiffré ou même sur support papier. Le partage via d'autres applications est possible mais non recommandé.</p>
+                </div>
+                <div class="step-card reveal-animation">
+                    <div class="step-number">3</div>
+                    <img src="assets/images/ov-message/onboarding_3.png" alt="Étape 3 - Communiquer en toute sécurité" loading="lazy">
+                    <h4>Communiquer en sécurité</h4>
+                    <p>Envoyez et recevez des messages chiffrés de bout en bout. Seul votre contact peut les lire.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Fonctionnalités Détaillées (Accordion) -->
+    <section class="detailed-features-section">
+        <div class="container">
+            <div class="section-header text-center">
+                <h2>Fonctionnalités supplémentaires détaillées</h2>
+                <p>Tout ce qu'OV Message a à offrir</p>
+            </div>
+            <div class="accordion-grid">
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-sticky-note"></i>
+                        <h4>Notes personnelles</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Créez, éditez et organisez des notes sécurisées stockées localement sur votre appareil. Export possible en fichier .txt. Sélection multiple et suppression groupée pour une gestion rapide.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-lock"></i>
+                        <h4>Verrouillage automatique</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            L'application se verrouille automatiquement après une période d'inactivité configurable : 2 minutes, 5 minutes, 10 minutes, 30 minutes ou 1 heure. Le mot de passe est requis pour déverrouiller.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-address-book"></i>
+                        <h4>Gestion des contacts</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Import du carnet d'adresses, ajout manuel de contacts, épinglage des conversations importantes, blocage des contacts indésirables. Gérez vos contacts chiffrés avec simplicité.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-key"></i>
+                        <h4>Gestion des clés</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Génération de clés sécurisées, rotation manuelle des clés, pool de clés pré-générées pour un changement instantané, export et import de clés via fichier chiffré.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-shield-alt"></i>
+                        <h4>Sécurité avancée</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Mot de passe de 10+ caractères requis. Le Mode Panic s'active automatiquement après 10 tentatives échouées, ou après 3 essais si la destruction automatique est activée.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-language"></i>
+                        <h4>18 langues</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Anglais, français, espagnol, allemand, italien, portugais, néerlandais, suédois, norvégien, danois, finnois, catalan, islandais, gaélique écossais, gallois, indonésien, malais, filipino.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-redo-alt"></i>
+                        <h4>Protection anti-rejeu</h4>
+
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Chaque message reçu est vérifié contre les doublons via son tag HMAC unique. Alertes automatiques de rotation de clé lorsque le seuil est atteint.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-clock"></i>
+                        <h4>Messages éphémères</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Auto-suppression configurable par contact : 5 minutes, 30 minutes, 1 heure, 6 heures, 1 jour, 1 semaine ou 1 mois. Les messages disparaissent automatiquement après la durée choisie.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-globe"></i>
+                        <h4>Chiffrement universel</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Chiffrez du texte et collez-le dans n'importe quelle application : WhatsApp, email, notes, Telegram ou tout autre support. Le destinataire déchiffre avec OV Message. Fonctionne sur toutes les plateformes.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-qrcode"></i>
+                        <h4>Échange de clés par QR Code</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Partagez vos clés de chiffrement en scannant un QR code avec la caméra, ou exportez-les dans un fichier chiffré protégé par mot de passe. Import et export sécurisés en un geste.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-code"></i>
+                        <h4>Modes d'encodage</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Trois modes d'encodage selon vos besoins : Unicode (standard, caractères spéciaux), Base36 (optimisé SMS, 2x plus compact) et Base64 (compatibilité maximale avec les applications externes). Configurable par contact.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-phone"></i>
+                        <h4>Appels téléphoniques</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Appelez vos contacts directement depuis l'application. Accès rapide au numéro depuis la conversation ou la fiche contact.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-check-double"></i>
+                        <h4>Vérification d'intégrité</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Chaque message reçu est analysé pour détecter toute tentative de falsification ou modification. Niveau de risque évalué automatiquement avec alertes visuelles en cas d'anomalie.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-bell"></i>
+                        <h4>Notifications intelligentes</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Système de notifications avec déduplication automatique : pas de doublons, pas de spam. Les alertes de sécurité (rotation de clé, tentative de rejeu) sont signalées en priorité.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-hand-pointer"></i>
+                        <h4>Retour haptique</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Vibrations configurables sur les actions importantes : envoi de message, chiffrement, verrouillage. Trois niveaux d'intensité (léger, moyen, fort) ou désactivation complète.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-trash-alt"></i>
+                        <h4>Suppression de SMS</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Supprimez les messages du stockage système du téléphone. Nettoyez les traces des SMS chiffrés après déchiffrement pour ne conserver que la version lisible dans l'application.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-comment-dots"></i>
+                        <h4>Bouton Conversation OV</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Ouvrez une conversation OV avec n'importe quel contact pour chiffrer et déchiffrer des messages manuellement. Fonctionne même sans être l'application SMS par défaut : idéal pour chiffrer du texte à coller sur WhatsApp, email ou tout autre canal.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-cloud-download-alt"></i>
+                        <h4>Désactivation des sauvegardes</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Toutes les sauvegardes Android sont bloquées : Google Drive, transfert d'appareil et synchronisation cloud. Vos données restent exclusivement sur votre téléphone, sans aucune copie externe.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Banniere CTA Finale -->
+    <section class="cta-banner">
+        <div class="container">
+            <h2>Téléchargez OV Message</h2>
+            <p>Vos messages vous appartiennent. Protégez-les maintenant.</p>
+            <!-- <a href="#" class="btn-google-play">
+                <i class="fab fa-google-play"></i>
+                <span>Télécharger sur Google Play</span>
+            </a> -->
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-brand">
+                        <img src="assets/images/icon_ov.png" alt="OV Logo" class="header-logo">
+                        <span>OV</span>
+                        <p>Sécurité, innovation et intelligence artificielle.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h5>Navigation</h5>
+                        <ul>
+                            <li><a href="index.html">Accueil</a></li>
+                            <li><a href="ov-message.html">OV Message</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 OV. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Politique de Confidentialité</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions d'Utilisation</h6>
+                                    <p>Modalités d'utilisation de nos services</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.accordion-header-custom').forEach(function(header) {
+                header.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    this.closest('.accordion-item-custom').classList.toggle('active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

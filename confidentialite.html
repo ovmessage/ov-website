@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidentialité - OV</title>
+    <meta name="description" content="Politique de confidentialité OV. Découvrez comment nous protégeons vos données personnelles et respectons votre vie privée.">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .privacy-container {
+            min-height: 100vh;
+            background: #0E142A;
+            padding-top: 100px;
+        }
+        
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .privacy-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .privacy-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .privacy-content h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .privacy-content h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 30px 0 20px 0;
+        }
+        
+        .privacy-content p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .privacy-content ul, .privacy-content ol {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .privacy-content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: rgba(42, 162, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(42, 162, 255, 0.2);
+        }
+        
+        .feature-card h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .feature-card p {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+        
+        .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+        
+        .nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
+    color: var(--white);
+}
+        
+        .nav-btn i {
+    font-size: 1.1rem;
+}
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.4);
+        }
+        
+        .scroll-to-top i {
+            font-size: 1.2rem;
+        }
+        
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .toc h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Alignement du premier H2 avec la TOC */
+        .doc-content #introduction h2 {
+            margin-top: -80px;
+        }
+        .doc-content h2:first-of-type {
+            margin-top: -80px;
+        }
+        
+        @media (max-width: 768px) {
+            .privacy-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .privacy-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .privacy-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo_ov_transparent.PNG" alt="OV Logo" class="header-logo logo-morph"><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ov-message.html">OV Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Privacy Content -->
+    <div class="privacy-container">
+        <div class="container">
+            <!-- Header -->
+            <div class="privacy-header">
+                <h1>Politique de Confidentialité</h1>
+                <p class="lead">Protection de vos données personnelles</p>
+            </div>
+
+            <div class="row">
+                <!-- Table of Contents -->
+                <div class="col-lg-3">
+                    <div class="toc">
+                        <h4><i class="fas fa-list"></i> Table des Matières</h4>
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#donnees-collectees">Données collectées</a></li>
+                            <li><a href="#operateur-mobile">Rôle de l'opérateur</a></li>
+                            <li><a href="#stockage-donnees">Stockage des données</a></li>
+                            <li><a href="#partage-donnees">Partage de données</a></li>
+                            <li><a href="#permissions">Permissions requises</a></li>
+                            <li><a href="#suppression-donnees">Suppression des données</a></li>
+                            <li><a href="#securite">Sécurité</a></li>
+                            <li><a href="#responsabilite">Responsabilité</a></li>
+                            <li><a href="#enfants">Enfants</a></li>
+                            <li><a href="#contact">Modifications et Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="doc-content">
+                    <div class="privacy-content">
+                        <!-- Introduction -->
+                        <section id="introduction">
+                            <h2><i class="fas fa-shield-alt"></i> Introduction</h2>
+
+                            <p>OV Message est une application de messagerie chiffrée conçue pour protéger vos communications. Cette politique de confidentialité explique comment vos données sont traitées lorsque vous utilisez l'application.</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-lock"></i> <strong>Principe fondamental :</strong> OV Message fonctionne entièrement hors ligne, sans connexion à aucun serveur. Les messages sont transmis exclusivement par SMS via votre opérateur mobile. Cette architecture rend la collecte de données techniquement impossible.</p>
+                            </div>
+                        </section>
+
+                        <!-- Données collectées -->
+                        <section id="donnees-collectees">
+                            <h2><i class="fas fa-ban"></i> Données collectées</h2>
+
+                            <p>OV Message <strong>ne collecte aucune donnée personnelle</strong>.</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-user-slash"></i> Aucune Donnée Transmise</h5>
+                                    <p>Aucune information personnelle n'est envoyée vers l'extérieur</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-chart-line"></i> Aucune Analytique</h5>
+                                    <p>Aucun système de tracking, d'analytique ou de mesure d'audience</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-ad"></i> Aucune Publicité</h5>
+                                    <p>Aucune publicité, aucun traceur, aucun outil marketing</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-user-secret"></i> Aucun Profiling</h5>
+                                    <p>Aucun profil utilisateur n'est créé ou maintenu</p>
+                                </div>
+                            </div>
+
+                            <h3>Données stockées localement</h3>
+                            <p>Les seules données qui existent sont stockées <strong>localement sur votre appareil</strong> :</p>
+                            <ul>
+                                <li><strong>Vos contacts</strong> et leurs informations (nom, numéro de téléphone)</li>
+                                <li><strong>Vos conversations</strong> (messages chiffrés)</li>
+                                <li><strong>Vos clés de chiffrement</strong></li>
+                                <li><strong>Vos préférences</strong> d'utilisation (langue, paramètres)</li>
+                            </ul>
+                        </section>
+
+                        <!-- Rôle de l'opérateur mobile -->
+                        <section id="operateur-mobile">
+                            <h2><i class="fas fa-broadcast-tower"></i> Rôle de l'opérateur mobile</h2>
+
+                            <p>Les messages sont transmis par SMS via votre opérateur mobile. Le <strong>contenu des messages est chiffré</strong> et illisible par l'opérateur.</p>
+
+                            <p>Cependant, comme pour tout SMS standard, les <strong>métadonnées</strong> suivantes sont visibles par votre opérateur :</p>
+                            <ul>
+                                <li>Numéro de téléphone de l'expéditeur</li>
+                                <li>Numéro de téléphone du destinataire</li>
+                                <li>Date et heure d'envoi</li>
+                            </ul>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-lock"></i> <strong>Contenu protégé :</strong> Même si un SMS est intercepté, le contenu du message reste totalement illisible sans la clé de chiffrement partagée entre vous et votre correspondant.</p>
+                            </div>
+                        </section>
+
+                        <!-- Stockage des données -->
+                        <section id="stockage-donnees">
+                            <h2><i class="fas fa-database"></i> Stockage des données</h2>
+
+                            <p>Aucune sauvegarde à distance n'est effectuée. Les sauvegardes cloud (iCloud, Google) sont désactivées par l'application.</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microchip"></i> Stockage Matériel Sécurisé</h5>
+                                    <p>Vos clés de chiffrement sont stockées dans le coffre-fort matériel de votre appareil (Android Keystore)</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-lock"></i> Chiffrement Local</h5>
+                                    <p>Si vous configurez un mot de passe, toutes vos données locales sont chiffrées (AES-256)</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-key"></i> Gestion des Clés</h5>
+                                    <p>Génération et gestion des clés de chiffrement directement sur votre appareil</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-check-circle"></i> Intégrité Vérifiée</h5>
+                                    <p>Chaque message est vérifié automatiquement pour détecter toute altération</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Attention :</strong> Si vous désinstallez l'application ou perdez votre appareil, vos données sont définitivement perdues. Aucune récupération à distance n'est possible.</p>
+                            </div>
+                        </section>
+
+                        <!-- Partage de données -->
+                        <section id="partage-donnees">
+                            <h2><i class="fas fa-share-alt"></i> Partage de données</h2>
+
+                            <p>OV Message <strong>ne partage aucune donnée avec des tiers</strong>. Aucune donnée n'est vendue, louée ou transmise à des annonceurs, partenaires commerciaux ou toute autre organisation.</p>
+                        </section>
+
+                        <!-- Permissions requises -->
+                        <section id="permissions">
+                            <h2><i class="fas fa-sliders-h"></i> Permissions requises</h2>
+
+                            <p>OV Message demande les permissions suivantes, chacune pour une raison précise :</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-sms"></i> SMS</h5>
+                                    <p>Pour envoyer et recevoir des messages chiffrés. C'est la fonctionnalité principale de l'application.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-address-book"></i> Contacts</h5>
+                                    <p>Uniquement si vous choisissez d'importer des contacts depuis votre répertoire. Cette opération est locale.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-bell"></i> Notifications</h5>
+                                    <p>Pour vous informer des nouveaux messages entrants.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-camera"></i> Caméra</h5>
+                                    <p>Pour scanner les QR codes de partage de clés. Aucune photo n'est stockée ou transmise.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-hdd"></i> Stockage</h5>
+                                    <p>Pour l'export de clés de chiffrement sur un support physique. Aucun fichier n'est envoyé à l'extérieur.</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-info-circle"></i> <strong>Permissions à la demande :</strong> Toutes les permissions sont demandées au moment où elles sont nécessaires. Vous pouvez refuser toute permission.</p>
+                            </div>
+                        </section>
+
+                        <!-- Suppression des données -->
+                        <section id="suppression-donnees">
+                            <h2><i class="fas fa-trash-alt"></i> Suppression des données</h2>
+
+                            <p>Vous gardez un <strong>contrôle total</strong> sur la suppression de vos données :</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-clock"></i> Messages Éphémères</h5>
+                                    <p>Suppression automatique des messages après un délai choisi (5 min à 1 mois)</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-eraser"></i> Suppression Manuelle</h5>
+                                    <p>Vous pouvez supprimer manuellement des conversations à tout moment</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-exclamation-triangle"></i> Mode Panic</h5>
+                                    <p>Destruction instantanée et invisible de toutes vos données en cas de menace</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-mobile-alt"></i> Désinstallation</h5>
+                                    <p>La désinstallation de l'application supprime toutes vos données</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Sécurité -->
+                        <section id="securite">
+                            <h2><i class="fas fa-lock"></i> Sécurité</h2>
+
+                            <h3>Chiffrement des messages</h3>
+                            <p>Vos messages sont <strong>chiffrés avant d'être envoyés</strong>. Seuls vous et votre correspondant, qui partagez la même clé, pouvez lire les messages échangés. Même si les SMS sont interceptés par un tiers, le contenu reste illisible sans la clé.</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-fingerprint"></i> Messages Uniques</h5>
+                                    <p>Chaque message produit un résultat différent, même avec le même texte</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-shield-alt"></i> Anti-falsification</h5>
+                                    <p>Chaque message est signé pour détecter toute modification</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-redo-alt"></i> Anti-rejeu</h5>
+                                    <p>Un message ne peut pas être renvoyé frauduleusement par un tiers</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microchip"></i> Stockage Matériel</h5>
+                                    <p>Vos clés sont protégées par le coffre-fort matériel de votre appareil</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-key"></i> <strong>Chiffrement conditionnel du stockage :</strong> Si vous configurez un mot de passe de connexion, vos données locales (contacts, messages, préférences) sont chiffrées sur votre appareil. Sans mot de passe, les données locales ne sont pas chiffrées.</p>
+                            </div>
+                        </section>
+
+                        <!-- Responsabilité de l'utilisateur -->
+                        <section id="responsabilite">
+                            <h2><i class="fas fa-user-cog"></i> Responsabilité de l'utilisateur</h2>
+
+                            <p>La sécurité de vos communications dépend de la <strong>bonne gestion de vos clés de chiffrement</strong>. L'échange de clés entre correspondants se fait sous votre responsabilité.</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-handshake"></i> <strong>Recommandation :</strong> Nous recommandons d'échanger vos clés de chiffrement en personne, via QR code, pour garantir qu'aucun tiers ne puisse intercepter la clé.</p>
+                            </div>
+
+                            <p>Vous êtes également responsable de :</p>
+                            <ul>
+                                <li>La <strong>sauvegarde</strong> de vos clés de chiffrement (en cas de perte de l'appareil)</li>
+                                <li>Le <strong>choix d'un mot de passe</strong> fort pour protéger le stockage local</li>
+                                <li>La <strong>rotation régulière</strong> de vos clés de chiffrement</li>
+                            </ul>
+                        </section>
+
+                        <!-- Enfants -->
+                        <section id="enfants">
+                            <h2><i class="fas fa-child"></i> Enfants</h2>
+
+                            <p>OV Message <strong>n'est pas destinée aux enfants de moins de 13 ans</strong>. Nous ne collectons sciemment aucune donnée relative aux enfants.</p>
+                        </section>
+
+                        <!-- Modifications et Contact -->
+                        <section id="contact">
+                            <h2><i class="fas fa-envelope"></i> Modifications et Contact</h2>
+
+                            <h3>Mise à jour de cette politique</h3>
+                            <p>Cette politique pourra être mise à jour occasionnellement. Toute modification sera incluse dans une mise à jour de l'application. Nous vous encourageons à consulter cette page régulièrement.</p>
+
+                            <p><strong>Dernière mise à jour :</strong> Février 2026</p>
+
+                            <h3>Nous contacter</h3>
+                            <p>Pour toute question concernant cette politique de confidentialité, vous pouvez nous contacter :</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-envelope"></i> <strong>Email :</strong> ovmessage@gmail.com</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boutons de navigation -->
+    <div class="container">
+        <div class="navigation-buttons">
+            <a href="mentions-legales.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Mentions Légales
+            </a>
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i>
+                Page d'Accueil
+            </a>
+            <a href="conditions.html" class="nav-btn">
+                Conditions
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-brand">
+                        <img src="assets/logo_ov_transparent.PNG" alt="OV Logo" class="header-logo">
+                        <span style="margin-left: 8px; font-size: 1.25rem;">OV</span>
+                        <p>Sécurité, innovation et intelligence artificielle.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h5>Navigation</h5>
+                        <ul>
+                            <li><a href="index.html">Accueil</a></li>
+                            <li><a href="ov-message.html">OV Message</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 OV. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Politique de Confidentialité</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions d'Utilisation</h6>
+                                    <p>Modalités d'utilisation de nos services</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Bouton scroll to top -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Fonction pour remonter en haut de la page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Afficher/masquer le bouton scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - OV</title>
+    <meta name="description" content="Mentions légales du site OV. Informations sur l'éditeur et l'hébergement du site.">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .mentions-container {
+            min-height: 100vh;
+            background: #0E142A;
+            padding-top: 100px;
+        }
+        
+        .mentions-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .mentions-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .mentions-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+        
+        .mentions-content h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+        
+        .mentions-content h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 30px 0 20px 0;
+        }
+        
+        .mentions-content p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .mentions-content ul, .mentions-content ol {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+        
+        .mentions-content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-box {
+            background: rgba(42, 162, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .highlight-box p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(42, 162, 255, 0.2);
+        }
+        
+        .info-card h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .info-card p {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin: 0;
+        }
+        
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+        }
+        
+        .toc h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .toc li {
+            margin-bottom: 8px;
+        }
+        
+        .toc a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        /* Alignement du premier H2 avec la TOC */
+        .doc-content #editeur h2,
+        .doc-content #introduction h2 {
+            margin-top: -80px;
+        }
+        .doc-content h2:first-of-type {
+            margin-top: -80px;
+        }
+        
+        .warning-box {
+            background: rgba(255, 193, 7, 0.1);
+            border-left: 4px solid #ffc107;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+        
+        .warning-box p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 500;
+        }
+        
+        .contact-info {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin: 25px 0;
+        }
+        
+        .contact-info h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .contact-info p {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .mentions-header h1 {
+                font-size: 2.2rem;
+            }
+            
+            .mentions-content h2 {
+                font-size: 1.8rem;
+            }
+            
+            .mentions-content h3 {
+                font-size: 1.5rem;
+            }
+            
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 50px;
+    padding: 30px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+        
+        .nav-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 25px;
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    color: var(--white);
+    text-decoration: none;
+    border-radius: 15px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+        
+        .nav-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
+    color: var(--white);
+}
+        
+        .nav-btn i {
+    font-size: 1.1rem;
+}
+        
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
+        }
+        
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.4);
+        }
+        
+        .scroll-to-top i {
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <img src="assets/logo_ov_transparent.PNG" alt="OV Logo" class="header-logo logo-morph"><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ov-message.html">OV Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Mentions Légales Content -->
+    <div class="mentions-container">
+        <div class="container">
+            <!-- Header -->
+            <div class="mentions-header">
+                <h1>Mentions Légales</h1>
+                <p class="lead">Informations juridiques</p>
+            </div>
+
+            <div class="row">
+                <!-- Table of Contents -->
+                <div class="col-lg-3">
+                    <div class="toc">
+                        <h4><i class="fas fa-list"></i> Table des Matières</h4>
+                        <ul>
+                            <li><a href="#editeur">Éditeur du site</a></li>
+                            <li><a href="#hebergement">Hébergement</a></li>
+                            <li><a href="#propriete">Propriété intellectuelle</a></li>
+                            <li><a href="#responsabilite">Responsabilité</a></li>
+                            <li><a href="#donnees">Protection des données</a></li>
+                            <li><a href="#cookies">Cookies</a></li>
+                            <li><a href="#liens">Liens externes</a></li>
+                            <li><a href="#droit">Droit applicable</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="doc-content">
+                    <div class="mentions-content">
+                        <!-- Éditeur du Site -->
+                        <section id="editeur">
+                            <h2><i class="fas fa-building"></i> 1. Éditeur du site</h2>
+
+                            <ul>
+                                <li><strong>Éditeur</strong> : OV</li>
+                                <li><strong>Localisation</strong> : France</li>
+                                <li><strong>Contact</strong> : ovmessage@gmail.com</li>
+                                <li><strong>Activité</strong> : Développement d'applications de sécurité et de communication chiffrée</li>
+                                <li><strong>Directeur de publication</strong> : Le responsable d'OV</li>
+                            </ul>
+                        </section>
+
+                        <!-- Hébergement -->
+                        <section id="hebergement">
+                            <h2><i class="fas fa-server"></i> 2. Hébergement</h2>
+
+                            <ul>
+                                <li><strong>Hébergeur</strong> : GitHub Pages (GitHub, Inc.)</li>
+                                <li><strong>Adresse</strong> : 88 Colin P Kelly Jr St, San Francisco, CA 94107, États-Unis</li>
+                                <li><strong>Sécurité</strong> : HTTPS activé, certificat SSL/TLS</li>
+                            </ul>
+                        </section>
+
+                        <!-- Propriété Intellectuelle -->
+                        <section id="propriete">
+                            <h2><i class="fas fa-copyright"></i> 3. Propriété intellectuelle</h2>
+
+                            <p>L'ensemble du contenu de ce site web (textes, images, graphismes, logos, icônes, logiciels) est protégé par les droits de propriété intellectuelle et appartient à OV. Toute reproduction, représentation, modification ou distribution est interdite sans autorisation écrite préalable.</p>
+                        </section>
+
+                        <!-- Responsabilité -->
+                        <section id="responsabilite">
+                            <h2><i class="fas fa-balance-scale"></i> 4. Responsabilité</h2>
+
+                            <p>OV s'efforce de fournir des informations exactes et à jour sur ce site web. Cependant, nous ne pouvons garantir l'exactitude, la précision ou l'exhaustivité des informations.</p>
+
+                            <p>OV ne saurait être tenu responsable de :</p>
+
+                            <ul>
+                                <li>Dommages directs ou indirects résultant de l'utilisation du site</li>
+                                <li>Interruptions ou indisponibilités temporaires du site</li>
+                                <li>Inexactitudes ou omissions dans les informations publiées</li>
+                                <li>Décisions prises sur la base des informations du site</li>
+                            </ul>
+
+                            <p>L'utilisation de ce site web se fait sous votre entière responsabilité.</p>
+                        </section>
+
+                        <!-- Protection des Données -->
+                        <section id="donnees">
+                            <h2><i class="fas fa-user-shield"></i> 5. Protection des données</h2>
+
+                            <p>Ce site web ne collecte aucune donnée de navigation. Aucun système de tracking, d'analytique ou de mesure d'audience n'est implémenté.</p>
+
+                            <h3>Formulaire de contact</h3>
+                            <p>Si vous utilisez le formulaire de contact, les informations suivantes sont transmises :</p>
+
+                            <ul>
+                                <li><strong>Nom</strong> : pour personnaliser notre réponse</li>
+                                <li><strong>Email</strong> : pour vous répondre</li>
+                                <li><strong>Message</strong> : pour comprendre votre demande</li>
+                                <li><strong>Entreprise et secteur</strong> : pour adapter notre réponse (optionnel)</li>
+                            </ul>
+
+                            <p>Ces données sont traitées uniquement pour répondre à votre demande et ne sont pas utilisées à d'autres fins.</p>
+
+                            <h3>Vos droits (RGPD)</h3>
+                            <p>Conformément au RGPD, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition concernant les données transmises via le formulaire de contact. Pour exercer ces droits, contactez-nous à <strong>ovmessage@gmail.com</strong>.</p>
+                        </section>
+
+                        <!-- Cookies -->
+                        <section id="cookies">
+                            <h2><i class="fas fa-cookie-bite"></i> 6. Cookies</h2>
+
+                            <p>Ce site web n'utilise aucun cookie. Aucun cookie de tracking, d'analytique, de préférences ou de publicité n'est déposé sur votre appareil.</p>
+                        </section>
+
+                        <!-- Liens Externes -->
+                        <section id="liens">
+                            <h2><i class="fas fa-external-link-alt"></i> 7. Liens externes</h2>
+
+                            <p>Ce site web peut contenir des liens vers d'autres sites (Google Play Store, etc.). Ces liens sont fournis à titre informatif et ne constituent pas une approbation de leur contenu.</p>
+
+                            <p>OV n'est pas responsable du contenu, de la disponibilité ou de la sécurité des sites externes.</p>
+                        </section>
+
+                        <!-- Droit Applicable -->
+                        <section id="droit">
+                            <h2><i class="fas fa-gavel"></i> 8. Droit applicable</h2>
+
+                            <p>Les présentes mentions légales sont régies par le <strong>droit français</strong>. En cas de litige, nous encourageons d'abord la résolution amiable. À défaut, les tribunaux français seront seuls compétents.</p>
+                        </section>
+
+                        <!-- Contact -->
+                        <section id="contact">
+                            <h2><i class="fas fa-envelope"></i> 9. Contact</h2>
+
+                            <p>Pour toute question concernant ces mentions légales ou le site web :</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-envelope"></i> <strong>Email :</strong> ovmessage@gmail.com</p>
+                            </div>
+
+                            <h3>Mise à jour</h3>
+                            <p>Ces mentions légales peuvent être mises à jour à tout moment. La version en vigueur est celle publiée sur ce site.</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-calendar"></i> <strong>Dernière mise à jour :</strong> Février 2026</p>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Boutons de navigation -->
+    <div class="container">
+        <div class="navigation-buttons">
+            <a href="conditions.html" class="nav-btn">
+                <i class="fas fa-arrow-left"></i>
+                Conditions
+            </a>
+            <a href="index.html" class="nav-btn">
+                <i class="fas fa-home"></i>
+                Page d'Accueil
+            </a>
+            <a href="confidentialite.html" class="nav-btn">
+                Confidentialité
+                <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+<footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5">
+                    <div class="footer-brand">
+                        <img src="assets/logo_ov_transparent.PNG" alt="OV Logo" class="header-logo">
+                        <span style="margin-left: 8px; font-size: 1.25rem;">OV</span>
+                        <p>Sécurité, innovation et intelligence artificielle.</p>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="footer-links">
+                        <h5>Navigation</h5>
+                        <ul>
+                            <li><a href="index.html">Accueil</a></li>
+                            <li><a href="ov-message.html">OV Message</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="footer-links">
+                        <h5>Support</h5>
+                        <ul>
+                            <li><a href="index.html#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 OV. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Politique de Confidentialité</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions d'Utilisation</h6>
+                                    <p>Modalités d'utilisation de nos services</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-gavel"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+    
+    <!-- Bouton scroll to top -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Fonction pour remonter en haut de la page
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Afficher/masquer le bouton scroll to top
+        window.addEventListener('scroll', function() {
+            const scrollButton = document.querySelector('.scroll-to-top');
+            if (window.pageYOffset > 300) {
+                scrollButton.style.display = 'flex';
+            } else {
+                scrollButton.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
