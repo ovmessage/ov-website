@@ -4926,9 +4926,10 @@ section + section {
         font-size: 1rem;
     }
 
-    .hero {
+    .hero,
+    .hero-section {
         min-height: auto;
-        padding: 80px 0 40px;
+        padding: 90px 0 40px;
     }
 
     /* Sections */
@@ -5042,6 +5043,11 @@ section + section {
 
     .hero-content {
         padding: 0 10px;
+    }
+
+    .hero,
+    .hero-section {
+        padding: 80px 0 30px;
     }
 
     /* Sections */

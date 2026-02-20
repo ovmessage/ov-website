@@ -435,13 +435,15 @@ class MainManager {
         }
     }
     
-    // Défilement fluide
+    // Défilement fluide (uniquement les liens ancres de navigation)
     setupSmoothScrolling() {
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            const href = anchor.getAttribute('href');
+            if (href === '#' || anchor.closest('.navbar-toggler') || anchor.hasAttribute('data-bs-toggle')) return;
             anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const target = document.querySelector(href);
                 if (target) {
+                    e.preventDefault();
                     target.scrollIntoView({
                         behavior: 'smooth',
                         block: 'start'
