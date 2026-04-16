@@ -491,7 +491,7 @@
                                 <tr><th>Composant</th><th>Technologie</th></tr>
                                 <tr><td>Framework</td><td>React Native 0.83 / Expo 55</td></tr>
                                 <tr><td>Moteur</td><td>Hermes (bytecode compilé)</td></tr>
-                                <tr><td>Cryptographie</td><td>Bindings natifs OpenSSL (SHA3-256, HMAC-SHA256, AES-256-GCM, HKDF, Argon2id, ECDH X25519)</td></tr>
+                                <tr><td>Cryptographie</td><td>Bindings natifs OpenSSL (SHA3-256, HMAC-SHA256, AES-256-GCM, HKDF, Argon2id) + <code>@noble/post-quantum</code> (KEM hybride ML-KEM-768 + X25519, FIPS 203)</td></tr>
                                 <tr><td>Stockage sensible</td><td>Android Keystore</td></tr>
                                 <tr><td>Stockage non sensible</td><td>Base de données locale</td></tr>
                             </table>
@@ -617,16 +617,24 @@
                             <p>Chaque clé de contact est générée localement avec un CSPRNG. Les clés ont une longueur variable et une haute entropie. La longueur variable empêche un attaquant de déterminer la taille de la clé à partir de métadonnées.</p>
 
                             <h3>6.2 Échange de clés</h3>
-                            <p>OV Message propose trois méthodes d'échange hors bande :</p>
+                            <p>OV Message propose deux méthodes d'échange hors bande :</p>
                             <table class="wp-table">
                                 <tr><th>Méthode</th><th>Canal</th><th>Mécanisme</th></tr>
                                 <tr><td>En personne</td><td>QR code scanné physiquement</td><td>Transmission directe de la clé</td></tr>
-                                <tr><td>Par visio</td><td>Appel vidéo externe</td><td>ECDH sur courbe X25519</td></tr>
-                                <tr><td>Par code</td><td>Voix, texte, ou tout canal</td><td>ECDH sur courbe X25519</td></tr>
+                                <tr><td>À distance</td><td>SMS + canal vocal/visio de confiance</td><td>KEM hybride ML-KEM-768 + X25519, vérification SAS</td></tr>
                             </table>
 
                             <div class="highlight-box">
-                                <p><i class="fas fa-exchange-alt"></i> <strong>Échange ECDH :</strong> Chaque participant génère une paire de clés éphémère sur X25519. Les clés publiques sont échangées, chacun calcule le secret partagé ECDH dérivé en clé de contact via SHA3-256. Les clés privées éphémères sont détruites après l'échange.</p>
+                                <p><i class="fas fa-atom"></i> <strong>Appairage post-quantique hybride :</strong> L'initiateur génère une paire de clés hybride (ML-KEM-768 + X25519) et transmet la clé publique par SMS (format <code>OVPK:&lt;sessId&gt;:I:&lt;base64&gt;</code>). Le répondant encapsule un secret partagé avec cette clé publique et renvoie le ciphertext par SMS. Après décapsulation, les deux côtés disposent du même secret partagé, duquel sont dérivés :</p>
+                                <ul>
+                                    <li>La <strong>clé de contact</strong> (via HKDF-SHA256, info string <code>OV_PQHybrid_ContactKey_v1</code>)</li>
+                                    <li>Un <strong>SAS</strong> (Short Authentication String) de 8 caractères hex, dérivé du même secret via une info string distincte (<code>OV_PQHybrid_SAS_v1</code>)</li>
+                                </ul>
+                                <p>Les deux parties comparent le SAS via un canal externe de confiance (voix, visio). Si les codes correspondent, la clé est établie. Les clés éphémères sont détruites, le secret partagé est effacé de la RAM. Le SMS <code>OVPK</code> peut donc être publiquement observé sans compromettre la sécurité.</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-shield-alt"></i> <strong>Pourquoi hybride ?</strong> Le secret partagé final combine le secret ML-KEM (résistant aux ordinateurs quantiques) et le secret X25519 (résistant aux attaques classiques modernes). Un attaquant doit <strong>casser les deux</strong> pour récupérer la clé de contact. Cela protège contre la stratégie <em>« harvest now, decrypt later »</em> : un adversaire enregistrant le SMS aujourd'hui ne pourra pas décapsuler le ML-KEM-768, même avec un ordinateur quantique cryptographiquement pertinent dans 10-20 ans.</p>
                             </div>
 
                             <h3>6.3 Pool de clés pré-générées</h3>
@@ -657,7 +665,7 @@
                                 <tr><td>Clé AES fichiers</td><td>HKDF-SHA256</td><td>Info string dédié</td></tr>
                                 <tr><td>Clé AES pool</td><td>HKDF-SHA256</td><td>Info string dédié</td></tr>
                                 <tr><td>Clé MAC</td><td>HKDF-SHA256</td><td>Info string dédié + ID conversation</td></tr>
-                                <tr><td>Échange ECDH</td><td>ECDH X25519 + HKDF-SHA256</td><td>Clés éphémères par échange</td></tr>
+                                <tr><td>Échange hybride (KEM)</td><td>ML-KEM-768 + X25519 + HKDF-SHA256</td><td>Clés éphémères par session, domain separation pour contactKey vs SAS</td></tr>
                                 <tr><td>Permutation charset</td><td>Dérivation déterministe</td><td>Entrée différente par contact</td></tr>
                             </table>
                             <div class="highlight-box">
@@ -815,6 +823,9 @@
                             <div class="highlight-box">
                                 <p><i class="fas fa-info-circle"></i> <strong>Sécurité en mode clé statique :</strong> Chaque message dérive une sous-clé indépendante via HKDF-SHA256. La compromission d'une sous-clé ne compromet pas les autres messages. Le pool de clés apporte une forward secrecy manuelle — la suppression d'une clé consommée rend les messages passés indéchiffrables.</p>
                             </div>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-atom"></i> <strong>Appairage hybride et FS :</strong> L'appairage ML-KEM-768 + X25519 génère des clés <em>éphémères</em> par session, détruites après dérivation de la clé de contact. La session d'appairage elle-même est donc <em>forward-secret</em> : compromettre le téléphone après l'appairage ne permet pas de rejouer cette session. En revanche, la clé de contact dérivée reste statique (partagée entre les deux appareils) — la forward secrecy au niveau <em>message</em> repose toujours sur la rotation manuelle via le pool de clés.</p>
+                            </div>
 
                             <h3>12.2 Métadonnées de transport</h3>
                             <p>Le canal de transport expose des métadonnées (expéditeur, destinataire, horodatage). OV Message ne peut pas masquer ces informations car elles font partie du protocole de transport sous-jacent.</p>
@@ -828,7 +839,11 @@
                             </div>
 
                             <h3>12.5 Échange de clés initial</h3>
-                            <p>La sécurité repose sur la confidentialité de la clé partagée. L'échange en personne (QR code) ou par visio (ECDH) constitue une vérification d'identité directe. L'échange par code vocal repose sur la reconnaissance vocale, qui est moins fiable.</p>
+                            <p>La sécurité repose sur la confidentialité de la clé partagée et sur l'authenticité du canal de vérification :</p>
+                            <ul>
+                                <li><strong>En personne :</strong> le QR code est transmis directement, sans canal intermédiaire.</li>
+                                <li><strong>À distance :</strong> l'appairage hybride expose les clés publiques par SMS (observable), mais la confidentialité est garantie cryptographiquement (KEM hybride ML-KEM-768 + X25519). La vérification d'identité repose sur la comparaison du SAS de 8 caractères via un canal <strong>externe de confiance</strong> (voix reconnue, visio). Un attaquant MITM devrait intercepter le SMS <em>et</em> usurper la voix/visage du correspondant sur le canal de vérification — ce dernier est donc le maillon critique.</li>
+                            </ul>
                         </section>
 
                         <!-- 13. Positionnement -->
@@ -877,8 +892,11 @@
                                 <tr><td>KEK/DEK</td><td>DEK</td><td>256 bits aléatoires</td></tr>
                                 <tr><td>KEK/DEK</td><td>Enveloppement</td><td>AES-256-GCM sous KEK</td></tr>
                                 <tr><td>Génération de clés</td><td>Entropie</td><td>Haute entropie (CSPRNG)</td></tr>
-                                <tr><td>ECDH</td><td>Courbe</td><td>X25519 (128 bits de sécurité)</td></tr>
-                                <tr><td>ECDH</td><td>Clés éphémères</td><td>Détruites après échange</td></tr>
+                                <tr><td>KEM hybride</td><td>ML-KEM-768</td><td>FIPS 203, NIST niveau 3 (post-quantum)</td></tr>
+                                <tr><td>KEM hybride</td><td>X25519</td><td>128 bits de sécurité classique</td></tr>
+                                <tr><td>Dérivation appairage</td><td>HKDF-SHA256</td><td>Domain separation contactKey / SAS</td></tr>
+                                <tr><td>SAS</td><td>HMAC-SHA256 tronqué</td><td>8 hex chars (32 bits), comparaison hors bande</td></tr>
+                                <tr><td>Clés éphémères</td><td>—</td><td>Détruites après échange, TTL 24h pour sessions pendantes</td></tr>
                                 <tr><td>Anti-rejeu</td><td>Stockage</td><td>Par contact, par direction</td></tr>
                                 <tr><td>Fichiers</td><td>Chiffrement</td><td>AES-256-GCM + HKDF</td></tr>
                             </table>

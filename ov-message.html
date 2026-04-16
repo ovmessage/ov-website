@@ -267,7 +267,7 @@
                     <div class="step-number">2</div>
                     <img src="assets/images/ov-message/onboarding_2.png" alt="Étape 2 - Échanger une clé de chiffrement" loading="lazy">
                     <h4>Échanger une clé</h4>
-                    <p>Partagez une clé avec votre contact via QR code, fichier chiffré ou même sur support papier. Le partage via d'autres applications est possible mais non recommandé.</p>
+                    <p>Deux façons d'échanger une clé : en personne via QR code (la plus sûre), ou à distance via l'<strong>appairage post-quantique hybride</strong> — un bouton dans la conversation déclenche un échange ML-KEM-768 + X25519 par SMS, suivi d'une vérification vocale/visio d'un code de 8 caractères. Export/import par fichier chiffré également disponible pour la sauvegarde.</p>
                 </div>
                 <div class="step-card reveal-animation">
                     <div class="step-number">3</div>
@@ -408,12 +408,12 @@
                 <div class="accordion-item-custom">
                     <div class="accordion-header-custom">
                         <i class="fas fa-qrcode"></i>
-                        <h4>Échange de clés par QR Code</h4>
+                        <h4>Appairage post-quantique &amp; QR code</h4>
                         <i class="fas fa-chevron-down accordion-chevron"></i>
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Partagez vos clés de chiffrement en scannant un QR code avec la caméra, ou exportez-les dans un fichier chiffré protégé par mot de passe. Import et export sécurisés en un geste.
+                            Deux mécanismes d'échange : (1) QR code scanné en personne pour transmission directe ; (2) appairage à distance par SMS avec KEM hybride ML-KEM-768 + X25519, résistant aux attaques quantiques futures (harvest-now-decrypt-later). La vérification d'identité se fait par comparaison d'un code SAS de 8 caractères lu sur un canal externe (voix, visio). Export/import par fichier chiffré protégé par mot de passe.
                         </div>
                     </div>
                 </div>
