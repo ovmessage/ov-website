@@ -688,7 +688,10 @@
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-database"></i> DEK (Data Encryption Key)</h5>
+                                    <p>Clé aléatoire, enveloppée sous KEK via AES-256-GCM. Chargée en mémoire au login, détruite au verrouillage (kill du process).</p>
+                                    <!-- IOS_LAUNCH: remplacer par la formulation iOS ci-dessous au lancement de la version iOS
                                     <p>Clé aléatoire 256 bits, enveloppée sous KEK via AES-256-GCM. Chargée en mémoire au login, effacée de la RAM à chaque verrouillage automatique et libérée par l'OS à la terminaison du process.</p>
+                                    -->
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-address-card"></i> Clés de contact</h5>
@@ -696,6 +699,8 @@
                                 </div>
                             </div>
 
+                            <!-- IOS_LAUNCH_BEGIN: démasquer ce bloc (sections 7.3 et 7.4) au lancement de la version iOS,
+                                 et renuméroter la "Rétrocompatibilité" en 7.5. Retirer aussi le fallback Android ci-dessous.
                             <h3>7.3 Protection matérielle iOS</h3>
                             <p>L'architecture KEK/DEK repose sur les protections matérielles fournies par Apple au niveau du système d'exploitation et du coprocesseur Secure Enclave. Aucun secret n'est jamais stocké en clair hors de la RAM active.</p>
 
@@ -730,8 +735,12 @@
                                 <p><i class="fas fa-shield-virus"></i> <strong>Résistance forensique :</strong> En mode verrouillé (application fermée ou inactive depuis plus que le délai configuré), une extraction physique du téléphone par un outil forensique professionnel (type Cellebrite) ne permet pas de récupérer les messages chiffrés. Les clés nécessaires à leur déchiffrement n'existent plus, ni en RAM (effacées), ni sur le disque (enveloppées sous une KEK dérivée d'un mot de passe jamais stocké).</p>
                             </div>
 
-                            <h3>7.5 Rétrocompatibilité</h3>
+                            <h3>7.5 Rétrocompatibilité (version iOS)</h3>
                             <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé de l'OS (iOS Keychain, protégé par le Secure Enclave). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
+                            IOS_LAUNCH_END -->
+
+                            <h3>7.3 Rétrocompatibilité</h3>
+                            <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé (protégées par Android Keystore). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
                         </section>
 
                         <!-- 8. Chiffrement des fichiers -->
