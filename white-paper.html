@@ -688,7 +688,7 @@
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-database"></i> DEK (Data Encryption Key)</h5>
-                                    <p>Clé aléatoire, enveloppée sous KEK via AES-256-GCM. Chargée en mémoire au login, détruite au verrouillage (kill du process).</p>
+                                    <p>Clé aléatoire 256 bits, enveloppée sous KEK via AES-256-GCM. Chargée en mémoire au login, effacée de la RAM à chaque verrouillage automatique et libérée par l'OS à la terminaison du process.</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-address-card"></i> Clés de contact</h5>
@@ -696,8 +696,42 @@
                                 </div>
                             </div>
 
-                            <h3>7.3 Rétrocompatibilité</h3>
-                            <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé (protégées par Android Keystore). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
+                            <h3>7.3 Protection matérielle iOS</h3>
+                            <p>L'architecture KEK/DEK repose sur les protections matérielles fournies par Apple au niveau du système d'exploitation et du coprocesseur Secure Enclave. Aucun secret n'est jamais stocké en clair hors de la RAM active.</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microchip"></i> Secure Enclave</h5>
+                                    <p>Coprocesseur dédié (Apple A7 et suivants) isolé du processeur principal. Gère les clés de chiffrement du Keychain via une clé UID gravée en silicium, inaccessible à l'OS, au firmware et à Apple.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-key"></i> iOS Keychain</h5>
+                                    <p>Tous les éléments sensibles (DEK enveloppé, sel de la KEK, hashs de mots de passe) sont stockés dans le Keychain iOS avec la classe <code>WhenUnlocked</code>. Chaque lecture et écriture est chiffrée par le Secure Enclave.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-memory"></i> Isolation mémoire</h5>
+                                    <p>iOS applique un cloisonnement strict de la RAM entre processus (kernel memory protection). La mémoire d'OV Message reste inaccessible aux autres applications, même privilégiées.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-ban"></i> Pas de sauvegarde iCloud</h5>
+                                    <p>Les secrets sont écrits avec le drapeau <code>ThisDeviceOnly</code> : ils ne sont jamais synchronisés vers iCloud et ne figurent dans aucune sauvegarde chiffrée ou non chiffrée.</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-lock"></i> <strong>Chaîne de confiance matérielle :</strong> Mot de passe utilisateur → Argon2id → KEK → déballage DEK → déchiffrement clé de contact. Chaque maillon exige le précédent. Sans le mot de passe, le DEK chiffré dans le Keychain est inexploitable, même avec un accès physique complet au téléphone.</p>
+                            </div>
+
+                            <h3>7.4 Comportement au verrouillage</h3>
+                            <p>Le verrouillage automatique efface le DEK et toutes les clés de contact de la mémoire vive, sans attendre la terminaison du process. Au retour au premier plan après expiration du délai d'inactivité, le mot de passe est redemandé pour régénérer la KEK et redébloquer le DEK.</p>
+                            <p>Si iOS décide de terminer le process en arrière-plan (pression mémoire, arrêt manuel), le système libère l'intégralité de la RAM allouée : le DEK, la KEK et toutes les clés dérivées disparaissent sans intervention applicative. Le prochain démarrage repart d'un état verrouillé.</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-shield-virus"></i> <strong>Résistance forensique :</strong> En mode verrouillé (application fermée ou inactive depuis plus que le délai configuré), une extraction physique du téléphone par un outil forensique professionnel (type Cellebrite) ne permet pas de récupérer les messages chiffrés. Les clés nécessaires à leur déchiffrement n'existent plus, ni en RAM (effacées), ni sur le disque (enveloppées sous une KEK dérivée d'un mot de passe jamais stocké).</p>
+                            </div>
+
+                            <h3>7.5 Rétrocompatibilité</h3>
+                            <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé de l'OS (iOS Keychain, protégé par le Secure Enclave). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
                         </section>
 
                         <!-- 8. Chiffrement des fichiers -->
