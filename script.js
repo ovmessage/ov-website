@@ -34,6 +34,113 @@ class ScrollReveal {
     }
 }
 
+// ===============================================
+// LIGHTBOX (zoom plein écran sur les captures)
+// =============================================
+
+class Lightbox {
+    constructor(selector = '.screenshot-gallery img, .step-card img') {
+        this.images = document.querySelectorAll(selector);
+        this.overlay = null;
+        this.imgEl = null;
+        this.captionEl = null;
+        this.currentIndex = -1;
+        this.imageList = [];
+        this.init();
+    }
+
+    init() {
+        if (this.images.length === 0) return;
+
+        // Récupérer la liste pour navigation prev/next
+        this.imageList = Array.from(this.images);
+
+        // Créer le DOM de l'overlay une seule fois
+        this.buildOverlay();
+
+        // Rendre les images cliquables
+        this.imageList.forEach((img, idx) => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                this.open(idx);
+            });
+        });
+
+        // Listeners globaux
+        document.addEventListener('keydown', (e) => {
+            if (!this.isOpen()) return;
+            if (e.key === 'Escape') this.close();
+            else if (e.key === 'ArrowRight') this.next();
+            else if (e.key === 'ArrowLeft') this.prev();
+        });
+    }
+
+    buildOverlay() {
+        const overlay = document.createElement('div');
+        overlay.className = 'lightbox-overlay';
+        overlay.innerHTML = `
+            <button class="lightbox-close" aria-label="Fermer">&times;</button>
+            <button class="lightbox-prev" aria-label="Précédent">&#10094;</button>
+            <button class="lightbox-next" aria-label="Suivant">&#10095;</button>
+            <div class="lightbox-content">
+                <img class="lightbox-image" alt="">
+                <div class="lightbox-caption"></div>
+            </div>
+        `;
+        document.body.appendChild(overlay);
+
+        this.overlay = overlay;
+        this.imgEl = overlay.querySelector('.lightbox-image');
+        this.captionEl = overlay.querySelector('.lightbox-caption');
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay || e.target.classList.contains('lightbox-content')) {
+                this.close();
+            }
+        });
+        overlay.querySelector('.lightbox-close').addEventListener('click', () => this.close());
+        overlay.querySelector('.lightbox-prev').addEventListener('click', () => this.prev());
+        overlay.querySelector('.lightbox-next').addEventListener('click', () => this.next());
+    }
+
+    open(index) {
+        this.currentIndex = index;
+        this.show();
+        this.overlay.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    close() {
+        this.overlay.classList.remove('is-open');
+        document.body.style.overflow = '';
+        // Vide la src après l'animation pour libérer la mémoire
+        setTimeout(() => { if (!this.isOpen()) this.imgEl.src = ''; }, 300);
+    }
+
+    isOpen() {
+        return this.overlay && this.overlay.classList.contains('is-open');
+    }
+
+    show() {
+        const img = this.imageList[this.currentIndex];
+        if (!img) return;
+        this.imgEl.src = img.src;
+        this.imgEl.alt = img.alt || '';
+        this.captionEl.textContent = img.alt || '';
+    }
+
+    next() {
+        this.currentIndex = (this.currentIndex + 1) % this.imageList.length;
+        this.show();
+    }
+
+    prev() {
+        this.currentIndex = (this.currentIndex - 1 + this.imageList.length) % this.imageList.length;
+        this.show();
+    }
+}
+
 // Animation de compteur numérique
 class CounterAnimation {
     constructor() {
@@ -413,6 +520,7 @@ class MainManager {
             // Initialiser les animations avancées
             this.scrollReveal = new ScrollReveal();
             this.counterAnimation = new CounterAnimation();
+            this.lightbox = new Lightbox();
             
             // Configuration supplémentaire
             this.setupSmoothScrolling();
