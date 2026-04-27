@@ -344,7 +344,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Mot de passe de 10+ caractères requis. Le Mode Panic s'active automatiquement après 10 tentatives échouées, ou après 3 essais si la destruction automatique est activée.
+                            Mot de passe de 6 caractères minimum requis. Le Mode Panic s'active automatiquement après 10 tentatives échouées, ou après 3 essais si la destruction automatique est activée.
                         </div>
                     </div>
                 </div>
@@ -357,7 +357,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Anglais, français, espagnol, allemand, italien, portugais, néerlandais, suédois, norvégien, danois, finnois, catalan, islandais, gaélique écossais, gallois, indonésien, malais, filipino, russe, ukrainien.
+                            Plus de 30 langues disponibles, dont anglais, français, espagnol, allemand, italien, portugais, néerlandais, suédois, norvégien, danois, finnois, polonais, roumain, turc, russe, ukrainien, grec, arabe, hébreu, persan, ourdou, vietnamien, thaï, indonésien, malais, filipino, swahili, haoussa, yoruba et amharique.
                         </div>
                     </div>
                 </div>
@@ -384,7 +384,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Auto-suppression configurable par contact : 5 minutes, 30 minutes, 1 heure, 6 heures, 1 jour, 1 semaine ou 1 mois. Les messages disparaissent automatiquement après la durée choisie.
+                            Auto-suppression configurable par contact : 5 minutes, 15 minutes, 30 minutes, 1 heure, 6 heures, 1 jour ou 1 semaine. Les messages disparaissent automatiquement après la durée choisie.
                         </div>
                     </div>
                 </div>
@@ -410,7 +410,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Deux mécanismes d'échange : (1) QR code scanné en personne pour transmission directe ; (2) appairage à distance par SMS avec KEM hybride ML-KEM-768 + X25519, résistant aux attaques quantiques futures (harvest-now-decrypt-later). La vérification d'identité se fait par comparaison d'un code SAS de 8 caractères lu sur un canal externe (voix, visio). Export/import par fichier chiffré protégé par mot de passe.
+                            Deux mécanismes d'échange : (1) QR code scanné en personne pour transmission directe ; (2) appairage à distance par SMS avec KEM hybride ML-KEM-768 + X25519, résistant aux attaques quantiques futures (harvest-now-decrypt-later). La vérification d'identité se fait par comparaison d'un code SAS de 12 caractères lu sur un canal externe (voix, visio). Export/import par fichier chiffré protégé par mot de passe.
                         </div>
                     </div>
                 </div>
@@ -423,7 +423,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Trois modes d'encodage selon vos besoins : Unicode (standard, caractères spéciaux), Base36 (optimisé SMS, 2x plus compact) et Base64 (compatibilité maximale avec les applications externes). Configurable par contact.
+                            Trois modes d'encodage selon vos besoins : Unicode (standard, alphabet de symboles), Base36 (compatibilité SMS GSM-7 sans Unicode) et Base64 (compatibilité maximale avec les applications externes). Configurable par contact.
                         </div>
                     </div>
                 </div>
@@ -449,7 +449,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Chaque message reçu est analysé pour détecter toute tentative de falsification ou modification. Niveau de risque évalué automatiquement avec alertes visuelles en cas d'anomalie.
+                            Chaque message est authentifié par HMAC-SHA256. Toute modification du chiffré pendant le transport est détectée à la réception : le message s'affiche comme corrompu (chaîne uniforme de symboles) et n'est jamais présenté comme du texte légitime.
                         </div>
                     </div>
                 </div>
@@ -457,12 +457,12 @@
                 <div class="accordion-item-custom">
                     <div class="accordion-header-custom">
                         <i class="fas fa-bell"></i>
-                        <h4>Notifications intelligentes</h4>
+                        <h4>Notifications privées</h4>
                         <i class="fas fa-chevron-down accordion-chevron"></i>
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Système de notifications avec déduplication automatique : pas de doublons, pas de spam. Chaque nouveau message entrant déclenche une notification unique, même lorsque plusieurs SMS arrivent simultanément.
+                            Vous choisissez si l'aperçu du contenu apparaît dans la notification ou non. Désactivez-le pour que les messages reçus s'affichent uniquement comme « Nouveau message » sur l'écran de verrouillage et dans l'historique de notifications du système — le contenu déchiffré ne quitte jamais l'application.
                         </div>
                     </div>
                 </div>
@@ -475,7 +475,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Retour haptique sur les interactions : chaque action déclenche automatiquement une vibration adaptée à son importance (légère pour les toggles, moyenne pour les sélections, forte pour les actions critiques). Peut être activé ou désactivé dans les paramètres.
+                            Trois modes de vibration au choix dans les paramètres : Classique (API Android standard), Haptic Expo (feedback cross-plateforme) ou Haptic Android (API native). Activable ou désactivable globalement.
                         </div>
                     </div>
                 </div>
