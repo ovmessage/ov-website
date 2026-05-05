@@ -4494,13 +4494,13 @@ section + section {
 
 /* Hero Product */
 .hero-product {
-    min-height: 80vh;
+    min-height: 70vh;
     background: var(--gradient-dark);
     display: flex;
     align-items: center;
     position: relative;
     overflow: hidden;
-    padding: 120px 0 60px;
+    padding: 100px 0 30px;
 }
 
 .hero-product .hero-product-content {
@@ -5122,7 +5122,7 @@ section + section {
 
 /* ===== Section Codes Promo ===== */
 .promo-section {
-    padding: 60px 0;
+    padding: 40px 0 60px;
     background-color: var(--secondary-color);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
