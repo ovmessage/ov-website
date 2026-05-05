@@ -1174,6 +1174,56 @@ body {
     line-height: 1.6;
 }
 
+/* Carte stylisée pour les en-têtes de section mis en avant */
+.section-header-card {
+    background: linear-gradient(135deg, rgba(42, 162, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid rgba(42, 162, 255, 0.25);
+    border-radius: 20px;
+    padding: 50px 40px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+                0 0 80px rgba(42, 162, 255, 0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.section-header-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary-color), transparent);
+    opacity: 0.6;
+}
+
+.section-header-card h2 {
+    background: linear-gradient(135deg, var(--white) 0%, var(--primary-color) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 15px;
+}
+
+.section-header-card p {
+    color: var(--accent-color);
+    font-size: 1.15rem;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .section-header-card {
+        padding: 35px 25px;
+        margin-bottom: 40px;
+    }
+}
+
 /* ===============================================
    INNOVATIONS SECTION
    ============================================= */
@@ -4567,6 +4617,7 @@ section + section {
 /* Screenshot Gallery */
 .gallery-section {
     padding: 80px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .screenshot-gallery {
@@ -4689,6 +4740,7 @@ section + section {
 /* Detailed Features (Accordion) */
 .detailed-features-section {
     padding: 80px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .accordion-grid {
@@ -4795,6 +4847,7 @@ section + section {
 /* Features Section for OV Message */
 .features-section-product {
     padding: 80px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* ===============================================
@@ -5071,6 +5124,7 @@ section + section {
 .promo-section {
     padding: 60px 0;
     background-color: var(--secondary-color);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 .promo-section .section-header h2 {
     color: var(--white);

@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OV Message — Messagerie chiffrée, 100% hors ligne</title>
+    <title>OV Message — Messagerie chiffrée par SMS, sans serveur</title>
     <meta name="google-site-verification" content="kADbqlYJlWZx6fmdm1bYc-jy9rXXoqK1cNmf9xWrJyI" />
-    <meta name="description" content="OV Message : la première messagerie chiffrée 100% hors ligne. Chiffrement de bout en bout par SMS, sans serveur, sans inscription, sans collecte de données.">
-    <meta property="og:title" content="OV Message — Messagerie chiffrée, 100% hors ligne">
-    <meta property="og:description" content="La première application de messagerie qui transforme vos SMS en messages indéchiffrables. Sans compte, sans inscription, sans trace.">
+    <meta name="description" content="OV Message : messagerie chiffrée de bout en bout par SMS. Sans serveur, sans inscription, sans collecte de données.">
+    <meta property="og:title" content="OV Message — Messagerie chiffrée par SMS, sans serveur">
+    <meta property="og:description" content="Une application de messagerie qui chiffre vos SMS de bout en bout. Sans compte, sans inscription, sans serveur.">
     <meta property="og:image" content="assets/images/ov-message/feature_graphic.jpg">
     <meta property="og:type" content="website">
     <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
@@ -39,6 +39,9 @@
                             <a class="nav-link active" href="ov-message.html">OV Message</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="white-paper.html">White Paper</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="index.html#contact">Contact</a>
                         </li>
                     </ul>
@@ -57,7 +60,7 @@
                     </h1>
                     <p class="hero-subtitle">Messagerie chiffrée, 100% hors ligne</p>
                     <p style="color: var(--accent-color); font-size: 1.1rem; line-height: 1.7; margin-bottom: 30px;">
-                        Une application de messagerie qui transforme vos SMS en messages indéchiffrables. Un mot de passe, une clé, un contact, et chaque conversation devient privée — sans compte, sans inscription, sans trace. Compatible avec les téléphones compacts type Soyes, Melrose et autres appareils dédiés à la confidentialité.
+                        Une application de messagerie qui chiffre vos SMS de bout en bout. Un mot de passe, une clé, un contact, et chaque conversation devient privée — sans compte, sans inscription, sans serveur.
                     </p>
                     <a href="https://play.google.com/store/apps/details?id=com.ov.message" class="btn-google-play" target="_blank" rel="noopener noreferrer">
                         <i class="fab fa-google-play"></i>
@@ -74,7 +77,7 @@
     <!-- 2. Codes Promo -->
     <section class="promo-section">
         <div class="container">
-            <div class="section-header" style="text-align: center; margin-bottom: 30px;">
+            <div class="section-header section-header-card" style="text-align: center; margin-bottom: 30px;">
                 <h2>Codes promo</h2>
                 <p>Téléchargez OV Message gratuitement sur Google Play avec l'un des codes ci-dessous. Premier arrivé, premier servi.</p>
             </div>
@@ -284,34 +287,10 @@
         </div>
     </section>
 
-    <!-- 3. Chiffres Clés -->
-    <section class="metrics-section">
-        <div class="container">
-            <div class="metrics-grid">
-                <div class="metric-item reveal-animation">
-                    <div class="metric-number">26</div>
-                    <div class="metric-label">Fonctionnalités</div>
-                </div>
-                <div class="metric-item reveal-animation">
-                    <div class="metric-number">3</div>
-                    <div class="metric-label">Modes d'encodage</div>
-                </div>
-                <div class="metric-item reveal-animation">
-                    <div class="metric-number">1.0.0</div>
-                    <div class="metric-label">Version</div>
-                </div>
-                <div class="metric-item reveal-animation">
-                    <div class="metric-number">+30</div>
-                    <div class="metric-label">Langues</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- 3. Fonctionnalités Principales -->
     <section class="features-section-product">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header section-header-card text-center">
                 <h2>Fonctionnalités principales</h2>
                 <p>Ce qui distingue OV Message des autres messageries</p>
             </div>
@@ -325,7 +304,7 @@
                     <ul>
                         <li><i class="fas fa-theater-masks"></i> L'attaquant voit une application vide, pas une destruction</li>
                         <li><i class="fas fa-bolt"></i> Déclenchement en moins d'une seconde</li>
-                        <li><i class="fas fa-microscope"></i> Aucune trace forensique récupérable</li>
+                        <li><i class="fas fa-microscope"></i> Données effacées de manière irréversible</li>
                     </ul>
                 </div>
 
@@ -336,7 +315,7 @@
                     <h3>Mode OVNY</h3>
                     <p>Force l'envoi exclusivement en chiffré. Tout message en clair est bloqué automatiquement, garantissant une protection permanente.</p>
                     <ul>
-                        <li><i class="fas fa-shield-alt"></i> Aucun message en clair ne peut sortir</li>
+                        <li><i class="fas fa-shield-alt"></i> Empêche tout envoi en clair par erreur</li>
                         <li><i class="fas fa-toggle-on"></i> Activable par contact</li>
                         <li><i class="fas fa-lock"></i> Sécurité sans oubli possible</li>
                     </ul>
@@ -352,6 +331,19 @@
                         <li><i class="fas fa-sync-alt"></i> Changement de clé par simple numéro</li>
                         <li><i class="fas fa-database"></i> 500 clés prêtes à l'emploi par contact</li>
                         <li><i class="fas fa-user-lock"></i> Pool isolé par contact</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured featured-zoom">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Mode Forteresse</h3>
+                    <p>Filtre automatique des messages entrants. Tout ce qui n'est pas chiffré, signé valablement et entièrement déchiffrable est supprimé automatiquement à la réception.</p>
+                    <ul>
+                        <li><i class="fas fa-user-slash"></i> Numéros inconnus et contacts sans clé : rejetés</li>
+                        <li><i class="fas fa-fingerprint"></i> Signature invalide (forgé/altéré) : rejeté</li>
+                        <li><i class="fas fa-eye-slash"></i> Déchiffrement partiel : rejeté</li>
                     </ul>
                 </div>
 
@@ -391,6 +383,7 @@
                         <li><i class="fas fa-mobile-alt"></i> Remplace l'app SMS native</li>
                         <li><i class="fas fa-sync-alt"></i> Synchronisation automatique</li>
                         <li><i class="fas fa-inbox"></i> Interface unifiée chiffré/clair</li>
+                        <li><i class="fas fa-magic"></i> Proposition automatique au bon moment</li>
                     </ul>
                 </div>
 
@@ -417,6 +410,46 @@
                         <li><i class="fas fa-share-alt"></i> Partageable sur WhatsApp, email, cloud...</li>
                         <li><i class="fas fa-shield-alt"></i> Chiffrement AES-256-GCM avec authentification</li>
                         <li><i class="fas fa-file-import"></i> Import et déchiffrement en un geste</li>
+                        <li><i class="fas fa-sliders-h"></i> Taille max paramétrable : 10, 25 ou 50 MB</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-atom"></i>
+                    </div>
+                    <h3>Appairage post-quantique</h3>
+                    <p>Échangez une clé à distance par SMS, sans serveur. Le protocole hybride ML-KEM-768 + X25519 résiste aux attaques quantiques futures — vos messages d'aujourd'hui restent chiffrés contre les ordinateurs quantiques de demain.</p>
+                    <ul>
+                        <li><i class="fas fa-broadcast-tower"></i> Échange par SMS, aucun serveur intermédiaire</li>
+                        <li><i class="fas fa-shield-virus"></i> Protection harvest-now-decrypt-later</li>
+                        <li><i class="fas fa-microphone"></i> Vérification SAS sur canal externe (voix/visio)</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <h3>Messages éphémères</h3>
+                    <p>Auto-suppression configurable par contact. Sept durées au choix, de 5 minutes à 1 semaine. Les messages disparaissent du téléphone à l'expiration, sans aucune intervention manuelle.</p>
+                    <ul>
+                        <li><i class="fas fa-stopwatch"></i> 5 min, 15 min, 30 min, 1 h, 6 h, 1 jour, 1 semaine</li>
+                        <li><i class="fas fa-user-cog"></i> Réglage indépendant par contact</li>
+                        <li><i class="fas fa-broom"></i> Suppression automatique sans trace</li>
+                    </ul>
+                </div>
+
+                <div class="unified-card featured">
+                    <div class="unified-card-icon">
+                        <i class="fas fa-fingerprint"></i>
+                    </div>
+                    <h3>Protection des clés</h3>
+                    <p>Les clés de chiffrement de chaque contact sont elles-mêmes chiffrées par votre mot de passe. Sans ce mot de passe, les clés stockées sur le téléphone sont inutilisables — protection contre l'extraction forensique d'un téléphone confisqué ou volé.</p>
+                    <ul>
+                        <li><i class="fas fa-key"></i> Clés chiffrées par votre mot de passe</li>
+                        <li><i class="fas fa-microchip"></i> Inutilisables sans authentification</li>
+                        <li><i class="fas fa-user-secret"></i> Anti-extraction forensique (type Cellebrite)</li>
                     </ul>
                 </div>
             </div>
@@ -426,7 +459,7 @@
     <!-- 4. Galerie Screenshots -->
     <section class="gallery-section">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header section-header-card text-center">
                 <h2>Captures d'écran</h2>
                 <p>Découvrez l'interface d'OV Message</p>
             </div>
@@ -450,10 +483,10 @@
                     <img src="assets/images/ov-message/6_gestion_cles.jpg" alt="OV Message - Gestion des clés et QR Code" loading="lazy">
                 </div>
                 <div class="screenshot-item reveal-animation">
-                    <img src="assets/images/ov-message/7_parametres.jpg" alt="OV Message - Paramètres de sécurité" loading="lazy">
+                    <img src="assets/images/ov-message/7_parametres_1.jpg" alt="OV Message - Paramètres de sécurité (1/2)" loading="lazy">
                 </div>
                 <div class="screenshot-item reveal-animation">
-                    <img src="assets/images/ov-message/8_langues.jpg" alt="OV Message - Sélection de langue multilingue" loading="lazy">
+                    <img src="assets/images/ov-message/7_parametres_2.jpg" alt="OV Message - Paramètres de sécurité (2/2)" loading="lazy">
                 </div>
             </div>
         </div>
@@ -462,7 +495,7 @@
     <!-- 5. Comment ca marche -->
     <section class="steps-section">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header section-header-card text-center">
                 <h2>Comment ça marche</h2>
                 <p>Trois étapes simples pour communiquer en toute sécurité</p>
             </div>
@@ -477,7 +510,7 @@
                     <div class="step-number">2</div>
                     <img src="assets/images/ov-message/onboarding_2.png" alt="Étape 2 - Échanger une clé de chiffrement" loading="lazy">
                     <h4>Échanger une clé</h4>
-                    <p>Deux façons d'échanger une clé : en personne via QR code (la plus sûre), ou à distance via l'<strong>appairage post-quantique hybride</strong> — un bouton dans la conversation déclenche un échange ML-KEM-768 + X25519 par SMS, suivi d'une vérification vocale/visio d'un code de 8 caractères. Export/import par fichier chiffré également disponible pour la sauvegarde.</p>
+                    <p>Deux façons d'échanger une clé : en personne via QR code (la plus sûre), ou à distance via l'<strong>appairage post-quantique hybride</strong> — un bouton dans la conversation déclenche un échange ML-KEM-768 + X25519 par SMS, suivi d'une vérification vocale/visio d'un code de 12 caractères hex. Export/import par fichier chiffré également disponible pour la sauvegarde.</p>
                 </div>
                 <div class="step-card reveal-animation">
                     <div class="step-number">3</div>
@@ -492,7 +525,7 @@
     <!-- 6. Fonctionnalités Détaillées (Accordion) -->
     <section class="detailed-features-section">
         <div class="container">
-            <div class="section-header text-center">
+            <div class="section-header section-header-card text-center">
                 <h2>Fonctionnalités supplémentaires détaillées</h2>
                 <p>Tout ce qu'OV Message a à offrir</p>
             </div>
@@ -570,7 +603,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Plus de 30 langues disponibles, dont anglais, français, espagnol, allemand, italien, portugais, néerlandais, suédois, norvégien, danois, finnois, polonais, roumain, turc, russe, ukrainien, grec, arabe, hébreu, persan, ourdou, vietnamien, thaï, indonésien, malais, filipino, swahili, haoussa, yoruba et amharique.
+                            Plus de 30 langues disponibles. La langue est détectée automatiquement et peut être changée à tout moment dans les paramètres.
                         </div>
                     </div>
                 </div>
@@ -591,19 +624,6 @@
 
                 <div class="accordion-item-custom">
                     <div class="accordion-header-custom">
-                        <i class="fas fa-clock"></i>
-                        <h4>Messages éphémères</h4>
-                        <i class="fas fa-chevron-down accordion-chevron"></i>
-                    </div>
-                    <div class="accordion-body-custom">
-                        <div class="accordion-body-content">
-                            Auto-suppression configurable par contact : 5 minutes, 15 minutes, 30 minutes, 1 heure, 6 heures, 1 jour ou 1 semaine. Les messages disparaissent automatiquement après la durée choisie.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item-custom">
-                    <div class="accordion-header-custom">
                         <i class="fas fa-globe"></i>
                         <h4>Chiffrement universel</h4>
                         <i class="fas fa-chevron-down accordion-chevron"></i>
@@ -617,26 +637,13 @@
 
                 <div class="accordion-item-custom">
                     <div class="accordion-header-custom">
-                        <i class="fas fa-qrcode"></i>
-                        <h4>Appairage post-quantique &amp; QR code</h4>
-                        <i class="fas fa-chevron-down accordion-chevron"></i>
-                    </div>
-                    <div class="accordion-body-custom">
-                        <div class="accordion-body-content">
-                            Deux mécanismes d'échange : (1) QR code scanné en personne pour transmission directe ; (2) appairage à distance par SMS avec KEM hybride ML-KEM-768 + X25519, résistant aux attaques quantiques futures (harvest-now-decrypt-later). La vérification d'identité se fait par comparaison d'un code SAS de 12 caractères lu sur un canal externe (voix, visio). Export/import par fichier chiffré protégé par mot de passe.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item-custom">
-                    <div class="accordion-header-custom">
                         <i class="fas fa-code"></i>
                         <h4>Modes d'encodage</h4>
                         <i class="fas fa-chevron-down accordion-chevron"></i>
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Trois modes d'encodage selon vos besoins : Unicode (standard, alphabet de symboles), Base36 (compatibilité SMS GSM-7 sans Unicode) et Base64 (compatibilité maximale avec les applications externes). Configurable par contact.
+                            Deux modes d'encodage selon vos besoins : Base36 (compatibilité SMS GSM-7) et Base64 (compatibilité maximale avec les applications externes). Configurable par contact.
                         </div>
                     </div>
                 </div>
@@ -649,20 +656,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Appelez vos contacts directement depuis l'application. Accès rapide au numéro depuis la conversation ou la fiche contact.
-                        </div>
-                    </div>
-                </div>
-
-                <div class="accordion-item-custom">
-                    <div class="accordion-header-custom">
-                        <i class="fas fa-check-double"></i>
-                        <h4>Vérification d'intégrité</h4>
-                        <i class="fas fa-chevron-down accordion-chevron"></i>
-                    </div>
-                    <div class="accordion-body-custom">
-                        <div class="accordion-body-content">
-                            Chaque message est authentifié par HMAC-SHA256. Toute modification du chiffré pendant le transport est détectée à la réception : le message s'affiche comme corrompu (chaîne uniforme de symboles) et n'est jamais présenté comme du texte légitime.
+                            Appelez vos contacts directement depuis l'application. Accès rapide au numéro depuis la conversation ou la fiche contact. Les appels passent par le réseau téléphonique standard et ne sont pas chiffrés.
                         </div>
                     </div>
                 </div>
@@ -688,7 +682,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Trois modes de vibration au choix dans les paramètres : Classique (API Android standard), Haptic Expo (feedback cross-plateforme) ou Haptic Android (API native). Activable ou désactivable globalement.
+                            Trois modes de vibration au choix dans les paramètres. Activable ou désactivable globalement.
                         </div>
                     </div>
                 </div>
@@ -701,7 +695,7 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Supprimez vos messages en une seule action : effacés à la fois de l'application OV Message et de la boîte de réception SMS native du téléphone. Aucune trace chiffrée ne subsiste sur l'appareil.
+                            Supprimez vos messages en une seule action : effacés à la fois de l'application OV Message et de la boîte de réception SMS native du téléphone.
                         </div>
                     </div>
                 </div>
@@ -727,7 +721,46 @@
                     </div>
                     <div class="accordion-body-custom">
                         <div class="accordion-body-content">
-                            Toutes les sauvegardes Android sont bloquées : Google Drive, transfert d'appareil et synchronisation cloud. Vos données restent exclusivement sur votre téléphone, sans aucune copie externe.
+                            Toutes les sauvegardes cloud sont bloquées : aucun transfert vers Google Drive, iCloud ou autre service. Vos données restent exclusivement sur votre téléphone, sans aucune copie externe.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-eye-slash"></i>
+                        <h4>Anti-capture d'écran</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Bloque les captures d'écran, l'enregistrement vidéo et l'aperçu multitâche. Le contenu de l'application est masqué dans les outils système et dans le sélecteur d'applications.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-trash-alt"></i>
+                        <h4>Panic Keys</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Variante du Mode Panic, plus discrète. Un troisième mot de passe distinct, qui ne supprime que les clés de chiffrement. Les contacts et conversations restent visibles, mais les messages chiffrés deviennent définitivement illisibles. Pour les situations où l'on doit déverrouiller le téléphone sous contrainte sans déclencher la destruction complète.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item-custom">
+                    <div class="accordion-header-custom">
+                        <i class="fas fa-traffic-light"></i>
+                        <h4>Indicateurs visuels en temps réel</h4>
+                        <i class="fas fa-chevron-down accordion-chevron"></i>
+                    </div>
+                    <div class="accordion-body-custom">
+                        <div class="accordion-body-content">
+                            Visualisez d'un coup d'œil l'état de chiffrement de vos conversations : avatar gris pour les contacts sans clé configurée, et cadenas vert/rouge qui change pendant la frappe pour signaler immédiatement les caractères non chiffrables. Aucune mauvaise surprise au moment d'envoyer.
                         </div>
                     </div>
                 </div>

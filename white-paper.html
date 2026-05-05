@@ -1,0 +1,1011 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>White Paper Technique — OV Message</title>
+    <meta name="google-site-verification" content="kADbqlYJlWZx6fmdm1bYc-jy9rXXoqK1cNmf9xWrJyI" />
+    <meta name="description" content="White Paper technique d'OV Message. Architecture cryptographique, protocole de chiffrement, gestion des clés, protection forensique et modèle de menace.">
+    <meta property="og:title" content="White Paper Technique — OV Message">
+    <meta property="og:description" content="Documentation technique du protocole de chiffrement OV Message. Architecture sans serveur, chiffrement de bout en bout par SMS.">
+    <meta property="og:image" content="assets/images/icon_ov.png">
+    <meta property="og:type" content="article">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .privacy-container {
+            min-height: 100vh;
+            background: #0E142A;
+            padding-top: 100px;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .privacy-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .privacy-header .wp-version {
+            color: var(--primary-color);
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        .privacy-header .wp-classification {
+            color: var(--accent-color);
+            font-size: 0.95rem;
+            opacity: 0.7;
+        }
+
+        .privacy-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .privacy-content h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .privacy-content h3 {
+            color: var(--accent-color);
+            font-size: 1.8rem;
+            font-weight: 500;
+            margin: 30px 0 20px 0;
+        }
+
+        .privacy-content p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content ul, .privacy-content ol {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .privacy-content li {
+            margin-bottom: 10px;
+        }
+
+        .highlight-box {
+            background: rgba(42, 162, 255, 0.1);
+            border-left: 4px solid var(--primary-color);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .warning-box {
+            background: rgba(255, 165, 0, 0.1);
+            border-left: 4px solid #FFA500;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 25px 0;
+        }
+
+        .warning-box p {
+            margin: 0;
+            color: var(--white);
+            font-weight: 500;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(42, 162, 255, 0.2);
+        }
+
+        .feature-card h5 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .feature-card p {
+            color: var(--accent-color);
+            font-size: 1rem;
+            margin: 0;
+        }
+
+        .wp-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0 30px 0;
+            font-size: 1rem;
+        }
+
+        .wp-table th {
+            background: rgba(42, 162, 255, 0.15);
+            color: var(--primary-color);
+            padding: 12px 16px;
+            text-align: left;
+            font-weight: 600;
+            border-bottom: 2px solid rgba(42, 162, 255, 0.3);
+        }
+
+        .wp-table td {
+            color: var(--accent-color);
+            padding: 10px 16px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .wp-table tr:hover td {
+            background: rgba(255, 255, 255, 0.03);
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
+            color: var(--white);
+        }
+
+        .nav-btn i {
+            font-size: 1.1rem;
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
+        }
+
+        .scroll-to-top:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.4);
+        }
+
+        .scroll-to-top i {
+            font-size: 1.2rem;
+        }
+
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+            align-self: flex-start;
+        }
+
+        .toc h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .toc ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .toc a:hover {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .doc-content #introduction h2 {
+            margin-top: -80px;
+        }
+        .doc-content h2:first-of-type {
+            margin-top: -80px;
+        }
+
+        @media (max-width: 768px) {
+            .privacy-header h1 {
+                font-size: 2.2rem;
+            }
+
+            .privacy-content h2 {
+                font-size: 1.8rem;
+            }
+
+            .privacy-content h3 {
+                font-size: 1.5rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wp-table {
+                font-size: 0.85rem;
+            }
+
+            .wp-table th, .wp-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <picture>
+                        <source srcset="assets/logo_ov_transparent.webp" type="image/webp">
+                        <img src="assets/logo_ov_transparent_96.png" alt="OV Logo" width="48" height="48" class="header-logo logo-morph">
+                    </picture><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html">Accueil</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="ov-message.html">OV Message</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="white-paper.html">White Paper</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="index.html#contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- White Paper Content -->
+    <div class="privacy-container">
+        <div class="container">
+            <!-- Header -->
+            <div class="privacy-header">
+                <h1>OV Message — White Paper Technique</h1>
+                <p class="wp-version">Version 1.0.0 — Avril 2026</p>
+                <p class="wp-classification">Classification : Public</p>
+            </div>
+
+            <div class="row">
+                <!-- Table of Contents -->
+                <div class="col-lg-3">
+                    <div class="toc">
+                        <h4><i class="fas fa-list"></i> Table des Matières</h4>
+                        <ul>
+                            <li><a href="#introduction">Introduction</a></li>
+                            <li><a href="#menaces">Modèle de menace</a></li>
+                            <li><a href="#architecture">Architecture générale</a></li>
+                            <li><a href="#chiffrement">Protocole de chiffrement</a></li>
+                            <li><a href="#hmac">Intégrité (HMAC)</a></li>
+                            <li><a href="#cles">Gestion des clés</a></li>
+                            <li><a href="#kek-dek">Protection KEK/DEK</a></li>
+                            <li><a href="#fichiers">Chiffrement des fichiers</a></li>
+                            <li><a href="#anti-rejeu">Protection anti-rejeu</a></li>
+                            <li><a href="#forteresse">Mode Forteresse</a></li>
+                            <li><a href="#forensique">Résilience forensique</a></li>
+                            <li><a href="#limites">Limites connues</a></li>
+                            <li><a href="#positionnement">Positionnement</a></li>
+                            <li><a href="#synthese">Synthèse crypto</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="doc-content">
+                    <div class="privacy-content">
+
+                        <!-- 1. Introduction -->
+                        <section id="introduction">
+                            <h2><i class="fas fa-book-open"></i> 1. Introduction</h2>
+                            <p>OV Message est une application de messagerie chiffrée de bout en bout fonctionnant sans serveur centralisé. Les messages sont chiffrés avant envoi et déchiffrés à réception, indépendamment du canal de transport utilisé. L'implémentation actuelle utilise le réseau SMS, mais le protocole de chiffrement est agnostique au transport — il fonctionne sur tout canal capable de transmettre du texte.</p>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-server"></i> <strong>Architecture sans serveur :</strong> Ce choix délibéré élimine un point de défaillance unique, supprime la nécessité de faire confiance à un opérateur tiers, et ne requiert aucune connexion Internet.</p>
+                            </div>
+                            <p>Le présent document décrit les mécanismes cryptographiques employés, les choix de conception, et les limites connues du système.</p>
+                        </section>
+
+                        <!-- 2. Modèle de menace -->
+                        <section id="menaces">
+                            <h2><i class="fas fa-crosshairs"></i> 2. Modèle de menace</h2>
+
+                            <h3>2.1 Menaces couvertes</h3>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-wifi"></i> Interception du canal</h5>
+                                    <p>Opérateur, FAI, attaquant réseau — Chiffrement E2E, le canal ne voit que du texte chiffré.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-edit"></i> Modification en transit</h5>
+                                    <p>HMAC-SHA256, toute altération invalide le tag d'authentification.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-redo-alt"></i> Rejeu de messages</h5>
+                                    <p>Anti-rejeu par stockage de tags (128 bits, indépendant de l'horloge).</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-chart-bar"></i> Analyse fréquentielle</h5>
+                                    <p>Chiffrement par flux basé sur SHA3-256, aucune correspondance fixe caractère-à-caractère.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-file-alt"></i> Clair connu</h5>
+                                    <p>Index aléatoire par message, un couple (clair, chiffré) n'aide pas pour un autre message.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-fish"></i> Phishing</h5>
+                                    <p>Mode Forteresse, suppression automatique des messages non authentifiés.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microscope"></i> Extraction forensique</h5>
+                                    <p>Cellebrite, JTAG — KEK/DEK, clés chiffrées au repos, DEK détruit au verrouillage.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-moon"></i> Saisie en arrière-plan</h5>
+                                    <p>Verrouillage automatique natif, kill du process, RAM libérée par l'OS.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-fist-raised"></i> Contrainte physique</h5>
+                                    <p>Mode Panic, destruction des données via mot de passe alternatif.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-camera"></i> Capture d'écran</h5>
+                                    <p>Flag système anti-capture sur toutes les fenêtres de l'application.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-cloud"></i> Backup cloud</h5>
+                                    <p>Backup désactivé sur tous les domaines (cloud, local, transfert).</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-hammer"></i> Brute force</h5>
+                                    <p>Argon2id (64 Mo par tentative) + 3 échecs = Panic automatique.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-link"></i> Deep links</h5>
+                                    <p>Deep links bloqués quand un mot de passe est actif.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-unlock"></i> Rétrogradation</h5>
+                                    <p>Si une clé existe, l'application chiffre systématiquement les messages destinés au contact concerné.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-user-slash"></i> Compromission contact</h5>
+                                    <p>Isolation par contact, chaque clé produit des alphabets et clés MAC indépendants.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-bell-slash"></i> Fuite notifications</h5>
+                                    <p>Notifications anonymisées (Mode Forteresse), aucun nom, aucun aperçu.</p>
+                                </div>
+                            </div>
+
+                            <h3>2.2 Hors périmètre</h3>
+                            <div class="warning-box">
+                                <p><i class="fas fa-exclamation-triangle"></i> Compromission du système d'exploitation (root/jailbreak actif avec keylogger). Attaque par canal auxiliaire sur le matériel cryptographique.</p>
+                            </div>
+                        </section>
+
+                        <!-- 3. Architecture générale -->
+                        <section id="architecture">
+                            <h2><i class="fas fa-sitemap"></i> 3. Architecture générale</h2>
+
+                            <h3>3.1 Stack technique</h3>
+                            <table class="wp-table">
+                                <tr><th>Composant</th><th>Technologie</th></tr>
+                                <tr><td>Framework</td><td>React Native 0.83 / Expo 55</td></tr>
+                                <tr><td>Moteur</td><td>Hermes (bytecode compilé)</td></tr>
+                                <tr><td>Cryptographie</td><td>Bindings natifs OpenSSL (SHA3-256, HMAC-SHA256, AES-256-GCM, HKDF, Argon2id) + <code>@noble/post-quantum</code> (KEM hybride ML-KEM-768 + X25519, FIPS 203)</td></tr>
+                                <tr><td>Stockage sensible</td><td>Android Keystore</td></tr>
+                                <tr><td>Stockage non sensible</td><td>Base de données locale</td></tr>
+                            </table>
+
+                            <h3>3.2 Séparation des données</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-key"></i> Clés de contact</h5>
+                                    <p>Keystore sécurisé — Android Keystore + chiffrement DEK (AES-256-GCM)</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-lock"></i> Mots de passe hachés</h5>
+                                    <p>Keystore sécurisé — Android Keystore</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-shield-alt"></i> Sel et canary</h5>
+                                    <p>Keystore sécurisé — sel pour la dérivation du DEK et canary chiffré pour vérifier le mot de passe au login</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-comments"></i> Conversations</h5>
+                                    <p>Stockage local — Stockées sous forme chiffrée (format OV)</p>
+                                </div>
+                            </div>
+
+                            <h3>3.3 Principe de conception</h3>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-cubes"></i> <strong>Séparation des responsabilités :</strong> Toute la logique cryptographique est isolée dans une couche de services dédiée, séparée de l'interface utilisateur. Chaque service a une responsabilité unique.</p>
+                            </div>
+                        </section>
+
+                        <!-- 4. Protocole de chiffrement -->
+                        <section id="chiffrement">
+                            <h2><i class="fas fa-lock"></i> 4. Protocole de chiffrement des messages</h2>
+
+                            <h3>4.1 Vue d'ensemble</h3>
+                            <p>OV Message utilise un chiffrement par flux basé sur le hachage (hash-based stream cipher). Chaque caractère du message est chiffré individuellement par un index de substitution dérivé de SHA3-256, dépendant de la position, d'un index aléatoire unique au message, et d'une sous-clé dérivée de la clé de contact.</p>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-info-circle"></i> <strong>Pas un chiffrement par substitution classique :</strong> Il n'existe aucune table de correspondance fixe entre caractères clairs et caractères chiffrés.</p>
+                            </div>
+
+                            <h3>4.2 Contrainte de transport</h3>
+                            <p>Les primitifs standards (AES-CTR, ChaCha20) produisent une sortie binaire. Leur utilisation sur un canal SMS imposerait un encodage supplémentaire (Base64, Base85) qui augmente la taille du message de 33 à 50 %. Sur SMS, chaque caractère compte.</p>
+                            <p>Le cipher d'OV Message opère directement dans l'espace Unicode. Le texte clair est transformé en texte chiffré sans passer par une représentation binaire intermédiaire. Le ratio est de 1:1 — un caractère clair produit un caractère chiffré.</p>
+                            <p>Le design retenu utilise SHA3-256 comme générateur pseudo-aléatoire indexé par position, avec un index aléatoire par message et une sous-clé dérivée par HKDF. Chaque caractère est chiffré indépendamment avec une entropie de 256 bits par position.</p>
+                            <div class="warning-box">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Compromis assumé :</strong> Un cipher non standard en échange d'un ratio de taille optimal sur un canal à bande passante limitée. Les primitifs standards (AES-256-GCM, HKDF-SHA256, HMAC-SHA256) sont utilisés pour toutes les autres opérations cryptographiques.</p>
+                            </div>
+
+                            <h3>4.3 Principe de fonctionnement</h3>
+                            <ol>
+                                <li>Normalisation du message (Unicode NFC, retours à la ligne uniformisés)</li>
+                                <li>Génération d'un index aléatoire (CSPRNG)</li>
+                                <li>Dérivation d'une sous-clé unique au message via HKDF-SHA256</li>
+                                <li>Dérivation d'un alphabet chiffré spécifique au contact (permutation déterministe)</li>
+                                <li>Chiffrement caractère par caractère — chaque position utilise SHA3-256 avec la sous-clé, la position, et l'index pour produire un index de substitution dans l'alphabet dérivé</li>
+                                <li>Génération du tag HMAC-SHA256 (voir section 5)</li>
+                                <li>Formatage du message chiffré avec l'index et le tag</li>
+                            </ol>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-fingerprint"></i> <strong>Unicité cryptographique :</strong> Chaque message utilise une sous-clé cryptographiquement indépendante. Deux messages identiques envoyés au même contact produisent des chiffrés différents.</p>
+                            </div>
+
+                            <h3>4.4 Propriétés de sécurité</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-random"></i> Confusion</h5>
+                                    <p>SHA3-256 à chaque position, relation non linéaire entre clair et chiffré.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-expand-arrows-alt"></i> Diffusion</h5>
+                                    <p>L'index aléatoire change l'intégralité du chiffré pour un même message.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-chart-bar"></i> Anti-analyse fréquentielle</h5>
+                                    <p>Aucune correspondance fixe caractère-à-caractère.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-file-alt"></i> Anti-clair connu</h5>
+                                    <p>Sous-clé unique par message, connaître un couple (clair, chiffré) n'aide pas pour un autre message.</p>
+                                </div>
+                            </div>
+
+                            <h3>4.5 Alphabets</h3>
+                            <p>Le système utilise des alphabets Unicode conçus pour couvrir 100+ langues en entrée et produire une sortie dans un espace Unicode distinct.</p>
+                        </section>
+
+                        <!-- 5. HMAC -->
+                        <section id="hmac">
+                            <h2><i class="fas fa-check-double"></i> 5. Intégrité et authentification (HMAC)</h2>
+
+                            <h3>5.1 Dérivation de la clé MAC</h3>
+                            <p>La clé MAC est dérivée indépendamment de la clé de chiffrement via HKDF-SHA256 avec séparation de domaine. Chaque conversation produit une clé MAC unique.</p>
+
+                            <h3>5.2 Calcul du tag</h3>
+                            <p>Le tag HMAC-SHA256 est calculé sur la concaténation de données authentifiées additionnelles (identifiant de conversation, index du message) et du texte chiffré. Le tag est tronqué à 128 bits.</p>
+
+                            <h3>5.3 Propriétés</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-shield-alt"></i> Anti-falsification</h5>
+                                    <p>Toute modification du chiffré invalide le tag.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-redo-alt"></i> Anti-rejeu</h5>
+                                    <p>L'index aléatoire unique par message rend chaque tag unique.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-arrow-down"></i> Anti-rétrogradation</h5>
+                                    <p>La vérification du tag est obligatoire au déchiffrement.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-code-branch"></i> Séparation de domaine</h5>
+                                    <p>La clé MAC est dérivée avec un info string différent de la clé AES des fichiers.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 6. Gestion des clés -->
+                        <section id="cles">
+                            <h2><i class="fas fa-key"></i> 6. Gestion des clés</h2>
+
+                            <h3>6.1 Génération des clés de contact</h3>
+                            <p>Chaque clé de contact est générée localement avec un CSPRNG. Les clés ont une longueur variable et une haute entropie. La longueur variable rend la déduction de la taille de clé difficile depuis les métadonnées.</p>
+
+                            <h3>6.2 Échange de clés</h3>
+                            <p>OV Message propose deux méthodes d'échange hors bande :</p>
+                            <table class="wp-table">
+                                <tr><th>Méthode</th><th>Canal</th><th>Mécanisme</th></tr>
+                                <tr><td>En personne</td><td>QR code scanné physiquement</td><td>Transmission directe de la clé</td></tr>
+                                <tr><td>À distance</td><td>SMS + canal vocal/visio de confiance</td><td>KEM hybride ML-KEM-768 + X25519, vérification SAS</td></tr>
+                            </table>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-atom"></i> <strong>Appairage post-quantique hybride :</strong> L'initiateur génère une paire de clés hybride (ML-KEM-768 + X25519) et transmet la clé publique par SMS (format <code>OVPK:&lt;sessId&gt;:I:&lt;base64&gt;</code>). Le répondant encapsule un secret partagé avec cette clé publique et renvoie le ciphertext par SMS. Après décapsulation, les deux côtés disposent du même secret partagé, duquel sont dérivés :</p>
+                                <ul>
+                                    <li>La <strong>clé de contact</strong> (via HKDF-SHA256, info string <code>OV_PQHybrid_ContactKey_v1</code>)</li>
+                                    <li>Un <strong>SAS</strong> (Short Authentication String) de 12 caractères hex (48 bits d'entropie), dérivé du même secret via une info string distincte (<code>OV_PQHybrid_SAS_v1</code>)</li>
+                                </ul>
+                                <p>Les deux parties comparent le SAS via un canal externe de confiance (voix, visio). Si les codes correspondent, la clé est établie. Les clés éphémères sont détruites, le secret partagé est effacé de la RAM. Le SMS <code>OVPK</code> peut donc être publiquement observé sans compromettre la sécurité.</p>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-shield-alt"></i> <strong>Pourquoi hybride ?</strong> Le secret partagé final combine le secret ML-KEM (conçu pour résister aux ordinateurs quantiques) et le secret X25519 (résistant aux attaques classiques modernes). Un attaquant doit <strong>casser les deux</strong> pour récupérer la clé de contact. Cela vise à neutraliser la stratégie <em>« harvest now, decrypt later »</em> : un adversaire enregistrant le SMS aujourd'hui devrait, pour décapsuler le ML-KEM-768, disposer d'un ordinateur quantique cryptographiquement pertinent — au-delà des capacités prévisibles à horizon proche.</p>
+                            </div>
+
+                            <h3>6.3 Pool de clés pré-générées</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-cogs"></i> Génération</h5>
+                                    <p>Un pool de clés pré-généré localement pour chaque contact. Chaque clé indexée par un numéro.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-file-export"></i> Export chiffré</h5>
+                                    <p>Pool chiffré avec AES-256-GCM (clé dérivée par HKDF-SHA256) avant échange.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-sync-alt"></i> Rotation</h5>
+                                    <p>Sélection par index, seul le numéro transite. Jamais la clé elle-même.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-trash-alt"></i> Suppression définitive</h5>
+                                    <p>Chaque clé consommée est physiquement supprimée, permettant une forward secrecy manuelle au niveau de la rotation.</p>
+                                </div>
+                            </div>
+
+                            <h3>6.4 Dérivation de clés</h3>
+                            <table class="wp-table">
+                                <tr><th>Usage</th><th>Algorithme</th><th>Détails</th></tr>
+                                <tr><td>Hachage mot de passe</td><td>Argon2id (m=64 Mo, t=3, p=1, L=32)</td><td>Sel aléatoire par hash</td></tr>
+                                <tr><td>DEK (clé maître)</td><td>Argon2id + HKDF-SHA256</td><td>Info string <code>OV_DEK_v1</code>, sel dédié</td></tr>
+                                <tr><td>Clé AES fichiers</td><td>HKDF-SHA256</td><td>Info string dédié</td></tr>
+                                <tr><td>Clé AES pool</td><td>HKDF-SHA256</td><td>Info string dédié</td></tr>
+                                <tr><td>Clé MAC</td><td>HKDF-SHA256</td><td>Info string dédié + ID conversation</td></tr>
+                                <tr><td>Échange hybride (KEM)</td><td>ML-KEM-768 + X25519 + HKDF-SHA256</td><td>Clés éphémères par session, domain separation pour contactKey vs SAS</td></tr>
+                                <tr><td>Permutation charset</td><td>Dérivation déterministe</td><td>Entrée différente par contact</td></tr>
+                            </table>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-code-branch"></i> <strong>Séparation de domaine :</strong> Chaque contexte utilise un info string ou un sel distinct, garantissant qu'une même clé de contact produit des clés dérivées indépendantes pour chaque usage.</p>
+                            </div>
+                        </section>
+
+                        <!-- 7. KEK/DEK -->
+                        <section id="kek-dek">
+                            <h2><i class="fas fa-shield-alt"></i> 7. Protection des clés au repos (KEK/DEK)</h2>
+
+                            <h3>7.1 Objectif</h3>
+                            <p>Protéger les clés de contact contre l'extraction forensique (Cellebrite, JTAG, extraction RAM) en cas de saisie physique du téléphone.</p>
+
+                            <h3>7.2 Architecture</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-key"></i> DEK (Data Encryption Key)</h5>
+                                    <p>Clé symétrique de 256 bits, dérivée déterministiquement du mot de passe via Argon2id (m=64 Mo, t=3, p=1, L=32) puis HKDF-SHA256 avec l'info string <code>OV_DEK_v1</code>. Jamais stockée — régénérée à chaque login, chargée en RAM uniquement, détruite au verrouillage (kill du process).</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-fingerprint"></i> Vérification par canary</h5>
+                                    <p>Au login, un canary chiffré par AES-256-GCM sous le DEK est déchiffré pour valider le mot de passe. Un mauvais mot de passe produit un DEK différent qui ne peut pas déchiffrer le canary — détection immédiate sans révéler la valeur du DEK correct.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-address-card"></i> Clés de contact</h5>
+                                    <p>Chaque clé chiffrée individuellement avec le DEK en AES-256-GCM. Déchiffrement lazy (à la demande).</p>
+                                </div>
+                            </div>
+
+                            <!-- IOS_LAUNCH_BEGIN: démasquer ce bloc (sections 7.3 et 7.4) au lancement de la version iOS,
+                                 et renuméroter la "Rétrocompatibilité" en 7.5. Retirer aussi le fallback Android ci-dessous.
+                            <h3>7.3 Protection matérielle iOS</h3>
+                            <p>L'architecture KEK/DEK s'appuie sur les protections matérielles fournies par Apple au niveau du système d'exploitation et du coprocesseur Secure Enclave. Les secrets ne sont pas stockés en clair sur disque ; ils ne sont déchiffrés qu'en RAM, le temps strictement nécessaire à l'opération.</p>
+
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microchip"></i> Secure Enclave</h5>
+                                    <p>Coprocesseur dédié (Apple A7 et suivants) isolé du processeur principal. Gère les clés de chiffrement du Keychain via une clé UID gravée en silicium, conçue pour ne pas être extractible par voie logicielle selon la documentation Apple.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-key"></i> iOS Keychain</h5>
+                                    <p>Tous les éléments sensibles (DEK enveloppé, sel de la KEK, hashs de mots de passe) sont stockés dans le Keychain iOS avec la classe <code>WhenUnlocked</code>. Chaque lecture et écriture est chiffrée par le Secure Enclave.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-memory"></i> Isolation mémoire</h5>
+                                    <p>iOS applique un cloisonnement strict de la RAM entre processus (kernel memory protection). En conditions nominales (système non compromis, pas de jailbreak), la mémoire d'OV Message reste isolée des autres applications.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-ban"></i> Pas de sauvegarde iCloud</h5>
+                                    <p>Les secrets sont écrits avec le drapeau <code>ThisDeviceOnly</code> : ce flag indique au système de ne pas les synchroniser vers iCloud ni de les inclure dans les sauvegardes chiffrées ou non chiffrées.</p>
+                                </div>
+                            </div>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-lock"></i> <strong>Chaîne de confiance matérielle :</strong> Mot de passe utilisateur + sel → Argon2id → HKDF → DEK → déchiffrement clé de contact. Chaque maillon exige le précédent. Sans le mot de passe, le DEK ne peut être ni régénéré ni récupéré — il n'existe nulle part sur le disque, et la clé de contact reste chiffrée.</p>
+                            </div>
+
+                            <h3>7.4 Comportement au verrouillage</h3>
+                            <p>Le verrouillage automatique efface le DEK et toutes les clés de contact de la mémoire vive, sans attendre la terminaison du process. Au retour au premier plan après expiration du délai d'inactivité, le mot de passe est redemandé pour régénérer la KEK et redébloquer le DEK.</p>
+                            <p>Si iOS décide de terminer le process en arrière-plan (pression mémoire, arrêt manuel), le système libère l'intégralité de la RAM allouée : le DEK, la KEK et toutes les clés dérivées disparaissent sans intervention applicative. Le prochain démarrage repart d'un état verrouillé.</p>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-shield-virus"></i> <strong>Résistance forensique :</strong> En mode verrouillé (application fermée ou inactive depuis plus que le délai configuré), une extraction physique du téléphone par un outil forensique professionnel (type Cellebrite) rend la récupération des messages chiffrés cryptographiquement impraticable sans le mot de passe. Les clés nécessaires à leur déchiffrement n'existent plus en RAM (effacées) et ne sont pas stockées sur le disque — elles doivent être redérivées du mot de passe via Argon2id+HKDF.</p>
+                            </div>
+
+                            <h3>7.5 Rétrocompatibilité (version iOS)</h3>
+                            <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé de l'OS (iOS Keychain, protégé par le Secure Enclave). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
+                            IOS_LAUNCH_END -->
+
+                            <h3>7.3 Rétrocompatibilité</h3>
+                            <p>Sans mot de passe configuré, les clés restent dans le keystore sécurisé (protégées par Android Keystore). La migration vers le mode chiffré est transparente à la première configuration d'un mot de passe.</p>
+                        </section>
+
+                        <!-- 8. Chiffrement des fichiers -->
+                        <section id="fichiers">
+                            <h2><i class="fas fa-file-export"></i> 8. Chiffrement des fichiers</h2>
+
+                            <h3>8.1 Algorithme</h3>
+                            <p>Les fichiers partagés entre contacts sont chiffrés avec AES-256-GCM. La clé AES est dérivée par HKDF-SHA256 à partir de la clé de contact et d'un sel aléatoire de 16 octets, avec un info string dédié. Un IV de 12 octets est généré aléatoirement.</p>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-weight-hanging"></i> <strong>Overhead total :</strong> 44 octets (sel 16 + IV 12 + tag 16).</p>
+                            </div>
+
+                            <h3>8.2 Vérifications d'intégrité</h3>
+                            <p>L'authentification GCM garantit l'intégrité du chiffré et de l'AAD. Une vérification de cohérence du nom de fichier est effectuée après déchiffrement.</p>
+                        </section>
+
+                        <!-- 9. Anti-rejeu -->
+                        <section id="anti-rejeu">
+                            <h2><i class="fas fa-redo-alt"></i> 9. Protection anti-rejeu</h2>
+
+                            <h3>9.1 Conception sans horloge</h3>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-clock"></i> <strong>Indépendant de l'horloge :</strong> Aucun horodatage, aucun TTL, aucune synchronisation requise entre appareils.</p>
+                            </div>
+                            <ul>
+                                <li>Chaque tag HMAC reçu (128 bits) est stocké localement.</li>
+                                <li>Un message avec un tag déjà vu est silencieusement rejeté.</li>
+                                <li>Le stockage est partitionné par contact et par direction (émission/réception).</li>
+                            </ul>
+
+                            <h3>9.2 Seuils d'alerte</h3>
+                            <table class="wp-table">
+                                <tr><th>Seuil</th><th>Action</th></tr>
+                                <tr><td>1 500 tags stockés</td><td>Alerte : rotation de clé recommandée</td></tr>
+                                <tr><td>1 800 tags stockés</td><td>Alerte : rotation fortement recommandée</td></tr>
+                                <tr><td>1 999 tags stockés</td><td>Alerte : rotation urgente</td></tr>
+                            </table>
+
+                            <h3>9.3 Rotation de clé</h3>
+                            <p>À chaque rotation de clé, le magasin de rejeu est effacé. La nouvelle clé produit une nouvelle clé MAC, donc les anciens tags ne peuvent pas être rejoués.</p>
+                        </section>
+
+                        <!-- 10. Mode Forteresse -->
+                        <section id="forteresse">
+                            <h2><i class="fas fa-chess-rook"></i> 10. Mode Forteresse (anti-phishing)</h2>
+
+                            <h3>10.1 Principe</h3>
+                            <p>Le mode Forteresse est un filtre actif qui supprime automatiquement tout message entrant n'ayant pas pu être authentifié. Il constitue une protection contre le phishing, l'usurpation d'identité et les messages non sollicités.</p>
+
+                            <h3>10.2 Filtrage en 3 étapes</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-user-check"></i> Étape 1 — Expéditeur connu</h5>
+                                    <p>Le numéro est un contact OV Message avec une clé de chiffrement. Échec = message supprimé.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-file-code"></i> Étape 2 — Format OV</h5>
+                                    <p>Le message est au format chiffré OV. Échec = message supprimé.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-check-circle"></i> Étape 3 — Authentification</h5>
+                                    <p>Le tag HMAC-SHA256 est valide et le déchiffrement réussit. Échec = message supprimé.</p>
+                                </div>
+                            </div>
+
+                            <h3>10.3 Double couche de filtrage</h3>
+                            <p><strong>Couche native :</strong> intercepte les messages avant diffusion au système. Les numéros inconnus sont bloqués immédiatement, sans notification.</p>
+                            <p><strong>Couche applicative :</strong> validation cryptographique complète (HMAC + déchiffrement) pour les messages ayant passé le premier filtre.</p>
+
+                            <h3>10.4 Notifications anonymisées</h3>
+                            <p>En mode Forteresse, les notifications sont génériques (aucun nom d'expéditeur, aucun aperçu du contenu). Les notifications affichées sur l'écran de verrouillage ne révèlent pas l'identité de l'expéditeur ni le contenu du message.</p>
+                        </section>
+
+                        <!-- 11. Résilience forensique -->
+                        <section id="forensique">
+                            <h2><i class="fas fa-skull-crossbones"></i> 11. Résilience forensique</h2>
+
+                            <h3>11.1 Mode Panic</h3>
+                            <p>Deux niveaux de destruction d'urgence. Déclenchement par mot de passe alternatif dédié. Si l'auto-destruction est activée, 3 échecs de mot de passe déclenchent automatiquement le mode Panic.</p>
+
+                            <table class="wp-table">
+                                <tr><th>Donnée</th><th>Panic (destruction complète)</th><th>Panic clés (clés uniquement)</th></tr>
+                                <tr><td>Clés de contact</td><td>Détruites</td><td>Détruites</td></tr>
+                                <tr><td>DEK / KEK</td><td>Détruits</td><td>Détruits</td></tr>
+                                <tr><td>SMS physiques</td><td>Supprimés</td><td>Préservés</td></tr>
+                                <tr><td>Contacts du répertoire</td><td>Supprimés</td><td>Préservés</td></tr>
+                                <tr><td>Conversations, paramètres</td><td>Effacés</td><td>Préservés</td></tr>
+                                <tr><td>Messages chiffrés</td><td>Supprimés</td><td>Présents mais indéchiffrables</td></tr>
+                                <tr><td>Caches mémoire (RAM)</td><td>Écrasés puis vidés</td><td>Vidés</td></tr>
+                                <tr><td>Réversibilité</td><td>Non</td><td>Non</td></tr>
+                            </table>
+
+                            <div class="highlight-box">
+                                <p><i class="fas fa-theater-masks"></i> <strong>Indétectable :</strong> Les deux modes sont silencieux — aucune alerte visuelle, l'application affiche l'écran principal comme après un login normal.</p>
+                            </div>
+
+                            <h3>11.2 Auto-lock natif (kill du process)</h3>
+                            <p>Un module natif programme la terminaison du process via une alarme système exacte, immune au Doze mode. Quand le timer expire, le process est tué par l'OS et toute la RAM est libérée (DEK, clés, données sensibles). Si l'application revient en premier plan avant l'expiration, l'alarme est annulée.</p>
+
+                            <h3>11.3 Protections complémentaires</h3>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-desktop"></i> Anti-screenshot</h5>
+                                    <p>Flag système empêchant la capture d'écran et l'enregistrement.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-cloud-upload-alt"></i> Anti-backup cloud</h5>
+                                    <p>Backup désactivé sur tous les domaines (cloud, local, transfert).</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-microchip"></i> Stockage sécurisé</h5>
+                                    <p>Android Keystore pour les secrets (extraction requiert le PIN/biométrie).</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 12. Limites -->
+                        <section id="limites">
+                            <h2><i class="fas fa-balance-scale"></i> 12. Limites connues et compromis</h2>
+
+                            <h3>12.1 Pas de Perfect Forward Secrecy</h3>
+                            <p>L'application fonctionne sans serveur d'échange de clés permanent, rendant le Double Ratchet impraticable. Un hash ratchet causerait une désynchronisation sur les messages perdus ou réordonnés.</p>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-info-circle"></i> <strong>Sécurité en mode clé statique :</strong> Chaque message dérive une sous-clé indépendante via HKDF-SHA256. La compromission d'une sous-clé ne compromet pas les autres messages. Le pool de clés apporte une forward secrecy manuelle — la suppression d'une clé consommée rend les messages passés indéchiffrables.</p>
+                            </div>
+                            <div class="highlight-box">
+                                <p><i class="fas fa-atom"></i> <strong>Appairage hybride et FS :</strong> L'appairage ML-KEM-768 + X25519 génère des clés <em>éphémères</em> par session, détruites après dérivation de la clé de contact. La session d'appairage elle-même est donc <em>forward-secret</em> : compromettre le téléphone après l'appairage ne permet pas de rejouer cette session. En revanche, la clé de contact dérivée reste statique (partagée entre les deux appareils) — la forward secrecy au niveau <em>message</em> repose toujours sur la rotation manuelle via le pool de clés.</p>
+                            </div>
+
+                            <h3>12.2 Métadonnées de transport</h3>
+                            <p>Le canal de transport expose des métadonnées (expéditeur, destinataire, horodatage). OV Message ne peut pas masquer ces informations car elles font partie du protocole de transport sous-jacent.</p>
+
+                            <h3>12.3 Padding</h3>
+                            <p>Les messages sont paddés de manière déterministe. Un observateur peut approximer la longueur du message clair. Ce compromis est accepté car les métadonnées de transport fuient déjà plus d'informations que la longueur du message.</p>
+
+                            <h3>12.4 Statut d'audit</h3>
+                            <div class="warning-box">
+                                <p><i class="fas fa-exclamation-triangle"></i> <strong>Audit :</strong> Le cipher par flux basé sur SHA3-256 est un design original dont la sécurité repose sur les propriétés PRF bien établies de SHA3-256. Un audit cryptographique formel indépendant est planifié et sera publié. Toutes les autres opérations cryptographiques utilisent des primitifs standards audités.</p>
+                            </div>
+
+                            <h3>12.5 Échange de clés initial</h3>
+                            <p>La sécurité repose sur la confidentialité de la clé partagée et sur l'authenticité du canal de vérification :</p>
+                            <ul>
+                                <li><strong>En personne :</strong> le QR code est transmis directement, sans canal intermédiaire.</li>
+                                <li><strong>À distance :</strong> l'appairage hybride expose les clés publiques par SMS (observable), mais la confidentialité repose sur la robustesse cryptographique du KEM hybride ML-KEM-768 + X25519. La vérification d'identité repose sur la comparaison du SAS de 12 caractères hex via un canal <strong>externe de confiance</strong> (voix reconnue, visio). Un attaquant MITM devrait intercepter le SMS <em>et</em> usurper la voix/visage du correspondant sur le canal de vérification — ce dernier est donc le maillon critique.</li>
+                            </ul>
+                        </section>
+
+                        <!-- 13. Positionnement -->
+                        <section id="positionnement">
+                            <h2><i class="fas fa-bullseye"></i> 13. Positionnement</h2>
+                            <p>OV Message cible un modèle de menace que les messageries conventionnelles (Signal, WhatsApp, Olvid) n'adressent pas : fonctionnement sans serveur ni connexion Internet, résilience à la saisie physique du téléphone, et destruction d'urgence des données sous contrainte.</p>
+                            <div class="feature-grid">
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-exclamation-triangle"></i> Mode Panic multicouche</h5>
+                                    <p>Destruction complète ou clés uniquement, indétectable par l'attaquant.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-memory"></i> Auto-lock natif</h5>
+                                    <p>Terminaison du process, libération de la RAM par l'OS.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-chess-rook"></i> Mode Forteresse</h5>
+                                    <p>Filtrage anti-phishing en 3 étapes avec notifications anonymisées.</p>
+                                </div>
+                                <div class="feature-card">
+                                    <h5><i class="fas fa-infinity"></i> Pérennité</h5>
+                                    <p>Zéro coût d'infrastructure, aucune dépendance à un tiers, indépendant des serveurs centralisés.</p>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- 14. Synthèse -->
+                        <section id="synthese">
+                            <h2><i class="fas fa-table"></i> 14. Synthèse des paramètres cryptographiques</h2>
+                            <table class="wp-table">
+                                <tr><th>Composant</th><th>Paramètre</th><th>Valeur</th></tr>
+                                <tr><td>Chiffrement messages</td><td>Hash par position</td><td>SHA3-256 (256 bits)</td></tr>
+                                <tr><td>Chiffrement messages</td><td>Index aléatoire</td><td>Haute entropie (CSPRNG)</td></tr>
+                                <tr><td>Chiffrement messages</td><td>Sous-clé par message</td><td>HKDF-SHA256 (256 bits)</td></tr>
+                                <tr><td>Chiffrement messages</td><td>Alphabets</td><td>Dérivés par contact</td></tr>
+                                <tr><td>HMAC</td><td>Algorithme</td><td>HMAC-SHA256</td></tr>
+                                <tr><td>HMAC</td><td>Tag</td><td>128 bits</td></tr>
+                                <tr><td>HMAC</td><td>Dérivation</td><td>HKDF-SHA256 avec séparation de domaine</td></tr>
+                                <tr><td>Argon2id</td><td>Mémoire (m)</td><td>64 Mo</td></tr>
+                                <tr><td>Argon2id</td><td>Itérations (t)</td><td>3</td></tr>
+                                <tr><td>Argon2id</td><td>Parallélisme (p)</td><td>1</td></tr>
+                                <tr><td>Argon2id</td><td>Sortie</td><td>256 bits</td></tr>
+                                <tr><td>AES-256-GCM</td><td>Clé</td><td>256 bits</td></tr>
+                                <tr><td>AES-256-GCM</td><td>IV</td><td>96 bits</td></tr>
+                                <tr><td>AES-256-GCM</td><td>Tag</td><td>128 bits</td></tr>
+                                <tr><td>KEK/DEK</td><td>DEK</td><td>256 bits, dérivés déterministiquement (Argon2id + HKDF-SHA256, info <code>OV_DEK_v1</code>)</td></tr>
+                                <tr><td>KEK/DEK</td><td>Vérification mot de passe</td><td>Canary chiffré par AES-256-GCM sous le DEK</td></tr>
+                                <tr><td>Génération de clés</td><td>Entropie</td><td>Haute entropie (CSPRNG)</td></tr>
+                                <tr><td>KEM hybride</td><td>ML-KEM-768</td><td>FIPS 203, NIST niveau 3 (post-quantum)</td></tr>
+                                <tr><td>KEM hybride</td><td>X25519</td><td>128 bits de sécurité classique</td></tr>
+                                <tr><td>Dérivation appairage</td><td>HKDF-SHA256</td><td>Domain separation contactKey / SAS</td></tr>
+                                <tr><td>SAS</td><td>HMAC-SHA256 tronqué</td><td>12 hex chars (48 bits), comparaison hors bande</td></tr>
+                                <tr><td>Clés éphémères</td><td>—</td><td>Détruites après échange, sessions live-only (RAM uniquement, aucune persistance)</td></tr>
+                                <tr><td>Anti-rejeu</td><td>Stockage</td><td>Par contact, par direction</td></tr>
+                                <tr><td>Fichiers</td><td>Chiffrement</td><td>AES-256-GCM + HKDF</td></tr>
+                            </table>
+
+                            <div class="highlight-box" style="text-align: center; margin-top: 40px;">
+                                <p><i class="fas fa-lock"></i> OV Message — Chiffrement sans serveur, sans dépendance, sans concession sur la sécurité.</p>
+                            </div>
+                        </section>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div style="height: 60px;"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 &nbsp; OV &mdash; Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Politique de Confidentialité</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions d'Utilisation</h6>
+                                    <p>Modalités d'utilisation de nos services</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-balance-scale"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Bouton scroll to top -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
+</html>
