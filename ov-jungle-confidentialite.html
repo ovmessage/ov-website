@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confidentialité - OV Jungle</title>
+    <meta name="description" content="Politique de confidentialité de l'application mobile OV Jungle (jeu de cartes). Données collectées, publicité AdMob, vos droits RGPD.">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .privacy-container {
+            min-height: 100vh;
+            background: #0E142A;
+            padding-top: 100px;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .privacy-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .privacy-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .privacy-content h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .privacy-content p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content ul {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .privacy-content li { margin-bottom: 10px; }
+
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .toc h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+
+        .toc a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .toc a:hover { color: var(--primary-color); text-decoration: none; }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
+            color: var(--white);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-header h1 { font-size: 2.2rem; }
+            .privacy-content h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <picture>
+                        <source srcset="assets/logo_ov_transparent.webp" type="image/webp">
+                        <img src="assets/logo_ov_transparent_96.png" alt="OV Logo" width="48" height="48" class="header-logo logo-morph">
+                    </picture><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="ov-message.html">OV Message</a></li>
+                        <li class="nav-item"><a class="nav-link" href="white-paper.html">White Paper</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Privacy Content -->
+    <div class="privacy-container">
+        <div class="container">
+            <div class="privacy-header">
+                <h1>Politique de Confidentialité</h1>
+                <p class="lead">Application mobile OV Jungle &mdash; jeu de cartes</p>
+            </div>
+
+            <div class="row">
+                <!-- Table of Contents -->
+                <div class="col-lg-3">
+                    <div class="toc">
+                        <h4><i class="fas fa-list"></i> Sommaire</h4>
+                        <ul>
+                            <li><a href="#responsable">1. Responsable du traitement</a></li>
+                            <li><a href="#donnees">2. Données collectées</a></li>
+                            <li><a href="#finalites">3. Finalités et bases légales</a></li>
+                            <li><a href="#publicite">4. Publicité (Google AdMob)</a></li>
+                            <li><a href="#destinataires">5. Destinataires et sous-traitants</a></li>
+                            <li><a href="#transferts">6. Transferts hors UE</a></li>
+                            <li><a href="#conservation">7. Durée de conservation</a></li>
+                            <li><a href="#droits">8. Vos droits</a></li>
+                            <li><a href="#securite">9. Sécurité</a></li>
+                            <li><a href="#mineurs">10. Mineurs</a></li>
+                            <li><a href="#modifications">11. Modifications</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="privacy-content">
+                        <p><strong>Dernière mise à jour :</strong> 13 juillet 2026</p>
+                        <p>La présente politique décrit comment l'application mobile <strong>OV Jungle</strong> traite vos données personnelles. Elle complète les conditions d'utilisation disponibles dans l'application.</p>
+
+                        <section id="responsable">
+                            <h2><i class="fas fa-building"></i> 1. Responsable du traitement</h2>
+                            <p>Le responsable du traitement de vos données personnelles est OV, entreprise individuelle enregistrée en France.</p>
+                            <p>Pour toute question relative à vos données ou pour exercer vos droits, utilisez la section &laquo; Support &raquo; des Paramètres de l'Application.</p>
+                        </section>
+
+                        <section id="donnees">
+                            <h2><i class="fas fa-database"></i> 2. Données que nous collectons</h2>
+                            <p><strong>Données de compte :</strong> votre identifiant, votre pseudonyme et votre mot de passe (stocké uniquement sous forme chiffrée/hachée, jamais en clair). Aucune adresse e-mail n'est collectée.</p>
+                            <p><strong>Identifiant Apple :</strong> si vous utilisez &laquo; Se connecter avec Apple &raquo; ou liez votre compte, nous conservons l'identifiant technique fourni par Apple &mdash; un code opaque, propre à notre Application, qui ne permet pas de vous identifier ailleurs.</p>
+                            <p><strong>Données de jeu :</strong> votre solde d'OV Coins, l'historique de vos transactions de coins, les résultats de vos parties et votre classement.</p>
+                            <p><strong>Données techniques et publicitaires :</strong> via des services tiers (Google AdMob, Apple), des identifiants d'appareil et de publicité ainsi que des données techniques (type d'appareil, système d'exploitation) peuvent être collectés pour l'affichage des publicités et la validation des achats intégrés.</p>
+                        </section>
+
+                        <section id="finalites">
+                            <h2><i class="fas fa-tasks"></i> 3. Finalités et bases légales</h2>
+                            <ul>
+                                <li>Fournir et sécuriser le service, vous authentifier et gérer votre solde d'OV Coins : exécution du contrat qui nous lie (les CGU).</li>
+                                <li>Afficher des publicités et créditer les récompenses : intérêt légitime et, le cas échéant, votre consentement.</li>
+                                <li>Traiter les achats intégrés : exécution du contrat.</li>
+                                <li>Prévenir la fraude et les abus, assurer la sécurité : intérêt légitime.</li>
+                            </ul>
+                        </section>
+
+                        <section id="publicite">
+                            <h2><i class="fas fa-ad"></i> 4. Publicité (Google AdMob)</h2>
+                            <p>L'Application utilise Google AdMob pour afficher des publicités. Les demandes de publicités sont configurées en mode NON personnalisé. Google AdMob peut néanmoins collecter des identifiants et des données techniques de votre appareil pour fournir et mesurer les publicités.</p>
+                            <p>Le traitement réalisé par Google est régi par sa propre politique de confidentialité (policies.google.com/privacy). Selon votre appareil, vous pouvez limiter le suivi publicitaire dans les réglages iOS (Confidentialité et sécurité &rsaquo; Suivi).</p>
+                        </section>
+
+                        <section id="destinataires">
+                            <h2><i class="fas fa-share-alt"></i> 5. Destinataires et sous-traitants</h2>
+                            <p>Vos données peuvent être communiquées à : Google (régie publicitaire AdMob), Apple (traitement des achats intégrés) et notre hébergeur (OVHcloud, France) qui héberge les serveurs de l'Application.</p>
+                            <p>Nous ne vendons pas vos données personnelles.</p>
+                        </section>
+
+                        <section id="transferts">
+                            <h2><i class="fas fa-globe"></i> 6. Transferts hors Union européenne</h2>
+                            <p>Certains prestataires (Google, Apple) peuvent traiter des données en dehors de l'Union européenne, notamment aux États-Unis. Ces transferts sont encadrés par des garanties appropriées (clauses contractuelles types de la Commission européenne, cadres de protection des données applicables).</p>
+                        </section>
+
+                        <section id="conservation">
+                            <h2><i class="fas fa-clock"></i> 7. Durée de conservation</h2>
+                            <p>Vos données de compte sont conservées tant que votre compte existe. Lorsque vous supprimez votre compte, elles sont effacées de nos serveurs. Les données traitées par les services tiers (Google, Apple) sont conservées selon leurs propres politiques.</p>
+                            <p>Une seule exception : nous conservons une empreinte irréversible de l'identifiant Apple ayant bénéficié du bonus de bienvenue, afin qu'il ne puisse pas être réclamé plusieurs fois. Cette empreinte ne permet ni de vous identifier, ni de reconstituer votre compte.</p>
+                        </section>
+
+                        <section id="droits">
+                            <h2><i class="fas fa-user-shield"></i> 8. Vos droits</h2>
+                            <p>Conformément au Règlement général sur la protection des données (RGPD), vous disposez d'un droit d'accès, de rectification, d'effacement, de limitation, d'opposition et de portabilité de vos données.</p>
+                            <p>Vous pouvez supprimer votre compte et vos données à tout moment, directement depuis l'Application, à la seule exception de l'empreinte anonyme décrite à l'article 7. Pour exercer vos autres droits, utilisez la section &laquo; Support &raquo; des Paramètres de l'Application.</p>
+                            <p>Vous disposez également du droit d'introduire une réclamation auprès de la CNIL (Commission Nationale de l'Informatique et des Libertés, www.cnil.fr).</p>
+                        </section>
+
+                        <section id="securite">
+                            <h2><i class="fas fa-lock"></i> 9. Sécurité</h2>
+                            <p>Nous mettons en œuvre des mesures de sécurité adaptées : les mots de passe sont stockés hachés (algorithme bcrypt) et ne sont jamais accessibles en clair ; les échanges entre l'Application et nos serveurs sont chiffrés (HTTPS/TLS).</p>
+                        </section>
+
+                        <section id="mineurs">
+                            <h2><i class="fas fa-child"></i> 10. Mineurs</h2>
+                            <p>L'Application n'est pas destinée aux enfants de moins de 13 ans et nous ne collectons pas sciemment de données les concernant.</p>
+                        </section>
+
+                        <section id="modifications">
+                            <h2><i class="fas fa-envelope"></i> 11. Modifications</h2>
+                            <p>La présente politique de confidentialité peut être mise à jour. La version applicable est celle affichée dans l'Application. Nous vous invitons à la consulter régulièrement.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation-buttons">
+                <a href="index.html" class="nav-btn">
+                    <i class="fas fa-home"></i>
+                    Page d'Accueil
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="copyright">&copy; 2026 &nbsp; OV &mdash; Tous droits réservés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Bouton scroll to top -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
+</html>
