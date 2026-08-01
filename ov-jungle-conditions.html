@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conditions d'utilisation - OV Jungle</title>
+    <meta name="description" content="Conditions générales d'utilisation de l'application mobile OV Jungle (jeu de cartes) : compte, OV Coins, parties misées, publicité, règles de conduite.">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+    <style>
+        .privacy-container {
+            min-height: 100vh;
+            background: #0E142A;
+            padding-top: 100px;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .privacy-header h1 {
+            color: var(--white);
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .privacy-content {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .privacy-content h2 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin: 40px 0 25px 0;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-color);
+        }
+
+        .privacy-content p {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .privacy-content ul {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 20px;
+            padding-left: 30px;
+        }
+
+        .privacy-content li { margin-bottom: 10px; }
+
+        .toc {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 30px;
+            position: sticky;
+            top: 120px;
+        }
+
+        .toc h4 {
+            color: var(--primary-color);
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+
+        .toc a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .toc a:hover { color: var(--primary-color); text-decoration: none; }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 50px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 15px 25px;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 15px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
+            color: var(--white);
+        }
+
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary-color);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 9999;
+            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
+        }
+
+        @media (max-width: 768px) {
+            .privacy-header h1 { font-size: 2.2rem; }
+            .privacy-content h2 { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">
+                    <picture>
+                        <source srcset="assets/logo_ov_transparent.webp" type="image/webp">
+                        <img src="assets/logo_ov_transparent_96.png" alt="OV Logo" width="48" height="48" class="header-logo logo-morph">
+                    </picture><span class="brand-title">OV</span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="ov-message.html">OV Message</a></li>
+                        <li class="nav-item"><a class="nav-link" href="white-paper.html">White Paper</a></li>
+                        <li class="nav-item"><a class="nav-link" href="index.html#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Privacy Content -->
+    <div class="privacy-container">
+        <div class="container">
+            <div class="privacy-header">
+                <h1>Conditions d'Utilisation</h1>
+                <p class="lead">Application mobile OV Jungle &mdash; jeu de cartes</p>
+            </div>
+
+            <div class="row">
+                <!-- Table of Contents -->
+                <div class="col-lg-3">
+                    <div class="toc">
+                        <h4><i class="fas fa-list"></i> Sommaire</h4>
+                        <ul>
+                            <li><a href="#objet">1. Objet</a></li>
+                            <li><a href="#editeur">2. Éditeur</a></li>
+                            <li><a href="#acceptation">3. Acceptation et modification</a></li>
+                            <li><a href="#compte">4. Compte et identifiants</a></li>
+                            <li><a href="#age">5. Âge minimum</a></li>
+                            <li><a href="#coins">6. OV Coins (monnaie virtuelle)</a></li>
+                            <li><a href="#achats">7. Achats intégrés</a></li>
+                            <li><a href="#mises">8. Parties misées</a></li>
+                            <li><a href="#publicite">9. Publicité</a></li>
+                            <li><a href="#conduite">10. Règles de conduite</a></li>
+                            <li><a href="#suspension">11. Suspension et suppression</a></li>
+                            <li><a href="#propriete">12. Propriété intellectuelle</a></li>
+                            <li><a href="#responsabilite">13. Disponibilité et responsabilité</a></li>
+                            <li><a href="#droit">14. Droit applicable et litiges</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Main Content -->
+                <div class="col-lg-9">
+                    <div class="privacy-content">
+                        <p><strong>Dernière mise à jour :</strong> 1er août 2026</p>
+                        <p>Les présentes conditions régissent l'utilisation de l'application mobile <strong>OV Jungle</strong>. Elles sont également consultables dans l'application, rubrique Paramètres &rsaquo; Conditions d'utilisation. Voir aussi la <a href="ov-jungle-confidentialite.html">politique de confidentialité</a>.</p>
+
+                        <section id="objet">
+                            <h2><i class="fas fa-file-contract"></i> 1. Objet</h2>
+                            <p>Les présentes Conditions Générales d'Utilisation (les &laquo;&nbsp;CGU&nbsp;&raquo;) régissent l'accès et l'utilisation de l'application mobile OV Jungle (l'&laquo;&nbsp;Application&nbsp;&raquo;), un jeu de cartes multijoueur. En créant un compte ou en utilisant l'Application, vous reconnaissez avoir lu et accepté sans réserve les présentes CGU.</p>
+                        </section>
+
+                        <section id="editeur">
+                            <h2><i class="fas fa-building"></i> 2. Éditeur</h2>
+                            <p>L'Application est éditée par OV, entreprise individuelle enregistrée en France. Pour toute question, une réclamation ou pour connaître les informations légales détaillées de l'éditeur, vous pouvez nous contacter depuis la section &laquo;&nbsp;Support&nbsp;&raquo; des Paramètres de l'Application.</p>
+                        </section>
+
+                        <section id="acceptation">
+                            <h2><i class="fas fa-gavel"></i> 3. Acceptation et modification</h2>
+                            <p>L'utilisation de l'Application vaut acceptation des présentes CGU. Si vous ne les acceptez pas, vous devez cesser d'utiliser l'Application.</p>
+                            <p>OV peut modifier les CGU à tout moment. La version applicable est celle en vigueur au moment de votre utilisation. En cas de modification substantielle, votre utilisation continue vaut acceptation de la nouvelle version.</p>
+                        </section>
+
+                        <section id="compte">
+                            <h2><i class="fas fa-user-shield"></i> 4. Compte et identifiants</h2>
+                            <p>L'utilisation de l'Application nécessite un compte. Vous pouvez le créer avec un identifiant, un pseudonyme et un mot de passe, ou directement avec &laquo;&nbsp;Se connecter avec Apple&nbsp;&raquo;. Aucune adresse e-mail n'est demandée.</p>
+                            <p>Vous êtes seul responsable de la confidentialité de votre mot de passe et de toute activité effectuée depuis votre compte.</p>
+                            <p>Vous pouvez lier votre compte à votre identifiant Apple. C'est le seul moyen de le retrouver en cas de perte du mot de passe : il vous suffit de vous connecter avec Apple.</p>
+                            <p>IMPORTANT : sans identifiant Apple lié, il n'existe aucune procédure de récupération d'un compte dont le mot de passe a été perdu ou oublié. Sa perte est définitive, ainsi que celle des OV Coins associés.</p>
+                        </section>
+
+                        <section id="age">
+                            <h2><i class="fas fa-child"></i> 5. Âge minimum</h2>
+                            <p>L'Application est réservée aux personnes âgées d'au moins 13 ans. En utilisant l'Application, vous déclarez avoir l'âge requis. Si vous êtes mineur, vous devez avoir obtenu l'autorisation de votre représentant légal.</p>
+                        </section>
+
+                        <section id="coins">
+                            <h2><i class="fas fa-coins"></i> 6. OV Coins (monnaie virtuelle)</h2>
+                            <p>L'Application utilise une monnaie virtuelle interne appelée &laquo;&nbsp;OV Coins&nbsp;&raquo;. Les OV Coins n'ont AUCUNE valeur monétaire réelle : ils ne sont ni convertibles, ni échangeables, ni remboursables en argent, et ne peuvent être utilisés qu'au sein de l'Application.</p>
+                            <p>Les OV Coins peuvent être obtenus gratuitement (par exemple en visionnant des publicités récompensées ou en remportant des parties) ou acquis via des achats intégrés. Ils constituent une simple licence d'utilisation à l'intérieur de l'Application : ils ne peuvent être ni vendus, ni échangés, ni transférés en dehors de l'Application. Au sein de l'Application, ils ne circulent qu'au titre du pot décrit à l'article 8.</p>
+                        </section>
+
+                        <section id="achats">
+                            <h2><i class="fas fa-cart-shopping"></i> 7. Achats intégrés</h2>
+                            <p>Certains OV Coins peuvent être achetés au moyen des achats intégrés proposés par l'App Store d'Apple. Ces transactions sont traitées par Apple, selon ses propres conditions et modalités de paiement et de remboursement.</p>
+                            <p>Les OV Coins achetés sont des biens numériques consommables, sans valeur de revente. Toute demande de remboursement relève de la politique d'Apple.</p>
+                        </section>
+
+                        <section id="mises">
+                            <h2><i class="fas fa-trophy"></i> 8. Parties misées</h2>
+                            <p>Toutes les parties multijoueur se jouent avec une mise en OV Coins, fixée par le créateur de la partie et débitée au lancement. L'ensemble des mises des joueurs (le &laquo;&nbsp;pot&nbsp;&raquo;) est attribué au gagnant de la partie.</p>
+                            <p>Si vous quittez une partie en cours ou si votre connexion est interrompue, vous en êtes éliminé et votre mise reste acquise au pot. De même, si vous ne jouez pas dans le temps imparti (30 secondes), une carte autorisée est jouée au hasard à votre place afin que la partie se poursuive.</p>
+                            <p>Les OV Coins n'ayant aucune valeur monétaire et n'étant pas convertibles en argent, ces parties ne constituent pas un jeu d'argent au sens de la réglementation. Aucune somme d'argent réelle ne peut être gagnée, perdue ou retirée.</p>
+                        </section>
+
+                        <section id="publicite">
+                            <h2><i class="fas fa-rectangle-ad"></i> 9. Publicité</h2>
+                            <p>L'Application propose des publicités récompensées fournies par la régie Google AdMob : leur visionnage est volontaire et permet d'obtenir des OV Coins. Aucune publicité n'est affichée en dehors de ce cadre. Le traitement des données associé est décrit dans la Politique de confidentialité.</p>
+                        </section>
+
+                        <section id="conduite">
+                            <h2><i class="fas fa-scale-balanced"></i> 10. Règles de conduite</h2>
+                            <p>En utilisant l'Application, vous vous engagez à ne pas : tricher ou exploiter une faille du jeu ; utiliser des logiciels, bots ou automatismes tiers ; créer plusieurs comptes afin de contourner les limites ou de fausser le jeu ; harceler, menacer ou porter atteinte à d'autres joueurs ; ni perturber le fonctionnement du service.</p>
+                            <p>Tout manquement peut entraîner, sans préavis, la suspension ou la suppression de votre compte, ainsi que la perte des OV Coins associés.</p>
+                            <p>Vous pouvez mettre un joueur en sourdine ou le bloquer directement depuis l'Application, et signaler tout comportement contraire aux présentes règles depuis la section &laquo;&nbsp;Support&nbsp;&raquo; des Paramètres.</p>
+                        </section>
+
+                        <section id="suspension">
+                            <h2><i class="fas fa-user-slash"></i> 11. Suspension et suppression</h2>
+                            <p>OV se réserve le droit de suspendre ou de supprimer tout compte en cas de violation des présentes CGU, sans préavis ni indemnité.</p>
+                            <p>Vous pouvez supprimer votre compte à tout moment depuis l'Application. Cette suppression est définitive et entraîne l'effacement de vos données et la perte de vos OV Coins.</p>
+                            <p>Seuls subsistent quelques éléments anonymes, décrits à l'article 7 de la Politique de confidentialité : une empreinte irréversible de l'identifiant Apple ayant bénéficié du bonus de bienvenue, les identifiants de transaction anti-rejeu, et vos éventuels messages de support privés de tout lien avec votre compte. Aucun ne permet de vous identifier ni de reconstituer votre compte.</p>
+                        </section>
+
+                        <section id="propriete">
+                            <h2><i class="fas fa-copyright"></i> 12. Propriété intellectuelle</h2>
+                            <p>L'Application, son code, ses graphismes, ses sons, ses textes et l'ensemble de ses contenus sont la propriété exclusive de OV et sont protégés par le droit de la propriété intellectuelle. Toute reproduction, représentation ou exploitation non autorisée est interdite.</p>
+                            <p>Certains éléments proviennent de tiers — musiques, sons et bibliothèques logicielles — et demeurent soumis à leurs licences respectives.</p>
+                        </section>
+
+                        <section id="responsabilite">
+                            <h2><i class="fas fa-triangle-exclamation"></i> 13. Disponibilité et responsabilité</h2>
+                            <p>L'Application est fournie &laquo;&nbsp;en l'état&nbsp;&raquo;. OV ne garantit pas une disponibilité continue, ni l'absence d'erreurs, et peut interrompre, suspendre ou modifier tout ou partie du service à tout moment.</p>
+                            <p>Dans les limites permises par la loi, OV ne saurait être tenue responsable des pertes de données, de la perte d'accès à un compte, de l'indisponibilité du service ou des dommages indirects. Les OV Coins étant dépourvus de valeur monétaire, leur perte n'ouvre droit à aucune indemnisation.</p>
+                        </section>
+
+                        <section id="droit">
+                            <h2><i class="fas fa-landmark"></i> 14. Droit applicable et litiges</h2>
+                            <p>Les présentes CGU sont régies par le droit français. En cas de litige, vous êtes invité à contacter OV afin de rechercher une solution amiable. À défaut d'accord, les tribunaux français seront compétents, sous réserve des dispositions légales impératives applicables aux consommateurs.</p>
+                            <p>Pour toute question relative aux présentes CGU, utilisez la section &laquo;&nbsp;Support&nbsp;&raquo; des Paramètres de l'Application.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <div class="navigation-buttons">
+                <a href="index.html" class="nav-btn">
+                    <i class="fas fa-home"></i>
+                    Page d'Accueil
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <p class="copyright">&copy; 2026 &nbsp; OV &mdash; Tous droits réservés.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+
+    <!-- Bouton scroll to top -->
+    <div class="scroll-to-top" onclick="scrollToTop()">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+</body>
+</html>
