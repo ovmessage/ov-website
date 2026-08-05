@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://ovmessage.github.io/ov-website/sitemap.xml
+Sitemap: https://ovlabs.fr/sitemap.xml
