@@ -111,6 +111,9 @@
         .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(42,162,255,0.35); color: #ffffff; }
         .nav-btn i { font-size: 1rem; }
 
+        .wp-topbar { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; margin-bottom: 28px; }
+        .wp-topbar h1 { font-size: clamp(1.3rem, 3vw, 1.9rem); font-weight: 700; margin: 0; background-image: linear-gradient(135deg, #ffffff 40%, #2AA2FF 90%, #5CBAFF); -webkit-background-clip: text; background-clip: text; color: transparent; -webkit-text-fill-color: transparent; }
+
         /* Retour en haut */
         .scroll-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(42,162,255,0.3); transition: transform 0.2s; }
         .scroll-to-top:hover { transform: translateY(-3px); }
@@ -152,9 +155,9 @@
             <!-- Header -->
             <div class="wp-topbar">
                 <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+                <h1>Conditions d'Utilisation</h1>
             </div>
             <div class="privacy-header">
-                <h1>Conditions d'Utilisation</h1>
                 <p class="lead">Modalités d'utilisation de nos services</p>
             </div>
 
