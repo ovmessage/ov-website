@@ -3,363 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>White Paper Technique — OV Message</title>
+    <title>OV Message : White Paper Technique</title>
     <meta name="google-site-verification" content="kADbqlYJlWZx6fmdm1bYc-jy9rXXoqK1cNmf9xWrJyI" />
     <meta name="description" content="White Paper technique d'OV Message. Architecture cryptographique, protocole de chiffrement, gestion des clés, protection forensique et modèle de menace.">
-    <meta property="og:title" content="White Paper Technique — OV Message">
+    <meta property="og:title" content="OV Message : White Paper Technique">
     <meta property="og:description" content="Documentation technique du protocole de chiffrement OV Message. Architecture sans serveur, chiffrement de bout en bout par SMS.">
     <meta property="og:image" content="assets/images/icon_ov.png">
     <meta property="og:type" content="article">
-    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent_96.png">
+    <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/outfit.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <style>
+        /* ===== White Paper — thème moderne (aligné sur le portfolio) ===== */
+        body { background: #08080d !important; }
+
         .privacy-container {
             min-height: 100vh;
-            background: #0E142A;
-            padding-top: 100px;
+            padding-top: 0;
+            background: transparent;
+            position: relative;
+            z-index: 0;
         }
-
-        .privacy-header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .privacy-header h1 {
-            color: var(--white);
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .privacy-header .wp-version {
-            color: var(--primary-color);
-            font-size: 1.1rem;
-            font-weight: 500;
-        }
-
-        .privacy-header .wp-classification {
-            color: var(--accent-color);
-            font-size: 0.95rem;
-            opacity: 0.7;
-        }
-
-        .privacy-content {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
-        }
-
-        .privacy-content h2 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin: 40px 0 25px 0;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        .privacy-content h3 {
-            color: var(--accent-color);
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin: 30px 0 20px 0;
-        }
-
-        .privacy-content p {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .privacy-content ul, .privacy-content ol {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            padding-left: 30px;
-        }
-
-        .privacy-content li {
-            margin-bottom: 10px;
-        }
-
-        .highlight-box {
-            background: rgba(42, 162, 255, 0.1);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-
-        .highlight-box p {
-            margin: 0;
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .warning-box {
-            background: rgba(255, 165, 0, 0.1);
-            border-left: 4px solid #FFA500;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-
-        .warning-box p {
-            margin: 0;
-            color: var(--white);
-            font-weight: 500;
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(42, 162, 255, 0.2);
-        }
-
-        .feature-card h5 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            color: var(--accent-color);
-            font-size: 1rem;
-            margin: 0;
-        }
-
-        .wp-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0 30px 0;
-            font-size: 1rem;
-        }
-
-        .wp-table th {
-            background: rgba(42, 162, 255, 0.15);
-            color: var(--primary-color);
-            padding: 12px 16px;
-            text-align: left;
-            font-weight: 600;
-            border-bottom: 2px solid rgba(42, 162, 255, 0.3);
-        }
-
-        .wp-table td {
-            color: var(--accent-color);
-            padding: 10px 16px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-        }
-
-        .wp-table tr:hover td {
-            background: rgba(255, 255, 255, 0.03);
-        }
-
-        .navigation-buttons {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 50px;
-            padding: 30px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 15px 25px;
-            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-            color: var(--white);
-            text-decoration: none;
-            border-radius: 15px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .nav-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
-            color: var(--white);
-        }
-
-        .nav-btn i {
-            font-size: 1.1rem;
-        }
-
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-color);
-            color: var(--white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
-        }
-
-        .scroll-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.4);
-        }
-
-        .scroll-to-top i {
-            font-size: 1.2rem;
-        }
-
-        .toc {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 30px;
+        .wp-topbar {
             position: sticky;
-            top: 120px;
-            align-self: flex-start;
+            top: 0;
+            z-index: 30;
+            padding: 22px 0 6px;
+        }
+        /* Halos bleus (fond) */
+        .privacy-container::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(680px circle at 15% 8%, rgba(42,162,255,0.16), transparent 55%),
+                radial-gradient(720px circle at 90% 18%, rgba(92,186,255,0.10), transparent 55%);
+        }
+        /* Grille fine estompée */
+        .privacy-container::after {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 46px 46px;
+            -webkit-mask-image: radial-gradient(ellipse 110% 80% at 50% 18%, #000 55%, transparent 100%);
+            mask-image: radial-gradient(ellipse 110% 80% at 50% 18%, #000 55%, transparent 100%);
+        }
+        .privacy-container > .container { position: relative; z-index: 1; }
+
+        /* En-tête */
+        .privacy-header { text-align: center; margin-bottom: 48px; padding: 20px 0 6px; background: transparent; border: 0; }
+        .privacy-header h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: 14px;
+            background-image: linear-gradient(135deg, #ffffff 40%, #2AA2FF 90%, #5CBAFF);
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent; -webkit-text-fill-color: transparent;
+        }
+        .privacy-header .wp-version { color: #2AA2FF; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.04em; }
+        .privacy-header .wp-classification { color: rgba(245,245,247,0.6); font-size: 0.9rem; }
+
+        /* Verre dépoli (recette OV Jungle) partagé */
+        .privacy-content, .toc, .navigation-buttons, .feature-card {
+            background: rgba(20,27,45,0.35);
+            -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.16);
         }
 
-        .toc h4 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
+        .privacy-content { border-radius: 20px; padding: 40px; margin-bottom: 40px; }
+        .privacy-content h2 { color: #ffffff; font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 600; margin: 40px 0 22px; padding-bottom: 14px; border-bottom: 1px solid rgba(42,162,255,0.35); }
+        .privacy-content h3 { color: #2AA2FF; font-size: clamp(1.25rem, 3vw, 1.7rem); font-weight: 600; margin: 30px 0 18px; }
+        .privacy-content p, .privacy-content ul, .privacy-content ol { color: #E5E7EB; font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px; }
+        .privacy-content ul, .privacy-content ol { padding-left: 28px; }
+        .privacy-content li { margin-bottom: 9px; }
+        .privacy-content a { color: #5CBAFF; }
+        .privacy-content strong { color: #ffffff; }
 
-        .toc ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+        /* Code */
+        .privacy-content pre { background: rgba(8,10,16,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 16px 18px; margin: 20px 0; overflow-x: auto; }
+        .privacy-content pre, .privacy-content code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.9rem; }
+        .privacy-content code { color: #7FC8FF; background: rgba(42,162,255,0.12); padding: 2px 7px; border-radius: 6px; }
+        .privacy-content pre code { background: none; padding: 0; color: #D6EBFF; }
 
-        .toc li {
-            margin-bottom: 8px;
-        }
+        /* Boîtes */
+        .highlight-box { background: rgba(42,162,255,0.1); border-left: 4px solid #2AA2FF; border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+        .highlight-box p { margin: 0; color: #ffffff; font-weight: 500; }
+        .warning-box { background: rgba(255,165,0,0.1); border-left: 4px solid #FFA500; border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+        .warning-box p { margin: 0; color: #ffffff; font-weight: 500; }
 
-        .toc a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
+        /* Cartes de fonctionnalités */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; margin: 30px 0; }
+        .feature-card { border-radius: 16px; padding: 24px; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+        .feature-card:hover { transform: translateY(-4px); border-color: #2AA2FF; box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+        .feature-card h5 { color: #2AA2FF; font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; }
+        .feature-card p { color: #E5E7EB; font-size: 0.98rem; margin: 0; }
+        .feature-card i { color: #2AA2FF; }
 
-        .toc a:hover {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
+        /* Tableaux */
+        .wp-table { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 0.98rem; }
+        .wp-table th { background: rgba(42,162,255,0.15); color: #2AA2FF; padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(42,162,255,0.3); }
+        .wp-table td { color: #E5E7EB; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .wp-table tr:hover td { background: rgba(255,255,255,0.03); }
 
-        .doc-content #introduction h2 {
-            margin-top: -80px;
-        }
-        .doc-content h2:first-of-type {
-            margin-top: -80px;
-        }
+        /* Sommaire */
+        .toc { border-radius: 16px; padding: 24px; margin-bottom: 30px; position: sticky; top: 88px; align-self: flex-start; }
+        .toc h4 { color: #2AA2FF; font-size: 1.2rem; font-weight: 600; margin-bottom: 18px; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: #E5E7EB; text-decoration: none; font-size: 0.98rem; transition: color 0.2s; }
+        .toc a:hover { color: #2AA2FF; }
+
+        /* Boutons de navigation (bas) */
+        .navigation-buttons { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 48px; padding: 26px; border-radius: 18px; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(42,162,255,0.35); color: #ffffff; }
+        .nav-btn i { font-size: 1rem; }
+
+        /* Retour en haut */
+        .scroll-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(42,162,255,0.3); transition: transform 0.2s; }
+        .scroll-to-top:hover { transform: translateY(-3px); }
+        .scroll-to-top i { font-size: 1.2rem; }
+
+        .doc-content #introduction h2, .doc-content h2:first-of-type { margin-top: -80px; }
 
         @media (max-width: 768px) {
-            .privacy-header h1 {
-                font-size: 2.2rem;
-            }
-
-            .privacy-content h2 {
-                font-size: 1.8rem;
-            }
-
-            .privacy-content h3 {
-                font-size: 1.5rem;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .wp-table {
-                font-size: 0.85rem;
-            }
-
-            .wp-table th, .wp-table td {
-                padding: 8px 10px;
-            }
+            .privacy-content { padding: 24px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .wp-table { font-size: 0.85rem; }
+            .wp-table th, .wp-table td { padding: 8px 10px; }
+            .navigation-buttons { flex-direction: column; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <picture>
-                        <source srcset="assets/logo_ov_transparent.webp" type="image/webp">
-                        <img src="assets/logo_ov_transparent_96.png" alt="OV Logo" width="48" height="48" class="header-logo logo-morph">
-                    </picture><span class="brand-title">OV</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ov-message.html">OV Message</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="white-paper.html">White Paper</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html#contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- White Paper Content -->
+<!-- White Paper Content -->
     <div class="privacy-container">
         <div class="container">
             <!-- Header -->
+            <div class="wp-topbar">
+                <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+            </div>
             <div class="privacy-header">
-                <h1>OV Message — White Paper Technique</h1>
+                <h1>OV Message : White Paper Technique</h1>
                 <p class="wp-version">Mis à jour : Mai 2026</p>
             </div>
 
@@ -395,7 +182,7 @@
                         <!-- 1. Introduction -->
                         <section id="introduction">
                             <h2><i class="fas fa-book-open"></i> 1. Introduction</h2>
-                            <p>OV Message est une application de messagerie chiffrée de bout en bout fonctionnant sans serveur centralisé. Les messages sont chiffrés avant envoi et déchiffrés à réception, indépendamment du canal de transport utilisé. L'implémentation actuelle utilise le réseau SMS, mais le protocole de chiffrement est agnostique au transport — il fonctionne sur tout canal capable de transmettre du texte.</p>
+                            <p>OV Message est une application de messagerie chiffrée de bout en bout fonctionnant sans serveur centralisé. Les messages sont chiffrés avant envoi et déchiffrés à réception, indépendamment du canal de transport utilisé. L'implémentation actuelle utilise le réseau SMS, mais le protocole de chiffrement est agnostique au transport. Il fonctionne sur tout canal capable de transmettre du texte.</p>
                             <div class="highlight-box">
                                 <p><i class="fas fa-server"></i> <strong>Architecture sans serveur :</strong> Ce choix délibéré élimine un point de défaillance unique, supprime la nécessité de faire confiance à un opérateur tiers, et ne requiert aucune connexion Internet.</p>
                             </div>
@@ -411,7 +198,7 @@
                             <div class="feature-grid">
                                 <div class="feature-card">
                                     <h5><i class="fas fa-wifi"></i> Interception du canal</h5>
-                                    <p>Opérateur, FAI, attaquant réseau — Chiffrement E2E, le canal ne voit que du texte chiffré.</p>
+                                    <p>Opérateur, FAI, attaquant réseau : chiffrement E2E, le canal ne voit que du texte chiffré.</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-edit"></i> Modification en transit</h5>
@@ -435,7 +222,7 @@
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-microscope"></i> Extraction forensique</h5>
-                                    <p>Cellebrite, JTAG — KEK/DEK, clés chiffrées au repos, DEK détruit au verrouillage.</p>
+                                    <p>Cellebrite, JTAG : KEK/DEK, clés chiffrées au repos, DEK détruit au verrouillage.</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-moon"></i> Saisie en arrière-plan</h5>
@@ -499,19 +286,19 @@
                             <div class="feature-grid">
                                 <div class="feature-card">
                                     <h5><i class="fas fa-key"></i> Clés de contact</h5>
-                                    <p>Keystore sécurisé — Android Keystore + chiffrement DEK (AES-256-GCM)</p>
+                                    <p>Keystore sécurisé : Android Keystore + chiffrement DEK (AES-256-GCM)</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-lock"></i> Mots de passe hachés</h5>
-                                    <p>Keystore sécurisé — Android Keystore</p>
+                                    <p>Keystore sécurisé : Android Keystore</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-shield-alt"></i> Sel et canary</h5>
-                                    <p>Keystore sécurisé — sel pour la dérivation du DEK et canary chiffré pour vérifier le mot de passe au login</p>
+                                    <p>Keystore sécurisé : sel pour la dérivation du DEK et canary chiffré pour vérifier le mot de passe au login</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-comments"></i> Conversations</h5>
-                                    <p>Stockage local — Stockées sous forme chiffrée (format OV)</p>
+                                    <p>Stockage local : stockées sous forme chiffrée (format OV)</p>
                                 </div>
                             </div>
 
@@ -533,7 +320,7 @@
 
                             <h3>4.2 Contrainte de transport</h3>
                             <p>Les primitifs standards (AES-CTR, ChaCha20) produisent une sortie binaire. Leur utilisation sur un canal SMS imposerait un encodage supplémentaire (Base64, Base85) qui augmente la taille du message de 33 à 50 %. Sur SMS, chaque caractère compte.</p>
-                            <p>Le cipher d'OV Message opère directement dans l'espace Unicode. Le texte clair est transformé en texte chiffré sans passer par une représentation binaire intermédiaire. Le ratio est de 1:1 — un caractère clair produit un caractère chiffré.</p>
+                            <p>Le cipher d'OV Message opère directement dans l'espace Unicode. Le texte clair est transformé en texte chiffré sans passer par une représentation binaire intermédiaire. Le ratio est de 1:1. Un caractère clair produit un caractère chiffré.</p>
                             <p>Le design retenu utilise SHA3-256 comme générateur pseudo-aléatoire indexé par position, avec un index aléatoire par message et une sous-clé dérivée par HKDF. Chaque caractère est chiffré indépendamment avec une entropie de 256 bits par position.</p>
                             <div class="warning-box">
                                 <p><i class="fas fa-exclamation-triangle"></i> <strong>Compromis assumé :</strong> Un cipher non standard en échange d'un ratio de taille optimal sur un canal à bande passante limitée. Les primitifs standards (AES-256-GCM, HKDF-SHA256, HMAC-SHA256) sont utilisés pour toutes les autres opérations cryptographiques.</p>
@@ -545,7 +332,7 @@
                                 <li>Génération d'un index aléatoire (CSPRNG)</li>
                                 <li>Dérivation d'une sous-clé unique au message via HKDF-SHA256</li>
                                 <li>Dérivation d'un alphabet chiffré spécifique au contact (permutation déterministe)</li>
-                                <li>Chiffrement caractère par caractère — chaque position utilise SHA3-256 avec la sous-clé, la position, et l'index pour produire un index de substitution dans l'alphabet dérivé</li>
+                                <li>Chiffrement caractère par caractère : chaque position utilise SHA3-256 avec la sous-clé, la position, et l'index pour produire un index de substitution dans l'alphabet dérivé</li>
                                 <li>Génération du tag HMAC-SHA256 (voir section 5)</li>
                                 <li>Formatage du message chiffré avec l'index et le tag</li>
                             </ol>
@@ -633,7 +420,7 @@
                             </div>
 
                             <div class="highlight-box">
-                                <p><i class="fas fa-shield-alt"></i> <strong>Pourquoi hybride ?</strong> Le secret partagé final combine le secret ML-KEM (conçu pour résister aux ordinateurs quantiques) et le secret X25519 (résistant aux attaques classiques modernes). Un attaquant doit <strong>casser les deux</strong> pour récupérer la clé de contact. Cela vise à neutraliser la stratégie <em>« harvest now, decrypt later »</em> : un adversaire enregistrant le SMS aujourd'hui devrait, pour décapsuler le ML-KEM-768, disposer d'un ordinateur quantique cryptographiquement pertinent — au-delà des capacités prévisibles à horizon proche.</p>
+                                <p><i class="fas fa-shield-alt"></i> <strong>Pourquoi hybride ?</strong> Le secret partagé final combine le secret ML-KEM (conçu pour résister aux ordinateurs quantiques) et le secret X25519 (résistant aux attaques classiques modernes). Un attaquant doit <strong>casser les deux</strong> pour récupérer la clé de contact. Cela vise à neutraliser la stratégie <em>« harvest now, decrypt later »</em> : un adversaire enregistrant le SMS aujourd'hui devrait, pour décapsuler le ML-KEM-768, disposer d'un ordinateur quantique cryptographiquement pertinent, au-delà des capacités prévisibles à horizon proche.</p>
                             </div>
 
                             <h3>6.3 Pool de clés pré-générées</h3>
@@ -683,11 +470,11 @@
                             <div class="feature-grid">
                                 <div class="feature-card">
                                     <h5><i class="fas fa-key"></i> DEK (Data Encryption Key)</h5>
-                                    <p>Clé symétrique de 256 bits, dérivée déterministiquement du mot de passe via Argon2id (m=64 Mo, t=3, p=1, L=32) puis HKDF-SHA256 avec l'info string <code>OV_DEK_v1</code>. Jamais stockée — régénérée à chaque login, chargée en RAM uniquement, détruite au verrouillage (kill du process).</p>
+                                    <p>Clé symétrique de 256 bits, dérivée déterministiquement du mot de passe via Argon2id (m=64 Mo, t=3, p=1, L=32) puis HKDF-SHA256 avec l'info string <code>OV_DEK_v1</code>. Jamais stockée, régénérée à chaque login, chargée en RAM uniquement, détruite au verrouillage (kill du process).</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-fingerprint"></i> Vérification par canary</h5>
-                                    <p>Au login, un canary chiffré par AES-256-GCM sous le DEK est déchiffré pour valider le mot de passe. Un mauvais mot de passe produit un DEK différent qui ne peut pas déchiffrer le canary — détection immédiate sans révéler la valeur du DEK correct.</p>
+                                    <p>Au login, un canary chiffré par AES-256-GCM sous le DEK est déchiffré pour valider le mot de passe. Un mauvais mot de passe produit un DEK différent qui ne peut pas déchiffrer le canary : détection immédiate sans révéler la valeur du DEK correct.</p>
                                 </div>
                                 <div class="feature-card">
                                     <h5><i class="fas fa-address-card"></i> Clés de contact</h5>
@@ -720,7 +507,7 @@
                             </div>
 
                             <div class="highlight-box">
-                                <p><i class="fas fa-lock"></i> <strong>Chaîne de confiance matérielle :</strong> Mot de passe utilisateur + sel → Argon2id → HKDF → DEK → déchiffrement clé de contact. Chaque maillon exige le précédent. Sans le mot de passe, le DEK ne peut être ni régénéré ni récupéré — il n'existe nulle part sur le disque, et la clé de contact reste chiffrée.</p>
+                                <p><i class="fas fa-lock"></i> <strong>Chaîne de confiance matérielle :</strong> Mot de passe utilisateur + sel → Argon2id → HKDF → DEK → déchiffrement clé de contact. Chaque maillon exige le précédent. Sans le mot de passe, le DEK ne peut être ni régénéré ni récupéré. Il n'existe nulle part sur le disque, et la clé de contact reste chiffrée.</p>
                             </div>
 
                             <h3>7.4 Comportement au verrouillage</h3>
@@ -728,7 +515,7 @@
                             <p>Si iOS décide de terminer le process en arrière-plan (pression mémoire, arrêt manuel), le système libère l'intégralité de la RAM allouée : le DEK, la KEK et toutes les clés dérivées disparaissent sans intervention applicative. Le prochain démarrage repart d'un état verrouillé.</p>
 
                             <div class="highlight-box">
-                                <p><i class="fas fa-shield-virus"></i> <strong>Résistance forensique :</strong> En mode verrouillé (application fermée ou inactive depuis plus que le délai configuré), une extraction physique du téléphone par un outil forensique professionnel (type Cellebrite) rend la récupération des messages chiffrés cryptographiquement impraticable sans le mot de passe. Les clés nécessaires à leur déchiffrement n'existent plus en RAM (effacées) et ne sont pas stockées sur le disque — elles doivent être redérivées du mot de passe via Argon2id+HKDF.</p>
+                                <p><i class="fas fa-shield-virus"></i> <strong>Résistance forensique :</strong> En mode verrouillé (application fermée ou inactive depuis plus que le délai configuré), une extraction physique du téléphone par un outil forensique professionnel (type Cellebrite) rend la récupération des messages chiffrés cryptographiquement impraticable sans le mot de passe. Les clés nécessaires à leur déchiffrement n'existent plus en RAM (effacées) et ne sont pas stockées sur le disque. Elles doivent être redérivées du mot de passe via Argon2id+HKDF.</p>
                             </div>
 
                             <h3>7.5 Rétrocompatibilité (version iOS)</h3>
@@ -789,15 +576,15 @@
                             <h3>10.2 Filtrage en 3 étapes</h3>
                             <div class="feature-grid">
                                 <div class="feature-card">
-                                    <h5><i class="fas fa-user-check"></i> Étape 1 — Expéditeur connu</h5>
+                                    <h5><i class="fas fa-user-check"></i> Étape 1 : Expéditeur connu</h5>
                                     <p>Le numéro est un contact OV Message avec une clé de chiffrement. Échec = message supprimé.</p>
                                 </div>
                                 <div class="feature-card">
-                                    <h5><i class="fas fa-file-code"></i> Étape 2 — Format OV</h5>
+                                    <h5><i class="fas fa-file-code"></i> Étape 2 : Format OV</h5>
                                     <p>Le message est au format chiffré OV. Échec = message supprimé.</p>
                                 </div>
                                 <div class="feature-card">
-                                    <h5><i class="fas fa-check-circle"></i> Étape 3 — Authentification</h5>
+                                    <h5><i class="fas fa-check-circle"></i> Étape 3 : Authentification</h5>
                                     <p>Le tag HMAC-SHA256 est valide et le déchiffrement réussit. Échec = message supprimé.</p>
                                 </div>
                             </div>
@@ -860,10 +647,10 @@
                             <h3>12.1 Pas de Perfect Forward Secrecy</h3>
                             <p>L'application fonctionne sans serveur d'échange de clés permanent, rendant le Double Ratchet impraticable. Un hash ratchet causerait une désynchronisation sur les messages perdus ou réordonnés.</p>
                             <div class="highlight-box">
-                                <p><i class="fas fa-info-circle"></i> <strong>Sécurité en mode clé statique :</strong> Chaque message dérive une sous-clé indépendante via HKDF-SHA256. La compromission d'une sous-clé ne compromet pas les autres messages. Le pool de clés apporte une forward secrecy manuelle — la suppression d'une clé consommée rend les messages passés indéchiffrables.</p>
+                                <p><i class="fas fa-info-circle"></i> <strong>Sécurité en mode clé statique :</strong> Chaque message dérive une sous-clé indépendante via HKDF-SHA256. La compromission d'une sous-clé ne compromet pas les autres messages. Le pool de clés apporte une forward secrecy manuelle. La suppression d'une clé consommée rend les messages passés indéchiffrables.</p>
                             </div>
                             <div class="highlight-box">
-                                <p><i class="fas fa-atom"></i> <strong>Appairage hybride et FS :</strong> L'appairage ML-KEM-768 + X25519 génère des clés <em>éphémères</em> par session, détruites après dérivation de la clé de contact. La session d'appairage elle-même est donc <em>forward-secret</em> : compromettre le téléphone après l'appairage ne permet pas de rejouer cette session. En revanche, la clé de contact dérivée reste statique (partagée entre les deux appareils) — la forward secrecy au niveau <em>message</em> repose toujours sur la rotation manuelle via le pool de clés.</p>
+                                <p><i class="fas fa-atom"></i> <strong>Appairage hybride et FS :</strong> L'appairage ML-KEM-768 + X25519 génère des clés <em>éphémères</em> par session, détruites après dérivation de la clé de contact. La session d'appairage elle-même est donc <em>forward-secret</em> : compromettre le téléphone après l'appairage ne permet pas de rejouer cette session. En revanche, la clé de contact dérivée reste statique (partagée entre les deux appareils). La forward secrecy au niveau <em>message</em> repose toujours sur la rotation manuelle via le pool de clés.</p>
                             </div>
 
                             <h3>12.2 Métadonnées de transport</h3>
@@ -881,7 +668,7 @@
                             <p>La sécurité repose sur la confidentialité de la clé partagée et sur l'authenticité du canal de vérification :</p>
                             <ul>
                                 <li><strong>En personne :</strong> le QR code est transmis directement, sans canal intermédiaire.</li>
-                                <li><strong>À distance :</strong> l'appairage hybride expose les clés publiques par SMS (observable), mais la confidentialité repose sur la robustesse cryptographique du KEM hybride ML-KEM-768 + X25519. La vérification d'identité repose sur la comparaison du SAS de 12 caractères hex via un canal <strong>externe de confiance</strong> (voix reconnue, visio). Un attaquant MITM devrait intercepter le SMS <em>et</em> usurper la voix/visage du correspondant sur le canal de vérification — ce dernier est donc le maillon critique.</li>
+                                <li><strong>À distance :</strong> l'appairage hybride expose les clés publiques par SMS (observable), mais la confidentialité repose sur la robustesse cryptographique du KEM hybride ML-KEM-768 + X25519. La vérification d'identité repose sur la comparaison du SAS de 12 caractères hex via un canal <strong>externe de confiance</strong> (voix reconnue, visio). Un attaquant MITM devrait intercepter le SMS <em>et</em> usurper la voix/visage du correspondant sur le canal de vérification. Ce dernier est donc le maillon critique.</li>
                             </ul>
                         </section>
 
@@ -935,13 +722,13 @@
                                 <tr><td>KEM hybride</td><td>X25519</td><td>128 bits de sécurité classique</td></tr>
                                 <tr><td>Dérivation appairage</td><td>HKDF-SHA256</td><td>Domain separation contactKey / SAS</td></tr>
                                 <tr><td>SAS</td><td>HMAC-SHA256 tronqué</td><td>12 hex chars (48 bits), comparaison hors bande</td></tr>
-                                <tr><td>Clés éphémères</td><td>—</td><td>Détruites après échange, sessions live-only (RAM uniquement, aucune persistance)</td></tr>
+                                <tr><td>Clés éphémères</td><td></td><td>Détruites après échange, sessions live-only (RAM uniquement, aucune persistance)</td></tr>
                                 <tr><td>Anti-rejeu</td><td>Stockage</td><td>Par contact, par direction</td></tr>
                                 <tr><td>Fichiers</td><td>Chiffrement</td><td>AES-256-GCM + HKDF</td></tr>
                             </table>
 
                             <div class="highlight-box" style="text-align: center; margin-top: 40px;">
-                                <p><i class="fas fa-lock"></i> OV Message — Chiffrement sans serveur, sans dépendance, sans concession sur la sécurité.</p>
+                                <p><i class="fas fa-lock"></i> OV Message : chiffrement sans serveur, sans dépendance, sans concession sur la sécurité.</p>
                             </div>
                         </section>
 
@@ -954,52 +741,9 @@
 
     <div style="height: 60px;"></div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-bottom">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="copyright">&copy; 2026 &nbsp; OV &mdash; Tous droits réservés.</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="footer-legal">
-                            <div class="legal-cards">
-                                <div class="legal-card">
-                                    <div class="legal-card-icon">
-                                        <i class="fas fa-user-shield"></i>
-                                    </div>
-                                    <h6>Politique de Confidentialité</h6>
-                                    <p>Protection de vos données personnelles</p>
-                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
-                                </div>
-                                <div class="legal-card">
-                                    <div class="legal-card-icon">
-                                        <i class="fas fa-file-contract"></i>
-                                    </div>
-                                    <h6>Conditions d'Utilisation</h6>
-                                    <p>Modalités d'utilisation de nos services</p>
-                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
-                                </div>
-                                <div class="legal-card">
-                                    <div class="legal-card-icon">
-                                        <i class="fas fa-balance-scale"></i>
-                                    </div>
-                                    <h6>Mentions légales</h6>
-                                    <p>Informations juridiques</p>
-                                    <p>Éditeur et hébergement du site</p>
-                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
 
-    <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Scripts -->
+    <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
 
     <!-- Bouton scroll to top -->

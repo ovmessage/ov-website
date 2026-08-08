@@ -6,309 +6,154 @@
     <title>Conditions d'Utilisation - OV</title>
     <meta name="google-site-verification" content="kADbqlYJlWZx6fmdm1bYc-jy9rXXoqK1cNmf9xWrJyI" />
     <meta name="description" content="Conditions générales d'utilisation des services OV. Modalités d'accès et d'usage de nos solutions de chiffrement.">
-    <link rel="icon" type="image/png" href="assets/logo_ov_transparent.PNG">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="assets/logo_ov_transparent_96.png">
+    <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/vendor/fontawesome/css/all.min.css" rel="stylesheet">
+    <link href="assets/vendor/outfit.css" rel="stylesheet">
     <link href="style.css" rel="stylesheet">
     <style>
-        .conditions-container {
+        /* ===== White Paper — thème moderne (aligné sur le portfolio) ===== */
+        body { background: #08080d !important; }
+
+        .privacy-container {
             min-height: 100vh;
-            background: #0E142A;
-            padding-top: 100px;
+            padding-top: 110px;
+            background: transparent;
+            position: relative;
+            z-index: 0;
         }
-        
-        .conditions-header {
-            text-align: center;
-            margin-bottom: 50px;
-            padding: 40px 0;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        /* Halos bleus (fond) */
+        .privacy-container::before {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background:
+                radial-gradient(680px circle at 15% 8%, rgba(42,162,255,0.16), transparent 55%),
+                radial-gradient(720px circle at 90% 18%, rgba(92,186,255,0.10), transparent 55%);
         }
-        
-        .conditions-header h1 {
-            color: var(--white);
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #ffffff 0%, #2AA2FF 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        /* Grille fine estompée */
+        .privacy-container::after {
+            content: '';
+            position: fixed; inset: 0; z-index: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 46px 46px;
+            -webkit-mask-image: radial-gradient(ellipse 110% 80% at 50% 18%, #000 55%, transparent 100%);
+            mask-image: radial-gradient(ellipse 110% 80% at 50% 18%, #000 55%, transparent 100%);
         }
-        
-        .conditions-content {
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 20px;
-            padding: 40px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 40px;
+        .privacy-container > .container { position: relative; z-index: 1; }
+
+        /* En-tête */
+        .privacy-header { text-align: center; margin-bottom: 48px; padding: 20px 0 6px; background: transparent; border: 0; }
+        .privacy-header h1 {
+            font-size: clamp(2rem, 5vw, 3.4rem); font-weight: 700; margin-bottom: 14px;
+            background-image: linear-gradient(135deg, #ffffff 40%, #2AA2FF 90%, #5CBAFF);
+            -webkit-background-clip: text; background-clip: text;
+            color: transparent; -webkit-text-fill-color: transparent;
         }
-        
-        .conditions-content h2 {
-            color: var(--primary-color);
-            font-size: 2.2rem;
-            font-weight: 600;
-            margin: 40px 0 25px 0;
-            padding-bottom: 15px;
-            border-bottom: 2px solid var(--primary-color);
+        .privacy-header .lead { color: rgba(245,245,247,0.6); font-size: 1rem; margin: 0; }
+        .privacy-header .wp-version { color: #2AA2FF; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.95rem; font-weight: 500; letter-spacing: 0.04em; }
+        .privacy-header .wp-classification { color: rgba(245,245,247,0.6); font-size: 0.9rem; }
+
+        /* Verre dépoli (recette OV Jungle) partagé */
+        .privacy-content, .toc, .navigation-buttons, .feature-card {
+            background: rgba(20,27,45,0.35);
+            -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.16);
         }
-        
-        .conditions-content h3 {
-            color: var(--accent-color);
-            font-size: 1.8rem;
-            font-weight: 500;
-            margin: 30px 0 20px 0;
-        }
-        
-        .conditions-content p {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        
-        .conditions-content ul, .conditions-content ol {
-            color: var(--accent-color);
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            padding-left: 30px;
-        }
-        
-        .conditions-content li {
-            margin-bottom: 10px;
-        }
-        
-        .highlight-box {
-            background: rgba(42, 162, 255, 0.1);
-            border-left: 4px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-        
-        .highlight-box p {
-            margin: 0;
-            color: var(--white);
-            font-weight: 500;
-        }
-        
-        .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin: 30px 0;
-        }
-        
-        .feature-card {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: var(--transition);
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(42, 162, 255, 0.2);
-        }
-        
-        .feature-card h5 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .feature-card p {
-            color: var(--accent-color);
-            font-size: 1rem;
-            margin: 0;
-        }
-        
-        .toc {
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 25px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 30px;
-            position: sticky;
-            top: 120px;
-        }
-        
-        .toc h4 {
-            color: var(--primary-color);
-            font-size: 1.3rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-        
-        .toc ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .toc li {
-            margin-bottom: 8px;
-        }
-        
-        .toc a {
-            color: var(--accent-color);
-            text-decoration: none;
-            font-size: 1rem;
-            transition: var(--transition);
-        }
-        
-        .toc a:hover {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-        
-        /* Alignement du premier H2 avec la TOC */
-        .doc-content #introduction h2 {
-            margin-top: -80px;
-        }
-        .doc-content h2:first-of-type {
-            margin-top: -80px;
-        }
-        
-        .warning-box {
-            background: rgba(255, 193, 7, 0.1);
-            border-left: 4px solid #ffc107;
-            border-radius: 10px;
-            padding: 20px;
-            margin: 25px 0;
-        }
-        
-        .warning-box p {
-            margin: 0;
-            color: var(--white);
-            font-weight: 500;
-        }
-        
+
+        .privacy-content { border-radius: 20px; padding: 40px; margin-bottom: 40px; }
+        .privacy-content h2 { color: #ffffff; font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 600; margin: 40px 0 22px; padding-bottom: 14px; border-bottom: 1px solid rgba(42,162,255,0.35); }
+        .privacy-content h3 { color: #2AA2FF; font-size: clamp(1.25rem, 3vw, 1.7rem); font-weight: 600; margin: 30px 0 18px; }
+        .privacy-content p, .privacy-content ul, .privacy-content ol { color: #E5E7EB; font-size: 1.05rem; line-height: 1.8; margin-bottom: 18px; }
+        .privacy-content ul, .privacy-content ol { padding-left: 28px; }
+        .privacy-content li { margin-bottom: 9px; }
+        .privacy-content a { color: #5CBAFF; }
+        .privacy-content strong { color: #ffffff; }
+
+        /* Code */
+        .privacy-content pre { background: rgba(8,10,16,0.7); border: 1px solid rgba(255,255,255,0.12); border-radius: 12px; padding: 16px 18px; margin: 20px 0; overflow-x: auto; }
+        .privacy-content pre, .privacy-content code { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.9rem; }
+        .privacy-content code { color: #7FC8FF; background: rgba(42,162,255,0.12); padding: 2px 7px; border-radius: 6px; }
+        .privacy-content pre code { background: none; padding: 0; color: #D6EBFF; }
+
+        /* Boîtes */
+        .highlight-box { background: rgba(42,162,255,0.1); border-left: 4px solid #2AA2FF; border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+        .highlight-box p { margin: 0; color: #ffffff; font-weight: 500; }
+        .warning-box { background: rgba(255,165,0,0.1); border-left: 4px solid #FFA500; border-radius: 12px; padding: 18px 20px; margin: 24px 0; }
+        .warning-box p { margin: 0; color: #ffffff; font-weight: 500; }
+
+        /* Cartes de fonctionnalités */
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 22px; margin: 30px 0; }
+        .feature-card { border-radius: 16px; padding: 24px; transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s; }
+        .feature-card:hover { transform: translateY(-4px); border-color: #2AA2FF; box-shadow: 0 16px 40px rgba(0,0,0,0.35); }
+        .feature-card h5 { color: #2AA2FF; font-size: 1.2rem; font-weight: 600; margin-bottom: 12px; }
+        .feature-card p { color: #E5E7EB; font-size: 0.98rem; margin: 0; }
+        .feature-card i { color: #2AA2FF; }
+
+        /* Tableaux */
+        .wp-table { width: 100%; border-collapse: collapse; margin: 20px 0 30px; font-size: 0.98rem; }
+        .wp-table th { background: rgba(42,162,255,0.15); color: #2AA2FF; padding: 12px 16px; text-align: left; font-weight: 600; border-bottom: 1px solid rgba(42,162,255,0.3); }
+        .wp-table td { color: #E5E7EB; padding: 11px 16px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .wp-table tr:hover td { background: rgba(255,255,255,0.03); }
+
+        /* Sommaire */
+        .toc { border-radius: 16px; padding: 24px; margin-bottom: 30px; position: sticky; top: 110px; align-self: flex-start; }
+        .toc h4 { color: #2AA2FF; font-size: 1.2rem; font-weight: 600; margin-bottom: 18px; }
+        .toc ul { list-style: none; padding: 0; margin: 0; }
+        .toc li { margin-bottom: 8px; }
+        .toc a { color: #E5E7EB; text-decoration: none; font-size: 0.98rem; transition: color 0.2s; }
+        .toc a:hover { color: #2AA2FF; }
+
+        /* Boutons de navigation (bas) */
+        .navigation-buttons { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 48px; padding: 26px; border-radius: 18px; flex-wrap: wrap; }
+        .nav-btn { display: inline-flex; align-items: center; gap: 10px; padding: 13px 22px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); color: #ffffff; text-decoration: none; border-radius: 100px; font-weight: 600; border: 1px solid rgba(255,255,255,0.1); transition: transform 0.2s, box-shadow 0.2s; }
+        .nav-btn:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(42,162,255,0.35); color: #ffffff; }
+        .nav-btn i { font-size: 1rem; }
+
+        /* Retour en haut */
+        .scroll-to-top { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); color: #ffffff; width: 50px; height: 50px; border-radius: 50%; display: none; align-items: center; justify-content: center; cursor: pointer; z-index: 9999; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(42,162,255,0.3); transition: transform 0.2s; }
+        .scroll-to-top:hover { transform: translateY(-3px); }
+        .scroll-to-top i { font-size: 1.2rem; }
+
+        .doc-content #introduction h2, .doc-content h2:first-of-type { margin-top: -80px; }
+
+
+        /* Footer OV (conservé, harmonisé sombre) */
+        .footer { background: transparent; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 60px; padding: 44px 0; position: relative; z-index: 1; }
+        .footer .copyright { color: rgba(245,245,247,0.5); font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.85rem; margin: 0; }
+        .footer-legal { display: flex; justify-content: flex-end; }
+        .legal-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+        .legal-card { background: rgba(20,27,45,0.35); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 18px 20px; max-width: 230px; }
+        .legal-card-icon i { color: #2AA2FF; font-size: 1.3rem; }
+        .legal-card h6 { color: #ffffff; font-weight: 600; margin: 10px 0 6px; }
+        .legal-card p { color: #E5E7EB; font-size: 0.9rem; margin: 0 0 4px; }
+        .legal-card .btn-outline-light { border: 1px solid rgba(255,255,255,0.25); color: #ffffff; border-radius: 100px; margin-top: 10px; }
+        .legal-card .btn-outline-light:hover { background: rgba(42,162,255,0.15); border-color: #2AA2FF; color: #ffffff; }
+
         @media (max-width: 768px) {
-            .conditions-header h1 {
-                font-size: 2.2rem;
-            }
-            
-            .conditions-content h2 {
-                font-size: 1.8rem;
-            }
-            
-            .conditions-content h3 {
-                font-size: 1.5rem;
-            }
-            
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
+            .privacy-content { padding: 24px; }
+            .feature-grid { grid-template-columns: 1fr; }
+            .wp-table { font-size: 0.85rem; }
+            .wp-table th, .wp-table td { padding: 8px 10px; }
+            .navigation-buttons { flex-direction: column; }
         }
-        
-        .navigation-buttons {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 50px;
-    padding: 30px;
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-        
-        .nav-btn {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 15px 25px;
-    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
-    color: var(--white);
-    text-decoration: none;
-    border-radius: 15px;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-        
-        .nav-btn:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 25px rgba(42, 162, 255, 0.3);
-    color: var(--white);
-}
-        
-        .nav-btn i {
-    font-size: 1.1rem;
-}
-        
-        .scroll-to-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: var(--primary-color);
-            color: var(--white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            z-index: 9999;
-            box-shadow: 0 4px 15px rgba(42, 162, 255, 0.3);
-        }
-        
-        .scroll-to-top:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(42, 162, 255, 0.4);
-        }
-        
-        .scroll-to-top i {
-            font-size: 1.2rem;
+
+        @media (max-width: 768px) {
+            .footer-legal, .legal-cards { justify-content: center; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="index.html">
-                    <picture>
-                        <source srcset="assets/logo_ov_transparent.webp" type="image/webp">
-                        <img src="assets/logo_ov_transparent_96.png" alt="OV Logo" width="48" height="48" class="header-logo logo-morph">
-                    </picture><span class="brand-title">OV</span>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav ms-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html">Accueil</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="ov-message.html">OV Message</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="white-paper.html">White Paper</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="index.html#contact">Contact</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Conditions Content -->
-    <div class="conditions-container">
+<!-- Conditions Content -->
+    <div class="privacy-container">
         <div class="container">
             <!-- Header -->
-            <div class="conditions-header">
+            <div class="wp-topbar">
+                <a href="index.html" class="nav-btn"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+            </div>
+            <div class="privacy-header">
                 <h1>Conditions d'Utilisation</h1>
                 <p class="lead">Modalités d'utilisation de nos services</p>
             </div>
@@ -335,7 +180,7 @@
                 <!-- Main Content -->
                 <div class="col-lg-9">
                     <div class="doc-content">
-                    <div class="conditions-content">
+                    <div class="privacy-content">
                         <!-- Acceptation -->
                         <section id="acceptation">
                             <h2><i class="fas fa-handshake"></i> 1. Acceptation des conditions</h2>
@@ -458,7 +303,7 @@
                             <p>Pour toute question concernant ces conditions d'utilisation :</p>
 
                             <div class="highlight-box">
-                                <p><i class="fas fa-envelope"></i> <strong>Email :</strong> contact@ov-innovations.com</p>
+                                <p><i class="fas fa-envelope"></i> <strong>Email :</strong> contact@ovlabs.fr</p>
                             </div>
                         </section>
                     </div>
@@ -492,7 +337,7 @@
             <div class="footer-bottom">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="copyright">&copy; 2026 &nbsp; OV &mdash; Tous droits réservés.</p>
+                        <p class="copyright">&copy; 2026 &nbsp; OV. Tous droits réservés.</p>
                     </div>
                     <div class="col-md-6">
                         <div class="footer-legal">
@@ -531,7 +376,7 @@
     </footer>
 
     <!-- Scripts -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="script.js"></script>
     
     <!-- Bouton scroll to top -->

@@ -1,0 +1,458 @@
+/* ============================================================
+   home.css : Système de design de la page d'accueil (V5)
+   ------------------------------------------------------------
+   Chargé UNIQUEMENT par index.html, après style.css.
+   Toutes les règles sont scopées sous body.home-v5 : les autres
+   pages ne chargent pas ce fichier et n'ont pas la classe, donc
+   elles ne peuvent pas être affectées.
+
+   Les classes .hero-title, .section-header, .footer, .legal-card,
+   .header et .navbar-brand sont PARTAGÉES avec ov-message.html et
+   les pages légales, d'où le scope obligatoire sur .home-v5.
+
+   Tokens namespacés --ov-* pour ne pas entrer en collision avec
+   les --primary-color / --accent-color de style.css.
+   ============================================================ */
+
+:root {
+    /* ---- Surfaces (dérivées du navy de marque #0E142A) ---- */
+    --ov-bg: #0E142A;
+    --ov-panel: #141B33;
+    --ov-panel-light: #1B2340;
+
+    /* ---- Accent : le bleu de marque existant ---- */
+    --ov-blue: #2AA2FF;
+    --ov-blue-bright: #5CBAFF;
+    --ov-blue-deep: #1E90FF;
+    --ov-blue-dim: rgba(42, 162, 255, .2);
+
+    /* ---- Texte ---- */
+    --ov-text: #ffffff;
+    --ov-text-muted: rgba(255, 255, 255, .55);
+    --ov-text-faint: rgba(255, 255, 255, .35);
+
+    /* ---- Bordures ---- */
+    --ov-border: rgba(42, 162, 255, .12);
+    --ov-glass-border: rgba(255, 255, 255, .06);
+
+    /* ---- Espacement fluide (une seule unité, tout en dérive) ---- */
+    --ov-space-unit: clamp(1rem, 1.2vw, 1.5rem);
+    --ov-space-xs: calc(.5 * var(--ov-space-unit));
+    --ov-space-sm: var(--ov-space-unit);
+    --ov-space-md: calc(2 * var(--ov-space-unit));
+    --ov-space-lg: calc(4 * var(--ov-space-unit));
+    --ov-space-xl: calc(6 * var(--ov-space-unit));
+
+    /* ---- Échelle typographique fluide (aucune media query) ---- */
+    --ov-text-xs: clamp(.8rem, .9vw, .875rem);
+    --ov-text-sm: clamp(.9rem, 1.1vw, 1rem);
+    --ov-text-base: clamp(1rem, 1.3vw, 1.125rem);
+    --ov-text-md: clamp(1.15rem, 1.8vw, 1.4rem);
+    --ov-text-lg: clamp(1.5rem, 3vw, 2.25rem);
+    /* Hero plafonné bas : le titre OV est une phrase éditoriale longue,
+       pas un nom de marque de 3 mots. Un 7rem serait illisible. */
+    --ov-text-hero: clamp(1.9rem, 4vw, 3.4rem);
+
+    /* ---- Matière ---- */
+    --ov-radius-sm: 6px;
+    --ov-radius-md: 14px;
+    --ov-radius-lg: 24px;
+    --ov-glass-bg: rgba(20, 27, 51, .8);
+    --ov-glass-blur: blur(28px);
+    --ov-shadow-premium: 0 25px 60px -12px rgba(0, 0, 0, .75);
+    --ov-shadow-glow: 0 0 40px rgba(42, 162, 255, .08);
+
+    --ov-container-max: 1280px;
+    --ov-container-padding: clamp(1.5rem, 5vw, 6rem);
+}
+
+/* ============================================================
+   1. Base : contraste typographique
+   Titres serrés (-.02em / 1.1), corps aéré (300 / 1.7 / +.01em).
+   C'est ce réglage qui porte l'essentiel du rendu.
+   ============================================================ */
+
+body.home-v5 {
+    background-color: var(--ov-bg);
+    color: var(--ov-text);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--ov-text-base);
+    font-weight: 300;
+    line-height: 1.7;
+    letter-spacing: .01em;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+body.home-v5 h1,
+body.home-v5 h2,
+body.home-v5 h3,
+body.home-v5 h4 {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -.02em;
+}
+
+body.home-v5 .container {
+    max-width: var(--ov-container-max);
+    padding-inline: var(--ov-container-padding);
+}
+
+/* ============================================================
+   2. Header / navigation
+   ============================================================ */
+
+body.home-v5 .header {
+    background: rgba(14, 20, 42, .72);
+    -webkit-backdrop-filter: var(--ov-glass-blur);
+    backdrop-filter: var(--ov-glass-blur);
+    border-bottom: 1px solid var(--ov-glass-border);
+    box-shadow: none;
+}
+
+body.home-v5 .navbar-brand .brand-title {
+    font-weight: 600;
+    font-size: var(--ov-text-md);
+    letter-spacing: .04em;
+    color: var(--ov-text);
+}
+
+body.home-v5 .navbar-nav .nav-link {
+    font-size: var(--ov-text-sm);
+    font-weight: 300;
+    letter-spacing: .02em;
+    color: var(--ov-text-muted);
+    padding-inline: var(--ov-space-xs);
+    transition: color .3s ease;
+}
+
+body.home-v5 .navbar-nav .nav-link:hover,
+body.home-v5 .navbar-nav .nav-link:focus-visible {
+    color: var(--ov-text);
+}
+
+/* ============================================================
+   3. Hero
+   ============================================================ */
+
+/* style.css impose min-height:100vh + align-items:flex-start, ce qui laissait
+   le contenu collé en haut avec ~250px de vide dessous. On recentre. */
+body.home-v5 .hero-section {
+    padding-block: var(--ov-space-lg);
+    background: var(--ov-bg);
+    position: relative;
+    align-items: center;
+}
+
+/* Halo bleu diffus derrière le titre : remplace le dégradé plat */
+body.home-v5 .hero-section::before {
+    content: "";
+    position: absolute;
+    inset-block-start: -10%;
+    inset-inline-start: 50%;
+    translate: -50% 0;
+    inline-size: min(900px, 90vw);
+    block-size: 480px;
+    background: radial-gradient(ellipse at center, rgba(42, 162, 255, .1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+body.home-v5 .hero-section > .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* style.css:852 peint ce titre avec un dégradé via background-clip:text +
+   -webkit-text-fill-color:transparent, ce qui rend `color` inopérant et
+   colore la phrase entière. On neutralise pour rendre l'accent possible. */
+body.home-v5 .hero-title {
+    background: none;
+    -webkit-background-clip: border-box;
+    background-clip: border-box;
+    -webkit-text-fill-color: currentColor;
+    font-size: var(--ov-text-hero);
+    font-weight: 600;
+    line-height: 1.12;
+    letter-spacing: -.025em;
+    color: var(--ov-text);
+    text-wrap: balance;
+    max-inline-size: 20ch;
+    margin-block: 0 var(--ov-space-sm);
+    margin-inline: auto;
+}
+
+/* « OV. » détaché en bleu : accent de marque sur la 1re unité */
+body.home-v5 .hero-title .hero-mark {
+    color: var(--ov-blue);
+}
+
+body.home-v5 .hero-subtitle {
+    font-size: var(--ov-text-md);
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--ov-text-muted);
+    text-wrap: balance;
+    max-inline-size: 52ch;
+    margin-inline: auto;
+    margin-block-end: 0;
+}
+
+/* ============================================================
+   4. Boutons
+   ============================================================ */
+
+body.home-v5 .btn-primary {
+    background: linear-gradient(135deg, var(--ov-blue) 0%, var(--ov-blue-deep) 100%);
+    border: none;
+    color: var(--ov-bg);
+    font-weight: 600;
+    font-size: var(--ov-text-sm);
+    letter-spacing: .02em;
+    border-radius: var(--ov-radius-sm);
+    padding: .85rem 1.9rem;
+    box-shadow: 0 10px 30px rgba(42, 162, 255, .2);
+    transition: transform .3s cubic-bezier(.23, 1, .32, 1), box-shadow .3s ease;
+}
+
+body.home-v5 .btn-primary:hover,
+body.home-v5 .btn-primary:focus-visible {
+    background: linear-gradient(135deg, var(--ov-blue-bright) 0%, var(--ov-blue) 100%);
+    color: var(--ov-bg);
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(42, 162, 255, .3);
+}
+
+body.home-v5 .btn-outline-light {
+    border: 1px solid var(--ov-blue-dim);
+    color: var(--ov-text);
+    background: transparent;
+    font-weight: 400;
+    font-size: var(--ov-text-xs);
+    letter-spacing: .02em;
+    border-radius: var(--ov-radius-sm);
+    transition: border-color .3s ease, background .3s ease;
+}
+
+body.home-v5 .btn-outline-light:hover,
+body.home-v5 .btn-outline-light:focus-visible {
+    background: rgba(42, 162, 255, .08);
+    border-color: var(--ov-blue);
+    color: var(--ov-text);
+}
+
+/* ============================================================
+   5. Grilles Unicode : décoration (cf. validated_texts.md)
+   Passées en panneau glass, retrait du bruit visuel.
+   ============================================================ */
+
+body.home-v5 .unicode-grid {
+    background: var(--ov-glass-bg);
+    -webkit-backdrop-filter: var(--ov-glass-blur);
+    backdrop-filter: var(--ov-glass-blur);
+    border: 1px solid var(--ov-glass-border);
+    border-radius: var(--ov-radius-md);
+    box-shadow: var(--ov-shadow-premium);
+    padding: var(--ov-space-sm);
+    transition: border-color .5s cubic-bezier(.23, 1, .32, 1);
+}
+
+body.home-v5 .unicode-grid:hover {
+    border-color: var(--ov-blue-dim);
+}
+
+/* La couleur ET la taille viennent de .char-display (style.css:1058), pas de
+   .unicode-char. Les caractères restent bleus, c'est un élément de marque (le
+   charset d'encodage) ; en gris ils se lisaient comme des barres vides. On se
+   contente de les atténuer par rapport au bleu plein d'origine. */
+body.home-v5 .char-display {
+    color: rgba(42, 162, 255, .65);
+    font-size: var(--ov-text-md);
+}
+
+body.home-v5 .unicode-char {
+    font-weight: 400;
+}
+
+body.home-v5 .unicode-char:hover {
+    color: var(--ov-blue-bright);
+}
+
+/* ============================================================
+   6. En-têtes de section
+   ============================================================ */
+
+body.home-v5 .section-header {
+    margin-block-end: var(--ov-space-md);
+}
+
+body.home-v5 .section-header h2 {
+    font-size: var(--ov-text-lg);
+    font-weight: 600;
+    letter-spacing: -.02em;
+    color: var(--ov-text);
+    margin-block-end: var(--ov-space-xs);
+}
+
+body.home-v5 .section-header p {
+    font-size: var(--ov-text-base);
+    font-weight: 300;
+    color: var(--ov-text-muted);
+    max-inline-size: 56ch;
+    margin-inline: auto;
+}
+
+/* ============================================================
+   7. Contact
+   ============================================================ */
+
+body.home-v5 .contact-section {
+    padding-block: var(--ov-space-xl);
+    background: var(--ov-bg);
+}
+
+body.home-v5 .contact-form {
+    background: var(--ov-glass-bg);
+    -webkit-backdrop-filter: var(--ov-glass-blur);
+    backdrop-filter: var(--ov-glass-blur);
+    border: 1px solid var(--ov-glass-border);
+    border-radius: var(--ov-radius-lg);
+    box-shadow: var(--ov-shadow-premium);
+    padding: var(--ov-space-md);
+}
+
+body.home-v5 .contact-form .form-group {
+    margin-block-end: var(--ov-space-sm);
+}
+
+body.home-v5 .contact-form label {
+    display: block;
+    font-size: var(--ov-text-xs);
+    font-weight: 400;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--ov-text-muted);
+    margin-block-end: var(--ov-space-xs);
+}
+
+body.home-v5 .contact-form .form-control {
+    background: rgba(14, 20, 42, .6);
+    border: 1px solid var(--ov-glass-border);
+    border-radius: var(--ov-radius-sm);
+    color: var(--ov-text);
+    font-family: 'Outfit', sans-serif;
+    font-size: var(--ov-text-sm);
+    font-weight: 300;
+    padding: .8rem 1rem;
+    transition: border-color .3s ease, box-shadow .3s ease;
+}
+
+body.home-v5 .contact-form .form-control::placeholder {
+    color: var(--ov-text-faint);
+}
+
+body.home-v5 .contact-form .form-control:focus {
+    background: rgba(14, 20, 42, .6);
+    border-color: var(--ov-blue);
+    box-shadow: 0 0 0 3px rgba(42, 162, 255, .12);
+    color: var(--ov-text);
+    outline: none;
+}
+
+body.home-v5 .contact-form select.form-control option {
+    background: var(--ov-panel);
+    color: var(--ov-text);
+}
+
+/* ============================================================
+   8. Footer
+   ============================================================ */
+
+body.home-v5 .footer {
+    background: var(--ov-panel);
+    border-top: 1px solid var(--ov-glass-border);
+    padding-block: var(--ov-space-md);
+}
+
+body.home-v5 .footer .copyright {
+    font-size: var(--ov-text-xs);
+    color: var(--ov-text-faint);
+    margin-block-end: 0;
+}
+
+body.home-v5 .legal-cards {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--ov-space-xs);
+}
+
+body.home-v5 .legal-card {
+    flex: 1 1 180px;
+    background: var(--ov-panel-light);
+    border: 1px solid var(--ov-glass-border);
+    border-radius: var(--ov-radius-md);
+    padding: var(--ov-space-sm);
+    transition: border-color .4s cubic-bezier(.23, 1, .32, 1), transform .4s cubic-bezier(.23, 1, .32, 1);
+}
+
+body.home-v5 .legal-card:hover {
+    border-color: var(--ov-blue-dim);
+    transform: translateY(-3px);
+}
+
+body.home-v5 .legal-card-icon {
+    color: var(--ov-blue);
+    font-size: var(--ov-text-md);
+    margin-block-end: var(--ov-space-xs);
+}
+
+body.home-v5 .legal-card h6 {
+    font-size: var(--ov-text-sm);
+    font-weight: 600;
+    letter-spacing: -.01em;
+    color: var(--ov-text);
+    margin-block-end: calc(.5 * var(--ov-space-xs));
+}
+
+body.home-v5 .legal-card p {
+    font-size: var(--ov-text-xs);
+    font-weight: 300;
+    line-height: 1.5;
+    color: var(--ov-text-muted);
+    margin-block-end: var(--ov-space-xs);
+}
+
+/* ============================================================
+   9. Scroll to top
+   ============================================================ */
+
+body.home-v5 .scroll-to-top {
+    background: var(--ov-glass-bg);
+    -webkit-backdrop-filter: var(--ov-glass-blur);
+    backdrop-filter: var(--ov-glass-blur);
+    border: 1px solid var(--ov-glass-border);
+    color: var(--ov-blue);
+    border-radius: 50%;
+    transition: border-color .3s ease, transform .3s ease;
+}
+
+body.home-v5 .scroll-to-top:hover {
+    border-color: var(--ov-blue);
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   10. Accessibilité : respecter prefers-reduced-motion
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    body.home-v5 *,
+    body.home-v5 *::before,
+    body.home-v5 *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+    }
+}
