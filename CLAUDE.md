@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Site web vitrine de **OV** (la marque) et **OV Message** (le produit phare actuel). Site statique.
 
-⛔ **Hébergement : le VPS OVH, plus GitHub Pages** (depuis le 2026-08-03). Servi par Caddy depuis `/home/debian/ovjungle/site` sur `ovlabs.fr` — publier = pousser les fichiers là (`scp … ovjungle:/home/debian/ovjungle/site/`). La branche `gh-pages` du repo `ovmessage/ov-website` ne contient plus que des redirections, à garder tant que la fiche Play Store d'OV Message pointe dessus. ⚠️ `mentions-legales.html` déclare encore GitHub Pages comme hébergeur : c'est **faux** et légalement l'hébergeur réel doit être nommé.
+⛔ **Hébergement : le VPS OVH, plus GitHub Pages** (depuis le 2026-08-03). Servi par Caddy depuis `/home/debian/ovjungle/site` sur `ovlabs.fr` — publier = pousser les fichiers là (`scp … ovjungle:/home/debian/ovjungle/site/`). La branche `gh-pages` du repo `ovmessage/ov-website` ne contient plus que des redirections, à garder tant que la fiche Play Store d'OV Message pointe dessus. `mentions-legales.html` déclare correctement OVH SAS comme hébergeur (corrigé le 2026-08-08 ; l'ancienne mention GitHub Pages, fausse, a été retirée).
 
 **Stack :**
 - HTML statique (5 pages : `index.html`, `ov-message.html`, `conditions.html`, `confidentialite.html`, `mentions-legales.html`)
