@@ -27,19 +27,18 @@ if [ ! -f "$APP/out/index.html" ]; then
 fi
 
 echo "==> Installation à la racine du site"
-cd "$APP/out"
 
 # Le dossier _next est entièrement régénéré à chaque build : on le remplace
 # proprement plutôt que d'empiler les chunks des builds précédents.
 rm -rf "$RACINE/_next"
 
-# -R pour les dossiers, pas de --delete : rien d'autre n'est supprimé.
-cp -R _next "$RACINE/"
-
-# Tous les fichiers produits à la racine de out/ : pages, payloads RSC et
-# contenu de public/. Énumérer les noms à la main (seb.jpg, etc.) faisait
-# oublier chaque nouvel asset ajouté dans public/.
-find . -maxdepth 1 -type f -exec cp {} "$RACINE/" \;
+# Copie ADDITIVE et RÉCURSIVE de tout out/ vers la racine : pages, payloads RSC,
+# _next/, ET les sous-dossiers de public/ (ovm/, ovj/, ovlab/, reachy/...).
+# ⚠️ `ditto` FUSIONNE les dossiers (là où `cp -R dir dest` les IMBRIQUE quand
+# dest/dir existe déjà) et ne supprime rien : les fichiers hors build (pages
+# statiques, assets/, app-ads.txt...) survivent. L'ancien `find -maxdepth 1
+# -type f` oubliait les sous-dossiers d'images de public/ (bug images 2026-08-08).
+ditto "$APP/out" "$RACINE"
 
 echo "==> Terminé"
 echo "    home       : $RACINE/index.html"
