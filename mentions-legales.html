@@ -126,7 +126,8 @@
         .footer-legal { display: flex; justify-content: flex-end; }
         .legal-cards { display: flex; gap: 16px; flex-wrap: wrap; }
         .legal-card { background: rgba(20,27,45,0.35); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 18px 20px; max-width: 230px; }
-        .legal-card-icon i { color: #2AA2FF; font-size: 1.3rem; }
+        .legal-card-icon { display: inline-grid; place-items: center; width: 52px; height: 52px; margin-bottom: 14px; border-radius: 14px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(42,162,255,0.25); }
+        .legal-card-icon i { color: #ffffff; font-size: 1.15rem; }
         .legal-card h6 { color: #ffffff; font-weight: 600; margin: 10px 0 6px; }
         .legal-card p { color: #E5E7EB; font-size: 0.9rem; margin: 0 0 4px; }
         .legal-card .btn-outline-light { border: 1px solid rgba(255,255,255,0.25); color: #ffffff; border-radius: 100px; margin-top: 10px; }
@@ -321,9 +322,17 @@
                                     <div class="legal-card-icon">
                                         <i class="fas fa-user-shield"></i>
                                     </div>
-                                    <h6>Politique de Confidentialité</h6>
+                                    <h6>Confidentialité OV Message</h6>
                                     <p>Protection de vos données personnelles</p>
                                     <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <h6>Confidentialité OV Jungle</h6>
+                                    <p>Le jeu et vos données</p>
+                                    <a href="ov-jungle-confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
                                 </div>
                                 <div class="legal-card">
                                     <div class="legal-card-icon">
