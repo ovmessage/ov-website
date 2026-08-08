@@ -153,6 +153,19 @@
             .privacy-header h1 { font-size: 2.2rem; }
             .privacy-content h2 { font-size: 1.8rem; }
         }
+        /* Footer legal aligne (cartes) */
+        .footer { background: transparent; border-top: 1px solid rgba(255,255,255,0.08); margin-top: 60px; padding: 44px 0; position: relative; z-index: 1; }
+        .footer .copyright { color: rgba(245,245,247,0.5); font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 0.85rem; margin: 0; }
+        .footer-legal { display: flex; justify-content: flex-end; }
+        .legal-cards { display: flex; gap: 16px; flex-wrap: wrap; }
+        .legal-card { background: rgba(20,27,45,0.35); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.14); border-radius: 14px; padding: 18px 20px; max-width: 230px; }
+        .legal-card-icon { display: inline-grid; place-items: center; width: 52px; height: 52px; margin-bottom: 14px; border-radius: 14px; background: linear-gradient(135deg, #2AA2FF 0%, #0E142A 100%); border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 8px 24px rgba(42,162,255,0.25); }
+        .legal-card-icon i { color: #ffffff; font-size: 1.15rem; }
+        .legal-card h6 { color: #ffffff; font-weight: 600; margin: 10px 0 6px; }
+        .legal-card p { color: #E5E7EB; font-size: 0.9rem; margin: 0 0 4px; }
+        .legal-card .btn-outline-light { border: 1px solid rgba(255,255,255,0.25); color: #ffffff; border-radius: 100px; margin-top: 10px; }
+        .legal-card .btn-outline-light:hover { background: rgba(42,162,255,0.15); border-color: #2AA2FF; color: #ffffff; }
+        @media (max-width: 768px) { .footer-legal, .legal-cards { justify-content: center; } }
     </style>
 </head>
 <body>
@@ -308,13 +321,6 @@
                 </div>
             </div>
 
-            <!-- Navigation -->
-            <div class="navigation-buttons">
-                <a href="index.html" class="nav-btn">
-                    <i class="fas fa-home"></i>
-                    Page d'Accueil
-                </a>
-            </div>
         </div>
     </div>
 
@@ -323,8 +329,55 @@
         <div class="container">
             <div class="footer-bottom">
                 <div class="row">
-                    <div class="col-12 text-center">
-                        <p class="copyright">&copy; 2026 &nbsp; OV · Tous droits réservés.</p>
+                    <div class="col-md-6">
+                        <p class="copyright">&copy; 2026 &nbsp; OV. Tous droits réservés.</p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="footer-legal">
+                            <div class="legal-cards">
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-user-shield"></i>
+                                    </div>
+                                    <h6>Confidentialité OV Message</h6>
+                                    <p>Protection de vos données personnelles</p>
+                                    <a href="confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <h6>Confidentialité OV Jungle</h6>
+                                    <p>Le jeu et vos données</p>
+                                    <a href="ov-jungle-confidentialite.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-file-contract"></i>
+                                    </div>
+                                    <h6>Conditions OV Message</h6>
+                                    <p>Modalités d'utilisation d'OV Message</p>
+                                    <a href="conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-gamepad"></i>
+                                    </div>
+                                    <h6>Conditions OV Jungle</h6>
+                                    <p>Modalités d'utilisation d'OV Jungle</p>
+                                    <a href="ov-jungle-conditions.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                                <div class="legal-card">
+                                    <div class="legal-card-icon">
+                                        <i class="fas fa-gavel"></i>
+                                    </div>
+                                    <h6>Mentions légales</h6>
+                                    <p>Informations juridiques</p>
+                                    <p>Éditeur et hébergement du site</p>
+                                    <a href="mentions-legales.html" class="btn btn-sm btn-outline-light">En savoir plus</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
