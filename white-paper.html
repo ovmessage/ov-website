@@ -10,7 +10,7 @@
     <meta property="og:description" content="Documentation technique du protocole de chiffrement OV Message. Architecture sans serveur, chiffrement de bout en bout par SMS.">
     <meta property="og:image" content="assets/images/icon_ov.png">
     <meta property="og:type" content="article">
-    <link rel="icon" type="image/png" href="assets/logo_ov_transparent_96.png">
+    <link rel="icon" type="image/png" href="/icon.png">
     <link href="assets/vendor/bootstrap/bootstrap.min.css" rel="stylesheet">
     <link href="assets/vendor/fontawesome/css/all.min.css" rel="stylesheet">
     <link href="assets/vendor/outfit.css" rel="stylesheet">
@@ -133,6 +133,36 @@
             .wp-table { font-size: 0.85rem; }
             .wp-table th, .wp-table td { padding: 8px 10px; }
             .navigation-buttons { flex-direction: column; }
+        }
+    
+        /* ===== Bouton « Retour à l'accueil » : alignement commun aux 10 pages =====
+           Les 4 pages projet (Next) posent leur contenu dans un conteneur de
+           1080px avec 24px de gouttiere, topbar collante a 24px du haut. Ici le
+           conteneur vient de Bootstrap, mais style.css l'elargit a
+           `max-width: 1600px !important` : le bouton tombait ~190px plus a
+           gauche que sur les pages projet en 1440px de large, et l'ecart
+           s'inversait en dessous de ~1100px. Le !important ci-dessous est donc
+           necessaire pour repasser devant style.css. */
+        .container { max-width: 1080px !important; padding-left: 24px; padding-right: 24px; }
+
+        /* Le padding-top reservait la place d'une navbar fixe qui n'existe plus :
+           plus aucune page statique n'a de <header> depuis le theme moderne. */
+        .privacy-container { padding-top: 0; }
+
+        /* .wp-topbar n'etait definie QUE dans white-paper.html. Sur les 5 autres
+           pages la classe etait fantome (utilisee dans le HTML, declaree nulle
+           part), donc le bouton n'etait ni positionne ni collant. */
+        .wp-topbar { position: sticky; top: 0; z-index: 30; padding: 24px 0 6px; }
+
+        /* Taille alignee sur .ovm-back / .ovj-back / .ovl-back / .rchy-back
+           (14px au lieu des 16px herites du body, padding 11px/22px, gap 8px). */
+        .nav-btn { font-size: 14px; padding: 11px 22px; gap: 8px; }
+
+        /* Le sommaire se cale sous la topbar collante (~72px de haut). */
+        .toc { top: 88px; }
+
+        @media (max-width: 560px) {
+            .container { padding-left: 18px; padding-right: 18px; }
         }
     </style>
 </head>
