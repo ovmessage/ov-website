@@ -41,12 +41,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Source Next du portfolio : dépôt git SÉPARÉ, ne jamais l'embarquer ici
-# (un `git add -A` l'ajoutait comme gitlink, ce qui casse les clones).
-/portfolio-live/
-
-# Template d'origine dont ce portfolio dérive, conservé hors suivi.
-/portfolio-live-template-backup/
+# Dépendances et sorties de build de la source Next (regénérables).
+/portfolio-live/node_modules/
+/portfolio-live/.next/
+/portfolio-live/out/
 
 # Sauvegardes horodatées créées à la main avant retouche.
 *.bak-*
