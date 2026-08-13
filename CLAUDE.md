@@ -8,6 +8,45 @@ Site web vitrine de **OV** (la marque) et **OV Message** (le produit phare actue
 
 ⛔ **Hébergement : le VPS OVH, plus GitHub Pages** (depuis le 2026-08-03). Servi par Caddy depuis `/home/debian/ovjungle/site` sur `ovlabs.fr` — publier = pousser les fichiers là (`scp … ovjungle:/home/debian/ovjungle/site/`). La branche `gh-pages` du repo `ovmessage/ov-website` ne contient plus que des redirections, à garder tant que la fiche Play Store d'OV Message pointe dessus. `mentions-legales.html` déclare correctement OVH SAS comme hébergeur (corrigé le 2026-08-08 ; l'ancienne mention GitHub Pages, fausse, a été retirée).
 
+⛔ **`rsync` n'existe PAS sur le VPS** (constaté le 2026-08-12 : `rsync: command not found` côté distant, et l'option `--no-delete` n'existe pas côté local). Ne pas perdre de temps à chercher une invocation rsync qui marche.
+
+⛔ **PUBLIER DEMANDE DEUX ENVOIS, et c'est un piège** (constaté 2026-08-12) : `build-home.sh` ne
+régénère que la home, les pages de routes Next et `_next/`. Les **7 pages HTML écrites à la main**
+(`conditions`, `confidentialite`, `mentions-legales`, `white-paper`, `ov-jungle-conditions`,
+`ov-jungle-confidentialite`, `ov-jungle-assistance`) **ne sont pas dans `out/`** et doivent être
+poussées séparément au `scp`. Oublier le second envoi laisse des pages périmées en prod **en
+silence** : le build réussit, la home est à jour, et personne ne voit que les légales ne le sont pas.
+⏳ **DETTE, à résoudre plus tard (décision user 2026-08-12, PAS maintenant)** : un script de
+publication unique qui envoie `out/` **et** les pages statiques en une commande, avec le contrôle
+`curl` des liens dans la foulée. Tant qu'il n'existe pas, faire les deux envois à la main et
+**vérifier en prod page par page**, pas seulement la home.
+
+⛔ **Après `build-home.sh`, publier TOUT `portfolio-live/out/`, jamais un sous-ensemble choisi à la main.** Erreur commise le 2026-08-12 : n'avoir poussé que `index.html`, les icônes et `_next/`. Résultat, `/ov-message`, `/ov-jungle`, `/ov-lab` et `/reachy` sont restés servis dans leur version d'AVANT le build, donc **sans balise d'icône**, alors qu'ils étaient corrects en local. Symptôme trompeur : la home est bonne, les pages produit ne le sont pas.
+**La commande qui fusionne proprement** (scp -r IMBRIQUE les dossiers existants au lieu de les fusionner, comme `cp -R`) :
+```
+cd portfolio-live/out && tar -cf - . | ssh ovjungle 'tar -C /home/debian/ovjungle/site -xf -'
+```
+⚠️ C'est l'équivalent distant du `ditto` que `build-home.sh` fait en local : additif, fusionnant, ne supprime rien.
+**Contrôle** : `curl -sL https://ovlabs.fr/<page> | grep -o 'rel="icon"[^>]*'` sur `/`, `/ov-message`, `/ov-jungle`, `/ov-lab`, `/reachy` et quelques pages statiques. Les URL de routes Next portent un hash (`/icon.png?icon.<hash>.png`) : **si le hash diffère entre deux pages, c'est qu'une page est restée sur un ancien build.**
+⚠️ **`portfolio-live/node_modules` peut être VIDE** (c'était le cas le 2026-08-12) : `build-home.sh` échoue alors sur « Could not find the Next.js package ». Faire `npm install` dans `portfolio-live/` avant de builder.
+
+## Icône du site et image de partage (posées le 2026-08-12)
+
+⛔ **Avant cette date, la home n'avait NI icône NI image de partage** : `metadata` dans `portfolio-live/app/layout.js` ne définissait ni `icons` ni `openGraph.images`, aucune convention Next n'était posée, et `/favicon.ico` renvoyait **404**. Les pages légales statiques, elles, déclaraient bien leur icône en dur, d'où la différence visible.
+
+- **L'icône vient des CONVENTIONS de l'App Router** : `portfolio-live/app/icon.png` (1024, **coins arrondis**) et `portfolio-live/app/apple-icon.png` (180). Next émet les `<link rel="icon">` tout seul. ⛔ **Ne pas ajouter un champ `icons` dans `metadata`** : il masquerait la convention.
+- ⛔ **L'icône est le LOGO TRANSPARENT, PAS une tuile.** `app/icon.png` est une copie directe de `assets/logo_ov_transparent.PNG` (1024, alpha réel, coins à `srgba(0,0,0,0)`). **Ne PAS lui remettre de fond.**
+  **Historique de la décision (2026-08-12), pour ne pas refaire le détour** : le user a demandé « pas de coins carrés, des coins arrondis ». J'ai d'abord compris « tuile à coins arrondis » et fabriqué un carré `#08080d` masqué par un `roundrectangle` de rayon 224. Le user a répondu que **c'était trop sombre** et que les pages légales avaient **déjà le bon format**, à savoir le logo transparent, qu'il suffisait d'étendre au site. **Il avait raison** : un logo transparent n'a pas de coins carrés du tout, puisqu'il n'y a pas de carré. La demande d'arrondi était satisfaite par la transparence, pas par un masque.
+  ⚠️ **Effet connu et accepté sur iOS** : un `apple-touch-icon` transparent est composité sur du NOIR par iOS, qui applique ensuite son propre masque. L'icône de l'écran d'accueil sera donc sombre et arrondie, ce qui reste cohérent avec le site.
+- ⚠️ **`og-image.png` GARDE son fond sombre** : c'est une bannière de partage, pas une icône. Une image transparente y sortirait sur fond blanc ou noir selon le service.
+- ⛔ **`app/icon.png` fait 192×192, et ce n'est PAS un choix esthétique.** Google exige que la favicon des résultats de recherche soit un **carré multiple de 48 px** (48, 96, 144, 192…). Elle était en **1024×1024**, qui n'est pas un multiple de 48, **et pesait 1,67 Mo** pour un fichier chargé sur chaque page. 192 = 48 × 4, et le poids tombe à ~35 Ko. ⛔ Ne pas la « remonter en haute résolution » : ça la rendrait non conforme et lourde, pour un usage qui plafonne à 32 px dans un onglet.
+  ℹ️ `apple-icon.png` reste à **180** : c'est la taille attendue par iOS, une contrainte différente et sans rapport avec Google.
+  ⚠️ Une fois conforme, l'apparition dans les résultats Google ne dépend plus que du recrawl de Google, qui prend des jours à des semaines. Rien à « réparer » de plus côté site.
+- **`metadataBase: new URL('https://ovlabs.fr')` est OBLIGATOIRE** : sans lui Next émet des chemins relatifs pour `og:image`, que beaucoup d'agrégateurs refusent, et l'aperçu part sans image.
+- **`og-image.png` = 1200×630** (`portfolio-live/public/`), logo centré sur le fond du site. ⛔ Ne pas y mettre le carré 1024 : il serait rogné sur les bords. `twitter.card` est passé à `summary_large_image` (il était à `summary`, donc vignette carrée, et sans image déclarée de toute façon).
+- **`favicon.ico` est à la RACINE du site**, hors build, parce que les navigateurs le demandent d'office même sans balise. Il survit à `build-home.sh` (copie additive).
+- **Vérifié en prod** : `/`, `/icon.png`, `/apple-icon.png`, `/og-image.png`, `/favicon.ico` répondent tous **200**, et la home sert bien `og:image` en URL absolue.
+
 **Stack :**
 - HTML statique (5 pages : `index.html`, `ov-message.html`, `conditions.html`, `confidentialite.html`, `mentions-legales.html`)
 - ⛔ **Bootstrap 5.1.3, Font Awesome 6 et la police Outfit sont SELF-HÉBERGÉS** dans `assets/vendor/` depuis le 2026-08-05 (avant : jsDelivr, cdnjs, Google Fonts). Motif double : un CDN compromis exécutait du JS arbitraire sur la page qui porte le formulaire, et Google Fonts transmettait l'IP de chaque visiteur — ce que les mentions légales prétendaient l'inverse. ⛔ **Ne JAMAIS « dépanner » un asset en rebranchant un CDN** : la CSP servie par Caddy n'autorise plus aucune origine externe, le fichier serait bloqué en silence, et la promesse « aucune requête à un tiers » des mentions légales deviendrait fausse.
