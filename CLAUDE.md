@@ -21,20 +21,20 @@ publication unique qui envoie `out/` **et** les pages statiques en une commande,
 `curl` des liens dans la foulée. Tant qu'il n'existe pas, faire les deux envois à la main et
 **vérifier en prod page par page**, pas seulement la home.
 
-⛔ **Après `build-home.sh`, publier TOUT `portfolio-live/out/`, jamais un sous-ensemble choisi à la main.** Erreur commise le 2026-08-12 : n'avoir poussé que `index.html`, les icônes et `_next/`. Résultat, `/ov-message`, `/ov-jungle`, `/ov-lab` et `/reachy` sont restés servis dans leur version d'AVANT le build, donc **sans balise d'icône**, alors qu'ils étaient corrects en local. Symptôme trompeur : la home est bonne, les pages produit ne le sont pas.
+⛔ **Après `build-home.sh`, publier TOUT `ov-site/out/`, jamais un sous-ensemble choisi à la main.** Erreur commise le 2026-08-12 : n'avoir poussé que `index.html`, les icônes et `_next/`. Résultat, `/ov-message`, `/ov-jungle`, `/ov-lab` et `/reachy` sont restés servis dans leur version d'AVANT le build, donc **sans balise d'icône**, alors qu'ils étaient corrects en local. Symptôme trompeur : la home est bonne, les pages produit ne le sont pas.
 **La commande qui fusionne proprement** (scp -r IMBRIQUE les dossiers existants au lieu de les fusionner, comme `cp -R`) :
 ```
-cd portfolio-live/out && tar -cf - . | ssh ovjungle 'tar -C /home/debian/ovjungle/site -xf -'
+cd ov-site/out && tar -cf - . | ssh ovjungle 'tar -C /home/debian/ovjungle/site -xf -'
 ```
 ⚠️ C'est l'équivalent distant du `ditto` que `build-home.sh` fait en local : additif, fusionnant, ne supprime rien.
 **Contrôle** : `curl -sL https://ovlabs.fr/<page> | grep -o 'rel="icon"[^>]*'` sur `/`, `/ov-message`, `/ov-jungle`, `/ov-lab`, `/reachy` et quelques pages statiques. Les URL de routes Next portent un hash (`/icon.png?icon.<hash>.png`) : **si le hash diffère entre deux pages, c'est qu'une page est restée sur un ancien build.**
-⚠️ **`portfolio-live/node_modules` peut être VIDE** (c'était le cas le 2026-08-12) : `build-home.sh` échoue alors sur « Could not find the Next.js package ». Faire `npm install` dans `portfolio-live/` avant de builder.
+⚠️ **`ov-site/node_modules` peut être VIDE** (c'était le cas le 2026-08-12) : `build-home.sh` échoue alors sur « Could not find the Next.js package ». Faire `npm install` dans `ov-site/` avant de builder.
 
 ## Icône du site et image de partage (posées le 2026-08-12)
 
-⛔ **Avant cette date, la home n'avait NI icône NI image de partage** : `metadata` dans `portfolio-live/app/layout.js` ne définissait ni `icons` ni `openGraph.images`, aucune convention Next n'était posée, et `/favicon.ico` renvoyait **404**. Les pages légales statiques, elles, déclaraient bien leur icône en dur, d'où la différence visible.
+⛔ **Avant cette date, la home n'avait NI icône NI image de partage** : `metadata` dans `ov-site/app/layout.js` ne définissait ni `icons` ni `openGraph.images`, aucune convention Next n'était posée, et `/favicon.ico` renvoyait **404**. Les pages légales statiques, elles, déclaraient bien leur icône en dur, d'où la différence visible.
 
-- **L'icône vient des CONVENTIONS de l'App Router** : `portfolio-live/app/icon.png` (1024, **coins arrondis**) et `portfolio-live/app/apple-icon.png` (180). Next émet les `<link rel="icon">` tout seul. ⛔ **Ne pas ajouter un champ `icons` dans `metadata`** : il masquerait la convention.
+- **L'icône vient des CONVENTIONS de l'App Router** : `ov-site/app/icon.png` (1024, **coins arrondis**) et `ov-site/app/apple-icon.png` (180). Next émet les `<link rel="icon">` tout seul. ⛔ **Ne pas ajouter un champ `icons` dans `metadata`** : il masquerait la convention.
 - ⛔ **L'icône est le LOGO TRANSPARENT, PAS une tuile.** `app/icon.png` est une copie directe de `assets/logo_ov_transparent.PNG` (1024, alpha réel, coins à `srgba(0,0,0,0)`). **Ne PAS lui remettre de fond.**
   **Historique de la décision (2026-08-12), pour ne pas refaire le détour** : le user a demandé « pas de coins carrés, des coins arrondis ». J'ai d'abord compris « tuile à coins arrondis » et fabriqué un carré `#08080d` masqué par un `roundrectangle` de rayon 224. Le user a répondu que **c'était trop sombre** et que les pages légales avaient **déjà le bon format**, à savoir le logo transparent, qu'il suffisait d'étendre au site. **Il avait raison** : un logo transparent n'a pas de coins carrés du tout, puisqu'il n'y a pas de carré. La demande d'arrondi était satisfaite par la transparence, pas par un masque.
   ⚠️ **Effet connu et accepté sur iOS** : un `apple-touch-icon` transparent est composité sur du NOIR par iOS, qui applique ensuite son propre masque. L'icône de l'écran d'accueil sera donc sombre et arrondie, ce qui reste cohérent avec le site.
@@ -43,7 +43,7 @@ cd portfolio-live/out && tar -cf - . | ssh ovjungle 'tar -C /home/debian/ovjungl
   ℹ️ `apple-icon.png` reste à **180** : c'est la taille attendue par iOS, une contrainte différente et sans rapport avec Google.
   ⚠️ Une fois conforme, l'apparition dans les résultats Google ne dépend plus que du recrawl de Google, qui prend des jours à des semaines. Rien à « réparer » de plus côté site.
 - **`metadataBase: new URL('https://ovlabs.fr')` est OBLIGATOIRE** : sans lui Next émet des chemins relatifs pour `og:image`, que beaucoup d'agrégateurs refusent, et l'aperçu part sans image.
-- **`og-image.png` = 1200×630** (`portfolio-live/public/`), logo centré sur le fond du site. ⛔ Ne pas y mettre le carré 1024 : il serait rogné sur les bords. `twitter.card` est passé à `summary_large_image` (il était à `summary`, donc vignette carrée, et sans image déclarée de toute façon).
+- **`og-image.png` = 1200×630** (`ov-site/public/`), logo centré sur le fond du site. ⛔ Ne pas y mettre le carré 1024 : il serait rogné sur les bords. `twitter.card` est passé à `summary_large_image` (il était à `summary`, donc vignette carrée, et sans image déclarée de toute façon).
 - **`favicon.ico` est à la RACINE du site**, hors build, parce que les navigateurs le demandent d'office même sans balise. Il survit à `build-home.sh` (copie additive).
 - **Vérifié en prod** : `/`, `/icon.png`, `/apple-icon.png`, `/og-image.png`, `/favicon.ico` répondent tous **200**, et la home sert bien `og:image` en URL absolue.
 
@@ -85,7 +85,7 @@ Décisions verrouillées (à respecter dans toute future modif) :
 
 5. **Suppression de la vaporware** : les 12 « cas d'usage » de la home actuelle (SMS chiffrés, anti-phishing, OTP, IoT, blockchain, chèques bancaires…) ne décrivent pas des produits existants. **À supprimer purement et simplement** — pas à remplacer.
 
-6. **Le développement assisté par IA est REVENDIQUÉ, jamais caché** (décidé le 2026-08-07). L'orchestration d'IA et le vibe coding sont le positionnement CENTRAL de la home et une fierté, pas un secret gênant à euphémiser. Le hero l'affiche en clair (« J'orchestre des IA. Je livre des produits. ») et le rôle assumé est « Développeur freelance & expert en vibe coding ». ⛔ Ne JAMAIS adoucir, masquer ni retirer cette revendication au motif que ça ferait « moins sérieux » : le sérieux se prouve par le résultat (apps publiées sur les stores, SDK de chiffrement, sécurité auditée), pas en cachant la méthode. Source de vérité du contenu home : l'app Next `portfolio-live/` (voir `app/data.js`), pas un `index.html` écrit à la main.
+6. **Le développement assisté par IA est REVENDIQUÉ, jamais caché** (décidé le 2026-08-07). L'orchestration d'IA et le vibe coding sont le positionnement CENTRAL de la home et une fierté, pas un secret gênant à euphémiser. Le hero l'affiche en clair (« J'orchestre des IA. Je livre des produits. ») et le rôle assumé est « Développeur freelance & expert en vibe coding ». ⛔ Ne JAMAIS adoucir, masquer ni retirer cette revendication au motif que ça ferait « moins sérieux » : le sérieux se prouve par le résultat (apps publiées sur les stores, SDK de chiffrement, sécurité auditée), pas en cachant la méthode. Source de vérité du contenu home : l'app Next `ov-site/` (voir `app/data.js`), pas un `index.html` écrit à la main.
 
 ## Audience
 

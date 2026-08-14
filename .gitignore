@@ -42,9 +42,9 @@ yarn-error.log*
 next-env.d.ts
 
 # Dépendances et sorties de build de la source Next (regénérables).
-/portfolio-live/node_modules/
-/portfolio-live/.next/
-/portfolio-live/out/
+/ov-site/node_modules/
+/ov-site/.next/
+/ov-site/out/
 
 # Sauvegardes horodatées créées à la main avant retouche.
 *.bak-*

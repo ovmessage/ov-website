@@ -2,7 +2,7 @@
 #
 # build-home.sh : construit la page d'accueil Next et l'installe à la racine.
 #
-# Depuis le 2026-08-07 la home vient de l'app Next `portfolio-live/`, pas d'un
+# Depuis le 2026-08-07 la home vient de l'app Next `ov-site/`, pas d'un
 # index.html écrit à la main. Les 7 autres pages (ov-message, white-paper et
 # les 5 pages légales) restent du HTML statique et ne sont PAS touchées ici.
 #
@@ -15,7 +15,7 @@
 set -euo pipefail
 
 RACINE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-APP="$RACINE/portfolio-live"
+APP="$RACINE/ov-site"
 
 echo "==> Build Next (export statique)"
 cd "$APP"
